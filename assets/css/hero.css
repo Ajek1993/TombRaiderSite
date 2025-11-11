@@ -98,7 +98,7 @@
   font-family: var(--font-heading);
   font-size: clamp(28px, 5vw, 56px);
   color: var(--gold-accent);
-  text-shadow: var(--text-glow-gold), var(--text-shadow-dark);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4), 2px 2px 4px rgba(0, 0, 0, 0.8);
   margin-bottom: var(--space-lg);
   letter-spacing: var(--tracking-wide);
   line-height: var(--leading-tight);
@@ -108,7 +108,7 @@
   font-family: var(--font-subheading);
   font-size: clamp(18px, 3vw, 28px);
   color: var(--neon-cyan);
-  text-shadow: var(--text-glow-cyan);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.4), 2px 2px 4px rgba(0, 0, 0, 0.8);
   margin-bottom: var(--space-3xl);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
