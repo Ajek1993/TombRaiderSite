@@ -230,7 +230,7 @@ h3 {
   text-decoration: none;
   position: relative;
   padding: var(--space-sm) 0;
-  transition: color var(--transition-base);
+  transition: all var(--transition-base);
 }
 
 .nav-link::after {
@@ -240,15 +240,15 @@ h3 {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--cyber-pink);
-  box-shadow: var(--shadow-pink);
+  background: var(--gold-accent);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
   transition: width var(--transition-base);
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--cyber-pink);
-  text-shadow: var(--text-glow-pink);
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
 }
 
 .nav-link:hover::after,

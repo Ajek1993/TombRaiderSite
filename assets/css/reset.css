@@ -33,7 +33,12 @@ body {
 }
 
 /* ============ Typography Reset ============ */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
   font-weight: var(--weight-normal);
@@ -52,17 +57,14 @@ a {
   transition: color var(--transition-base);
 }
 
-a:hover {
-  color: var(--link-hover);
-}
-
 a:focus {
   outline: 2px solid var(--neon-cyan);
   outline-offset: 4px;
 }
 
 /* ============ Lists ============ */
-ul, ol {
+ul,
+ol {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -232,7 +234,8 @@ table {
     page-break-inside: avoid;
   }
 
-  h2, h3 {
+  h2,
+  h3 {
     page-break-after: avoid;
   }
 }

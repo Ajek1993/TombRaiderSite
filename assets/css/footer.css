@@ -40,8 +40,8 @@
 }
 
 .footer-links a:hover {
-  color: var(--cyber-pink);
-  text-shadow: 0 0 5px var(--cyber-pink);
+  color: var(--neon-cyan);
+  text-shadow: 0 0 5px var(--neon-cyan);
   transform: translateX(4px);
 }
 
@@ -117,8 +117,8 @@
 }
 
 .footer-credits a:hover {
-  color: var(--cyber-pink);
-  text-shadow: 0 0 5px var(--cyber-pink);
+  color: var(--gold-accent);
+  text-shadow: 0 0 5px var(--gold-accent);
 }
 
 /* Mobile Social in Mobile Menu */
