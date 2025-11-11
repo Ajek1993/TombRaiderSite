@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Strona gamingowa poświęcona Tomb Raider. Gameplay'e, highlights, streamy na TikTok i wiele więcej!">
+  <meta name="keywords" content="Tomb Raider, gaming, gameplay, Lara Croft, streamy, TikTok">
+  <meta name="author" content="[Nick Siostry]">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="[Nick] Gaming - Tomb Raider Adventures">
+  <meta property="og:description" content="Eksplorujemy starożytne ruiny razem z Larą Croft!">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Nick] Gaming - Tomb Raider Adventures">
+  <meta name="twitter:description" content="Eksplorujemy starożytne ruiny razem z Larą Croft!">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+
+  <title>[Nick] Gaming - Tomb Raider Adventures</title>
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/hero.css">
+  <link rel="stylesheet" href="/assets/css/cards.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+</head>
+<body>
+  <!-- Skip to content for accessibility -->
+  <a href="#main-content" class="skip-to-content">Przejdź do treści</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-container">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <span class="logo-icon">🏺</span>
+        <div class="logo-text">
+          <div class="logo-name">[NICK] GAMING</div>
+          <div class="logo-tagline">Tomb Raider Adventures</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link active">Home</a></li>
+        <li><a href="/gameplays.html" class="nav-link">Gameplay'e</a></li>
+        <li><a href="/highlights.html" class="nav-link">Highlights</a></li>
+        <li><a href="/gallery.html" class="nav-link">Galeria</a></li>
+        <li><a href="/announcements.html" class="nav-link">Zapowiedzi</a></li>
+        <li><a href="/about.html" class="nav-link">O Mnie</a></li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Social Icons -->
+        <div class="social-icons">
+          <a href="https://youtube.com/@placeholder" class="social-icon" aria-label="YouTube" target="_blank" rel="noopener">
+            <span>▶</span>
+          </a>
+          <a href="https://tiktok.com/@placeholder" class="social-icon" aria-label="TikTok" target="_blank" rel="noopener">
+            <span>♪</span>
+          </a>
+          <a href="https://discord.gg/placeholder" class="social-icon" aria-label="Discord" target="_blank" rel="noopener">
+            <span>💬</span>
+          </a>
+        </div>
+
+        <!-- Search Button -->
+        <button class="search-btn" aria-label="Szukaj">
+          <span>🔍</span>
+        </button>
+
+        <!-- Hamburger Menu (Mobile) -->
+        <button class="hamburger" aria-label="Menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu-list">
+      <li><a href="/" class="mobile-menu-link active">🏠 Home</a></li>
+      <li><a href="/gameplays.html" class="mobile-menu-link">🎮 Gameplay'e</a></li>
+      <li><a href="/highlights.html" class="mobile-menu-link">⭐ Highlights</a></li>
+      <li><a href="/gallery.html" class="mobile-menu-link">🖼️ Galeria</a></li>
+      <li><a href="/announcements.html" class="mobile-menu-link">📅 Zapowiedzi</a></li>
+      <li><a href="/about.html" class="mobile-menu-link">👤 O Mnie</a></li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <!-- Mobile Social Icons -->
+    <div class="mobile-social">
+      <h3>Social Media</h3>
+      <div class="social-grid">
+        <a href="https://youtube.com/@placeholder" class="mobile-social-link" target="_blank" rel="noopener">
+          <span>▶</span> YouTube
+        </a>
+        <a href="https://tiktok.com/@placeholder" class="mobile-social-link" target="_blank" rel="noopener">
+          <span>♪</span> TikTok
+        </a>
+        <a href="https://discord.gg/placeholder" class="mobile-social-link" target="_blank" rel="noopener">
+          <span>💬</span> Discord
+        </a>
+        <a href="https://instagram.com/placeholder" class="mobile-social-link" target="_blank" rel="noopener">
+          <span>📷</span> Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <!-- Parallax Background Layers -->
+      <div class="parallax-container">
+        <div class="parallax-layer parallax-layer-4" data-speed="0.1"></div>
+        <div class="parallax-layer parallax-layer-3" data-speed="0.2"></div>
+        <div class="parallax-layer parallax-layer-2" data-speed="0.5"></div>
+        <div class="parallax-layer parallax-layer-1" data-speed="0.8"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="container">
+          <!-- Pixel Lara -->
+          <div class="pixel-lara">
+            <div class="pixel-art-container">
+              <!-- Simple ASCII pixel art placeholder -->
+              <pre class="pixel-art">
+    ████
+   █▓▓▓█
+   ██▓██
+   █████
+  ███████
+   ██ ██
+   ██ ██
+              </pre>
+            </div>
+          </div>
+
+          <!-- Hero Title -->
+          <h1 class="hero-title fade-in">
+            Witaj w Moim Grobowcu<br>
+            Pełnym Przygód!
+          </h1>
+
+          <p class="hero-subtitle fade-in">[Nick] Gaming - Tomb Raider Adventures</p>
+
+          <!-- Featured Video Placeholder -->
+          <div class="featured-video fade-in">
+            <div class="video-placeholder">
+              <div class="video-placeholder-content">
+                <span class="play-icon">▶</span>
+                <p>Najnowszy Gameplay</p>
+                <p class="video-title">Shadow of Tomb Raider - Episode 15</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="hero-cta fade-in">
+            <a href="https://youtube.com/@placeholder" class="btn btn-primary" target="_blank" rel="noopener">
+              🎮 Subskrybuj Kanał
+            </a>
+            <a href="/gameplays.html" class="btn btn-secondary">
+              📺 Zobacz Gameplay'e
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About/Intro Section -->
+    <section class="section section-intro">
+      <div class="container">
+        <div class="intro-grid">
+          <!-- Quote Widget -->
+          <div class="quote-widget card">
+            <div class="quote-icon">💬</div>
+            <blockquote class="quote-text" id="quote-text">
+              "I make my own luck."
+            </blockquote>
+            <cite class="quote-author">— Lara Croft</cite>
+            <button class="btn btn-secondary btn-small" id="random-quote-btn">
+              🎲 Losuj Cytat
+            </button>
+          </div>
+
+          <!-- About Card -->
+          <div class="about-card card">
+            <div class="avatar-container">
+              <div class="avatar">👤</div>
+            </div>
+            <h3>Cześć! Jestem [Nick]</h3>
+            <p>
+              Jestem streamerką i wieloletnią fanką Tomb Raider.
+              Razem z Larą Croft eksplorujemy starożytne ruiny,
+              rozwiązujemy zagadki i odkrywamy sekrety legend!
+            </p>
+            <div class="quick-stats">
+              <div class="stat-item">
+                <span class="stat-icon">🎮</span>
+                <span class="stat-text">Nowy gameplay co tydzień</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">🔴</span>
+                <span class="stat-text">Live TikTok: Soboty 12:00</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">💎</span>
+                <span class="stat-text"><span id="subscriber-count">47.2k</span> subskrybentów</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Latest Gameplays Section -->
+    <section class="section section-gameplays">
+      <div class="container">
+        <h2 class="section-title">🎮 Najnowsze Gameplay'e - Tomb Raider</h2>
+
+        <div class="gameplay-grid grid-4">
+          <!-- Gameplay Card 1 -->
+          <article class="gameplay-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder">
+                <span class="thumbnail-icon">🏛️</span>
+              </div>
+              <span class="badge badge-new">NEW!</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Shadow of Tomb Raider - #15</h3>
+              <div class="card-metadata">
+                <span>🕐 45:23</span>
+                <span>👁 2.8k</span>
+                <span>📅 2h temu</span>
+              </div>
+              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
+            </div>
+          </article>
+
+          <!-- Gameplay Card 2 -->
+          <article class="gameplay-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder">
+                <span class="thumbnail-icon">🏛️</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Shadow of Tomb Raider - #14</h3>
+              <div class="card-metadata">
+                <span>🕐 52:10</span>
+                <span>👁 3.1k</span>
+                <span>📅 3 dni temu</span>
+              </div>
+              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
+            </div>
+          </article>
+
+          <!-- Gameplay Card 3 -->
+          <article class="gameplay-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder">
+                <span class="thumbnail-icon">🏛️</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Rise of Tomb Raider - #22</h3>
+              <div class="card-metadata">
+                <span>🕐 38:45</span>
+                <span>👁 3.2k</span>
+                <span>📅 1 tydzień temu</span>
+              </div>
+              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
+            </div>
+          </article>
+
+          <!-- Gameplay Card 4 -->
+          <article class="gameplay-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder">
+                <span class="thumbnail-icon">🏛️</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Tomb Raider I-III - Part 8</h3>
+              <div class="card-metadata">
+                <span>🕐 41:33</span>
+                <span>👁 1.9k</span>
+                <span>📅 1 tydzień temu</span>
+              </div>
+              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-cta">
+          <a href="/gameplays.html" class="btn btn-primary">
+            Zobacz Wszystkie Gameplay'e →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Highlights Section -->
+    <section class="section section-highlights">
+      <div class="container">
+        <h2 class="section-title">⭐ Highlights - Najlepsze Momenty</h2>
+
+        <div class="highlights-grid grid-4">
+          <!-- Highlight Card 1 -->
+          <article class="highlight-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder thumbnail-small">
+                <span class="thumbnail-icon">⚔️</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title-small">Epic Boss Fight</h3>
+              <div class="card-metadata-small">
+                <span>🕐 5:32</span>
+                <span>👁 8.5k</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Highlight Card 2 -->
+          <article class="highlight-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder thumbnail-small">
+                <span class="thumbnail-icon">😂</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title-small">Funny Fail Moment</h3>
+              <div class="card-metadata-small">
+                <span>🕐 2:15</span>
+                <span>👁 12k</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Highlight Card 3 -->
+          <article class="highlight-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder thumbnail-small">
+                <span class="thumbnail-icon">🏆</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title-small">100% Complete!</h3>
+              <div class="card-metadata-small">
+                <span>🕐 8:45</span>
+                <span>👁 6.2k</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Highlight Card 4 -->
+          <article class="highlight-card card">
+            <div class="card-thumbnail-wrapper">
+              <div class="thumbnail-placeholder thumbnail-small">
+                <span class="thumbnail-icon">🔍</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title-small">Secret Found!</h3>
+              <div class="card-metadata-small">
+                <span>🕐 3:20</span>
+                <span>👁 4.8k</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-cta">
+          <a href="/highlights.html" class="btn btn-primary">
+            Zobacz Wszystkie Highlights →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Next Stream Section -->
+    <section class="section section-stream">
+      <div class="container">
+        <h2 class="section-title">🔴 Nadchodzący Stream</h2>
+
+        <div class="stream-card card featured-card">
+          <div class="stream-badge">
+            <span class="badge badge-live neon-pulse">🔴 LIVE SOON</span>
+          </div>
+
+          <div class="stream-grid">
+            <div class="stream-thumbnail">
+              <div class="thumbnail-placeholder thumbnail-large">
+                <span class="thumbnail-icon">🏔️</span>
+              </div>
+              <div class="countdown" id="countdown">
+                <div class="countdown-label">Zostało:</div>
+                <div class="countdown-time">
+                  <span id="days">2</span>d
+                  <span id="hours">5</span>h
+                  <span id="minutes">23</span>m
+                </div>
+              </div>
+            </div>
+
+            <div class="stream-info">
+              <h3>Rise of Tomb Raider - Episode 23</h3>
+              <p class="stream-description">
+                Eksploracja Syberyjskich Ruin - Kontynuujemy naszą przygodę
+                w lodowych górach! Czekają nas trudne zagadki, epickie walki
+                i ukryte grobowce.
+              </p>
+
+              <div class="stream-details">
+                <div class="detail-item">
+                  <span class="detail-icon">📅</span>
+                  <span>Sobota, 16 Listopada 2025</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">🕐</span>
+                  <span>12:00 CET</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">📱</span>
+                  <span>TikTok Live</span>
+                </div>
+              </div>
+
+              <div class="stream-features">
+                <h4>Co będzie podczas streamu:</h4>
+                <ul>
+                  <li>• Kontynuacja głównej fabuły</li>
+                  <li>• Eksploracja opcjonalnych grobowców</li>
+                  <li>• Q&A z widzami</li>
+                  <li>• Giveaway dla społeczności!</li>
+                </ul>
+              </div>
+
+              <div class="stream-actions">
+                <button class="btn btn-primary">🔔 Przypomij Mi</button>
+                <button class="btn btn-secondary">📅 Dodaj do Kalendarza</button>
+                <a href="https://tiktok.com/@placeholder" class="btn btn-secondary" target="_blank">
+                  🔗 Link do TikTok
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <a href="/announcements.html" class="btn btn-primary">
+            Zobacz Wszystkie Zapowiedzi →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Gaming Widgets Section -->
+    <section class="section section-widgets">
+      <div class="container">
+        <h2 class="section-title">🎲 Gaming Widgets</h2>
+
+        <div class="widgets-grid grid-3">
+          <!-- Random Gameplay Widget -->
+          <div class="widget-card card">
+            <h3 class="widget-title">🎲 Losowy Gameplay</h3>
+            <div class="widget-content">
+              <div class="pixel-lara-small">
+                <pre class="pixel-art-small">
+  ████
+ █▓▓▓█
+ ██▓██
+ █████
+███████
+ ██ ██
+                </pre>
+              </div>
+              <p>Odkryj losowy grobowiec!</p>
+              <button class="btn btn-primary btn-full" id="random-gameplay-btn">
+                🎲 Odkryj Losowy Grób
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Widget -->
+          <div class="widget-card card">
+            <h3 class="widget-title">🏺 Odkryte Artefakty</h3>
+            <div class="widget-content">
+              <div class="stat-box">
+                <div class="stat-number">127</div>
+                <div class="stat-label">Gameplay'ów</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Highlights</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">247</div>
+                <div class="stat-label">Sekretów</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Latest Upload Widget -->
+          <div class="widget-card card">
+            <h3 class="widget-title">📺 Najnowszy Upload</h3>
+            <div class="widget-content">
+              <div class="thumbnail-placeholder thumbnail-small">
+                <span class="thumbnail-icon">🎬</span>
+              </div>
+              <p class="upload-title">Shadow of TR - #15</p>
+              <p class="upload-time">📅 2 godziny temu</p>
+              <a href="#" class="btn btn-secondary btn-full">Oglądaj →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1 -->
+        <div class="footer-column">
+          <h4>O Stronie</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">O Mnie</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/privacy.html">Polityka Prywatności</a></li>
+            <li><a href="/cookies.html">Cookies</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="footer-column">
+          <h4>Nawigacja</h4>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/gameplays.html">Gameplay'e</a></li>
+            <li><a href="/highlights.html">Highlights</a></li>
+            <li><a href="/gallery.html">Galeria</a></li>
+            <li><a href="/announcements.html">Zapowiedzi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="footer-column">
+          <h4>Gameplay'e</h4>
+          <ul class="footer-links">
+            <li><a href="/gameplays.html?game=tomb-raider">Tomb Raider</a></li>
+            <li><a href="/gameplays.html?game=other">Inne Gry</a></li>
+            <li><a href="/playlists.html">Playlisty</a></li>
+            <li><a href="/secrets.html">Sekrety</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="footer-column">
+          <h4>Social Media</h4>
+          <ul class="footer-links">
+            <li><a href="https://youtube.com/@placeholder" target="_blank">▶ YouTube</a></li>
+            <li><a href="https://tiktok.com/@placeholder" target="_blank">♪ TikTok</a></li>
+            <li><a href="https://instagram.com/placeholder" target="_blank">📷 Instagram</a></li>
+            <li><a href="https://discord.gg/placeholder" target="_blank">💬 Discord</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5 -->
+        <div class="footer-column">
+          <h4>Kontakt</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@example.com">📧 Email</a></li>
+            <li><a href="https://discord.gg/placeholder" target="_blank">💬 Discord</a></li>
+            <li><a href="/business.html">💼 Współpraca</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <span class="logo-icon">🏺</span>
+          <div class="pixel-lara-footer">
+            <pre class="pixel-art-tiny">
+ ████
+█▓▓▓█
+██▓██
+█████
+ ██ ██
+            </pre>
+          </div>
+        </div>
+
+        <div class="footer-info">
+          <p>© 2025 [Nick Siostry] Gaming | Tomb Raider Fan Site</p>
+          <p class="footer-tagline">Powered by passion for adventure 💎</p>
+        </div>
+
+        <div class="footer-credits">
+          <p>Created with 🤖 <a href="https://claude.com/claude-code" target="_blank">Claude Code</a></p>
+          <p><a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

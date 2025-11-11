@@ -1,0 +1,193 @@
+/* ===================================================================
+   CSS Variables - Neo-Gaming Color Palette & Design Tokens
+   Tomb Raider Theme
+   =================================================================== */
+
+:root {
+  /* ============ Primary Neon Colors ============ */
+  --cyber-pink: #FF1493;
+  --cyber-pink-dark: #C71585;
+  --cyber-pink-light: #FF69B4;
+  --cyber-pink-glow: rgba(255, 20, 147, 0.5);
+
+  --neon-cyan: #00FFFF;
+  --neon-cyan-dark: #00CED1;
+  --neon-cyan-light: #7FFFD4;
+  --neon-cyan-glow: rgba(0, 255, 255, 0.5);
+
+  --electric-purple: #8A2BE2;
+  --electric-purple-dark: #6A0DAD;
+  --electric-purple-light: #9370DB;
+  --electric-purple-glow: rgba(138, 43, 226, 0.5);
+
+  --gold-accent: #FFD700;
+  --gold-dark: #DAA520;
+  --gold-light: #FFEF85;
+  --gold-glow: rgba(255, 215, 0, 0.6);
+
+  /* ============ Background Colors ============ */
+  --dark-bg: #1a1a2e;
+  --dark-bg-rgb: 26, 26, 46;
+
+  --slate-dark: #2F4F4F;
+  --slate-dark-light: #3A5F5F;
+  --slate-dark-rgb: 47, 79, 79;
+
+  --near-black: #0f0f1e;
+  --near-black-rgb: 15, 15, 30;
+
+  /* ============ Text Colors ============ */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8B8D0;
+  --text-muted: #808080;
+  --text-disabled: #4A4A5E;
+
+  /* ============ Link Colors ============ */
+  --link-default: #00FFFF;
+  --link-hover: #FF1493;
+  --link-visited: #9370DB;
+  --link-active: #FFD700;
+
+  /* ============ Status Colors ============ */
+  --success: #00FF7F;
+  --success-dark: #00CD66;
+  --success-glow: rgba(0, 255, 127, 0.4);
+
+  --warning: #FFA500;
+  --warning-dark: #FF8C00;
+  --warning-glow: rgba(255, 165, 0, 0.4);
+
+  --error: #FF4444;
+  --error-dark: #CC0000;
+  --error-glow: rgba(255, 68, 68, 0.4);
+
+  --info: #00BFFF;
+  --info-dark: #0080FF;
+  --info-glow: rgba(0, 191, 255, 0.4);
+
+  /* ============ Gradients ============ */
+  --gradient-cyber: linear-gradient(135deg, #1a1a2e 0%, #2F4F4F 50%, #1a1a2e 100%);
+  --gradient-neon: linear-gradient(90deg, #FF1493 0%, #8A2BE2 50%, #00FFFF 100%);
+  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #DAA520 50%, #FFEF85 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(15, 15, 30, 0) 0%, rgba(15, 15, 30, 0.8) 100%);
+
+  /* ============ Box Shadows ============ */
+  /* Neon Glow Effects */
+  --shadow-pink: 0 0 10px rgba(255, 20, 147, 0.5), 0 0 20px rgba(255, 20, 147, 0.3);
+  --shadow-cyan: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+  --shadow-purple: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 20px rgba(138, 43, 226, 0.3);
+  --shadow-gold: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.4);
+
+  /* Subtle Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.6);
+
+  /* ============ Text Shadows ============ */
+  --text-glow-pink: 0 0 5px #FF1493, 0 0 10px #FF1493;
+  --text-glow-cyan: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+  --text-glow-gold: 0 0 5px #FFD700, 0 0 10px #FFD700;
+  --text-glow-purple: 0 0 5px #8A2BE2, 0 0 10px #8A2BE2;
+  --text-shadow-dark: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  --text-shadow-outline: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+  /* ============ Typography ============ */
+  --font-heading: 'Press Start 2P', cursive;
+  --font-subheading: 'VT323', monospace;
+  --font-body: 'Roboto', sans-serif;
+  --font-cyber: 'Orbitron', sans-serif;
+
+  /* Font Sizes - Desktop */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --text-6xl: 60px;
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  /* ============ Spacing ============ */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 80px;
+
+  /* ============ Border Radius ============ */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ============ Transitions ============ */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s ease;
+  --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ============ Z-Index Layers ============ */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-overlay: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+
+  /* ============ Breakpoints (for reference in JS) ============ */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1440px;
+
+  /* ============ Container ============ */
+  --container-max-width: 1440px;
+  --container-padding: 24px;
+
+  /* ============ Grid ============ */
+  --grid-columns: 12;
+  --grid-gap: 24px;
+}
+
+/* ============ Mobile Overrides ============ */
+@media (max-width: 768px) {
+  :root {
+    /* Mobile Font Sizes */
+    --text-hero-mobile: 28px;
+    --text-h2-mobile: 24px;
+    --text-h3-mobile: 20px;
+    --text-body-mobile: 16px;
+    --text-small-mobile: 14px;
+
+    /* Mobile Spacing */
+    --container-padding: 16px;
+    --grid-gap: 16px;
+  }
+}

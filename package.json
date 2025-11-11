@@ -1,0 +1,21 @@
+{
+  "name": "tomb-raider-gaming-website",
+  "version": "1.0.0",
+  "description": "Neo-gaming themed website for Tomb Raider gameplay channel",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -c-1",
+    "dev": "npx live-server --port=8000 --no-browser"
+  },
+  "keywords": [
+    "tomb-raider",
+    "gaming",
+    "website",
+    "neo-gaming",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT"
+}
