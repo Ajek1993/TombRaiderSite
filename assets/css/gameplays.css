@@ -247,7 +247,6 @@
 
 /* Category Content */
 .category-content {
-  max-height: 2000px;
   opacity: 1;
   padding: 2rem;
   transition: all 0.5s ease;
