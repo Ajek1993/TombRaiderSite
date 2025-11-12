@@ -1,11 +1,13 @@
 {
   "name": "tomb-raider-gaming-website",
   "version": "1.0.0",
-  "description": "Neo-gaming themed website for Tomb Raider gameplay channel",
+  "description": "Neo-gaming themed website for Tomb Raider gameplay channel with YouTube API integration",
   "main": "index.html",
   "scripts": {
+    "dev": "node scripts/dev-server.js",
     "start": "npx http-server -p 8000 -c-1",
-    "dev": "npx live-server --port=8000 --no-browser"
+    "serve": "python -m http.server 8000",
+    "build": "echo 'Static site - no build required'"
   },
   "keywords": [
     "tomb-raider",
@@ -14,8 +16,17 @@
     "neo-gaming",
     "html",
     "css",
-    "javascript"
+    "javascript",
+    "youtube-api"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.1"
+  }
 }
