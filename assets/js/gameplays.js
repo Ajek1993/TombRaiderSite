@@ -1,357 +1,118 @@
 /**
  * GAMEPLAYS PAGE - JavaScript
- * Handles accordion categories, video loading, and mock data
+ * Handles accordion categories, video loading with YouTube API
  */
 
 // ===================================
-// MOCK DATA - Ready for YouTube API
+// CONFIGURATION
 // ===================================
 
-const MOCK_VIDEOS = {
-  tr1: [
-    {
-      id: 'mock-tr1-001',
-      title: 'Tomb Raider 1 - Caves - Part 1',
-      thumbnail: null,
-      duration: '28:45',
-      views: '2,456',
-      publishedAt: '2 dni temu',
-      isNew: true,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-002',
-      title: 'Tomb Raider 1 - City of Vilcabamba - Part 2',
-      thumbnail: null,
-      duration: '32:18',
-      views: '2,103',
-      publishedAt: '5 dni temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-003',
-      title: 'Tomb Raider 1 - Lost Valley - Part 3',
-      thumbnail: null,
-      duration: '25:52',
-      views: '1,987',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-004',
-      title: 'Tomb Raider 1 - Tomb of Qualopec - Part 4',
-      thumbnail: null,
-      duration: '30:15',
-      views: '1,876',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-005',
-      title: 'Tomb Raider 1 - St. Francis Folly - Part 5',
-      thumbnail: null,
-      duration: '35:42',
-      views: '1,654',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-006',
-      title: 'Tomb Raider 1 - Colosseum - Part 6',
-      thumbnail: null,
-      duration: '27:33',
-      views: '1,543',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-007',
-      title: 'Tomb Raider 1 - Palace Midas - Part 7',
-      thumbnail: null,
-      duration: '29:21',
-      views: '1,432',
-      publishedAt: '3 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr1-008',
-      title: 'Tomb Raider 1 - Cistern - Part 8',
-      thumbnail: null,
-      duration: '24:18',
-      views: '1,321',
-      publishedAt: '3 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    }
-  ],
-  tr2: [
-    {
-      id: 'mock-tr2-001',
-      title: 'Tomb Raider 2 - The Great Wall - Part 1',
-      thumbnail: null,
-      duration: '31:24',
-      views: '3,245',
-      publishedAt: '3 dni temu',
-      isNew: true,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr2-002',
-      title: 'Tomb Raider 2 - Venice - Part 2',
-      thumbnail: null,
-      duration: '28:56',
-      views: '2,876',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr2-003',
-      title: 'Tomb Raider 2 - Bartoli\'s Hideout - Part 3',
-      thumbnail: null,
-      duration: '26:42',
-      views: '2,543',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr2-004',
-      title: 'Tomb Raider 2 - Opera House - Part 4',
-      thumbnail: null,
-      duration: '33:18',
-      views: '2,432',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr2-005',
-      title: 'Tomb Raider 2 - Offshore Rig - Part 5',
-      thumbnail: null,
-      duration: '29:55',
-      views: '2,234',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr2-006',
-      title: 'Tomb Raider 2 - Diving Area - Part 6',
-      thumbnail: null,
-      duration: '27:12',
-      views: '2,123',
-      publishedAt: '3 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    }
-  ],
-  tr3: [
-    {
-      id: 'mock-tr3-001',
-      title: 'Tomb Raider 3 - India - Jungle - Part 1',
-      thumbnail: null,
-      duration: '30:45',
-      views: '2,987',
-      publishedAt: '4 dni temu',
-      isNew: true,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr3-002',
-      title: 'Tomb Raider 3 - Temple Ruins - Part 2',
-      thumbnail: null,
-      duration: '32:33',
-      views: '2,654',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr3-003',
-      title: 'Tomb Raider 3 - River Ganges - Part 3',
-      thumbnail: null,
-      duration: '28:21',
-      views: '2,432',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr3-004',
-      title: 'Tomb Raider 3 - Caves of Kaliya - Part 4',
-      thumbnail: null,
-      duration: '31:18',
-      views: '2,234',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    }
-  ],
-  tr4: [
-    {
-      id: 'mock-tr4-001',
-      title: 'Tomb Raider 4 - Angkor Wat - Part 1',
-      thumbnail: null,
-      duration: '34:22',
-      views: '3,543',
-      publishedAt: '1 dzień temu',
-      isNew: true,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr4-002',
-      title: 'Tomb Raider 4 - Race for the Iris - Part 2',
-      thumbnail: null,
-      duration: '29:48',
-      views: '3,234',
-      publishedAt: '5 dni temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr4-003',
-      title: 'Tomb Raider 4 - Tomb of Seth - Part 3',
-      thumbnail: null,
-      duration: '31:55',
-      views: '2,987',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr4-004',
-      title: 'Tomb Raider 4 - Burial Chambers - Part 4',
-      thumbnail: null,
-      duration: '28:36',
-      views: '2,765',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    }
-  ],
-  tr5: [
-    {
-      id: 'mock-tr5-001',
-      title: 'Tomb Raider Chronicles - Rome - Part 1',
-      thumbnail: null,
-      duration: '26:42',
-      views: '2,654',
-      publishedAt: '3 dni temu',
-      isNew: true,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr5-002',
-      title: 'Tomb Raider Chronicles - Trajan\'s Markets - Part 2',
-      thumbnail: null,
-      duration: '29:18',
-      views: '2,432',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr5-003',
-      title: 'Tomb Raider Chronicles - The Colosseum - Part 3',
-      thumbnail: null,
-      duration: '32:24',
-      views: '2,234',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr5-004',
-      title: 'Tomb Raider Chronicles - The Base - Part 4',
-      thumbnail: null,
-      duration: '27:51',
-      views: '2,123',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    }
-  ],
-  tr6: [
-    {
-      id: 'mock-tr6-001',
-      title: 'Tomb Raider: Angel of Darkness - Paris - Part 1',
-      thumbnail: null,
-      duration: '33:15',
-      views: '3,876',
-      publishedAt: '2 dni temu',
-      isNew: true,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr6-002',
-      title: 'Tomb Raider: Angel of Darkness - Derelict Apartment - Part 2',
-      thumbnail: null,
-      duration: '28:42',
-      views: '3,543',
-      publishedAt: '6 dni temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr6-003',
-      title: 'Tomb Raider: Angel of Darkness - Industrial Rooftops - Part 3',
-      thumbnail: null,
-      duration: '31:28',
-      views: '3,234',
-      publishedAt: '1 tydzień temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    },
-    {
-      id: 'mock-tr6-004',
-      title: 'Tomb Raider: Angel of Darkness - Margot Carvier - Part 4',
-      thumbnail: null,
-      duration: '29:36',
-      views: '2,987',
-      publishedAt: '2 tygodnie temu',
-      isNew: false,
-      videoUrl: 'https://youtube.com/watch?v=placeholder'
-    }
-  ]
-};
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? `http://${window.location.hostname}:${window.location.port}/api`  // Local development
+  : '/api';  // Production
+
+const CATEGORIES = ['tr1', 'tr1ub', 'tr2', 'tr2gold', 'tr3', 'tlolc'];
 
 // ===================================
 // STATE MANAGEMENT
 // ===================================
 
 const state = {
+  videosData: {},  // Stores fetched videos per category
+  videoCounts: {}, // Stores video counts per category
   visibleVideos: {
-    tr1: 4,
-    tr2: 4,
-    tr3: 4,
-    tr4: 4,
-    tr5: 4,
-    tr6: 4
+    tr1: 3,
+    tr1ub: 3,
+    tr2: 3,
+    tr2gold: 3,
+    tr3: 3,
+    tlolc: 3
   },
-  videosPerLoad: 4
+  videosPerLoad: 4,
+  loading: {}  // Track loading state per category
 };
 
 // ===================================
-// VIDEO RENDERING
+// API FUNCTIONS
+// ===================================
+
+/**
+ * Fetch videos for a specific category from API
+ * @param {string} category - Category key (tr1, tr2, etc.)
+ * @returns {Promise<Array>} Array of video objects
+ */
+async function fetchCategoryVideos(category) {
+  try {
+    console.log(`[Gameplays] Fetching videos for category: ${category}`);
+
+    const response = await fetch(`${API_BASE_URL}/youtube?playlist=${category}`);
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to fetch videos');
+    }
+
+    const data = await response.json();
+
+    console.log(`[Gameplays] Received ${data.count} videos for ${category}`, data.cached ? '(cached)' : '(fresh)');
+
+    return data.videos || [];
+
+  } catch (error) {
+    console.error(`[Gameplays] Error fetching ${category}:`, error);
+    return [];
+  }
+}
+
+/**
+ * Fetch all category counts (lightweight - only fetch count, not full data)
+ */
+async function fetchAllCategoryCounts() {
+  console.log('[Gameplays] Fetching counts for all categories...');
+
+  const promises = CATEGORIES.map(async (category) => {
+    try {
+      const videos = await fetchCategoryVideos(category);
+      state.videosData[category] = videos; // Store for later use
+      state.videoCounts[category] = videos.length;
+      return { category, count: videos.length };
+    } catch (error) {
+      console.error(`[Gameplays] Error fetching count for ${category}:`, error);
+      return { category, count: 0 };
+    }
+  });
+
+  const results = await Promise.all(promises);
+
+  // Update UI with counts
+  results.forEach(({ category, count }) => {
+    const countSpan = document.querySelector(`[data-count="${category}"]`);
+    if (countSpan) {
+      countSpan.textContent = `${count} filmów`;
+    }
+  });
+
+  console.log('[Gameplays] All counts loaded:', state.videoCounts);
+}
+
+// ===================================
+// VIDEO CARD RENDERING
 // ===================================
 
 /**
  * Create HTML for a video card
+ * @param {object} video - Video object from API
+ * @param {boolean} isNew - Whether this is the newest video
+ * @returns {HTMLElement} Video card element
  */
-function createVideoCard(video) {
+function createVideoCard(video, isNew = false) {
   const card = document.createElement('div');
-  card.className = `video-card${video.isNew ? ' featured' : ''}`;
+  card.className = `video-card${isNew ? ' featured' : ''}`;
 
   card.innerHTML = `
     <div class="video-thumbnail">
-      ${video.isNew ? '<div class="new-badge">NEW</div>' : ''}
+      ${isNew ? '<div class="new-badge">NEW</div>' : ''}
+      ${video.thumbnail ? `<img src="${video.thumbnail}" alt="${video.title}" loading="lazy">` : ''}
       <div class="duration-badge">${video.duration}</div>
     </div>
     <div class="video-info">
@@ -381,23 +142,48 @@ function createVideoCard(video) {
 
 /**
  * Render videos for a specific category
+ * @param {string} category - Category key
  */
-function renderVideos(category) {
+async function renderVideos(category) {
   const grid = document.querySelector(`[data-videos-grid="${category}"]`);
   const loadMoreBtn = document.querySelector(`[data-category="${category}"].load-more-btn`);
+  const videoCountSpan = document.querySelector(`[data-count="${category}"]`);
 
   if (!grid) return;
 
-  const videos = MOCK_VIDEOS[category] || [];
+  // Check if we already have data (will be pre-fetched by fetchAllCategoryCounts)
+  if (!state.videosData[category]) {
+    // Shouldn't happen if fetchAllCategoryCounts was called, but fallback just in case
+    console.log(`[Gameplays] Data not pre-fetched for ${category}, fetching now...`);
+    grid.innerHTML = '<div class="loading-message">Ładowanie filmów...</div>';
+    state.loading[category] = true;
+
+    const videos = await fetchCategoryVideos(category);
+    state.videosData[category] = videos;
+    state.loading[category] = false;
+
+    if (videoCountSpan) {
+      videoCountSpan.textContent = `${videos.length} filmów`;
+    }
+  }
+
+  const videos = state.videosData[category] || [];
   const visibleCount = state.visibleVideos[category];
   const videosToShow = videos.slice(0, visibleCount);
 
   // Clear grid
   grid.innerHTML = '';
 
+  if (videos.length === 0) {
+    grid.innerHTML = '<div class="no-videos-message">Brak filmów w tej kategorii</div>';
+    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+    return;
+  }
+
   // Add video cards
-  videosToShow.forEach(video => {
-    grid.appendChild(createVideoCard(video));
+  videosToShow.forEach((video, index) => {
+    const isNew = index === 0;  // First video is newest
+    grid.appendChild(createVideoCard(video, isNew));
   });
 
   // Show/hide "Load More" button
@@ -412,9 +198,10 @@ function renderVideos(category) {
 
 /**
  * Load more videos for a category
+ * @param {string} category - Category key
  */
 function loadMoreVideos(category) {
-  const videos = MOCK_VIDEOS[category] || [];
+  const videos = state.videosData[category] || [];
   const currentVisible = state.visibleVideos[category];
   const newVisible = Math.min(currentVisible + state.videosPerLoad, videos.length);
 
@@ -428,6 +215,7 @@ function loadMoreVideos(category) {
 
 /**
  * Toggle accordion category
+ * @param {string} category - Category key
  */
 function toggleAccordion(category) {
   const header = document.querySelector(`[data-category="${category}"].category-header`);
@@ -449,8 +237,7 @@ function toggleAccordion(category) {
     header.querySelector('.accordion-icon').textContent = '−';
 
     // Load videos if not loaded yet
-    const grid = content.querySelector('[data-videos-grid]');
-    if (grid && grid.children.length === 0) {
+    if (!state.videosData[category] && !state.loading[category]) {
       renderVideos(category);
     }
   }
@@ -462,6 +249,7 @@ function toggleAccordion(category) {
 
 /**
  * Smooth scroll to category
+ * @param {string} categoryId - Category ID
  */
 function scrollToCategory(categoryId) {
   const element = document.getElementById(categoryId);
@@ -480,10 +268,9 @@ function scrollToCategory(categoryId) {
   });
 
   // Expand the category if collapsed
-  const categoryKey = categoryId; // tr1, tr2, etc.
-  const header = document.querySelector(`[data-category="${categoryKey}"].category-header`);
+  const header = document.querySelector(`[data-category="${categoryId}"].category-header`);
   if (header && header.getAttribute('aria-expanded') === 'false') {
-    toggleAccordion(categoryKey);
+    toggleAccordion(categoryId);
   }
 }
 
@@ -491,7 +278,10 @@ function scrollToCategory(categoryId) {
 // EVENT LISTENERS
 // ===================================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // Fetch all category counts first (pre-load all data)
+  await fetchAllCategoryCounts();
 
   // Render initial videos for TR1 (first category, expanded by default)
   renderVideos('tr1');
@@ -563,51 +353,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// ===================================
-// UTILITY: Future API Integration
-// ===================================
-
-/**
- * Function to fetch videos from YouTube API (placeholder)
- * Replace MOCK_VIDEOS with real API calls
- */
-async function fetchVideosFromAPI(category) {
-  // TODO: Implement YouTube API integration
-  // Example:
-  // const response = await fetch(`/api/videos?category=${category}`);
-  // const data = await response.json();
-  // return data.videos;
-
-  // For now, return mock data
-  return MOCK_VIDEOS[category] || [];
-}
-
-/**
- * Function to format API response to match our video structure
- */
-function formatAPIVideo(apiVideo) {
-  // TODO: Map YouTube API response to our video object structure
-  // Example:
-  // return {
-  //   id: apiVideo.id.videoId,
-  //   title: apiVideo.snippet.title,
-  //   thumbnail: apiVideo.snippet.thumbnails.medium.url,
-  //   duration: formatDuration(apiVideo.contentDetails.duration),
-  //   views: formatViews(apiVideo.statistics.viewCount),
-  //   publishedAt: formatDate(apiVideo.snippet.publishedAt),
-  //   isNew: isRecent(apiVideo.snippet.publishedAt),
-  //   videoUrl: `https://youtube.com/watch?v=${apiVideo.id.videoId}`
-  // };
-
-  return apiVideo;
-}
-
 // Export for potential use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     renderVideos,
     loadMoreVideos,
     toggleAccordion,
-    scrollToCategory
+    scrollToCategory,
+    fetchCategoryVideos
   };
 }

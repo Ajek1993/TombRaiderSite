@@ -1,298 +1,59 @@
 /**
  * HIGHLIGHTS PAGE - JavaScript
- * Handles vertical short cards rendering and mock data
+ * Handles vertical short cards rendering with YouTube API
  */
 
 // ===================================
-// MOCK DATA - YouTube Shorts (~30 clips)
+// CONFIGURATION
 // ===================================
 
-const MOCK_SHORTS = [
-  // Recent uploads (last week)
-  {
-    id: 'short-001',
-    title: 'Epic T-Rex Dodge! 🦖',
-    thumbnail: null,
-    duration: '0:45',
-    views: '15,234',
-    publishedAt: '1 dzień temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder1'
-  },
-  {
-    id: 'short-002',
-    title: 'Perfect Backflip Into Water 💦',
-    thumbnail: null,
-    duration: '0:28',
-    views: '48,567',
-    publishedAt: '2 dni temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder2'
-  },
-  {
-    id: 'short-003',
-    title: 'Secret Room Discovery! 🔍',
-    thumbnail: null,
-    duration: '0:52',
-    views: '12,890',
-    publishedAt: '3 dni temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder3'
-  },
-  {
-    id: 'short-004',
-    title: 'Boss Fight One-Shot 💥',
-    thumbnail: null,
-    duration: '0:38',
-    views: '23,456',
-    publishedAt: '4 dni temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder4'
-  },
-  {
-    id: 'short-005',
-    title: 'Funny Ragdoll Physics 😂',
-    thumbnail: null,
-    duration: '0:15',
-    views: '67,891',
-    publishedAt: '5 dni temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder5'
-  },
-  {
-    id: 'short-006',
-    title: 'Impossible Jump Challenge 🎯',
-    thumbnail: null,
-    duration: '0:42',
-    views: '19,234',
-    publishedAt: '6 dni temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder6'
-  },
-  // Older content
-  {
-    id: 'short-007',
-    title: 'All Secrets in 60 Seconds ⚡',
-    thumbnail: null,
-    duration: '0:59',
-    views: '31,245',
-    publishedAt: '1 tydzień temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder7'
-  },
-  {
-    id: 'short-008',
-    title: 'Speedrun World Record 🏆',
-    thumbnail: null,
-    duration: '0:55',
-    views: '89,123',
-    publishedAt: '1 tydzień temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder8'
-  },
-  {
-    id: 'short-009',
-    title: 'Epic Fail Compilation 🤦',
-    thumbnail: null,
-    duration: '0:48',
-    views: '43,567',
-    publishedAt: '1 tydzień temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder9'
-  },
-  {
-    id: 'short-010',
-    title: 'Hidden Artifact Location 💎',
-    thumbnail: null,
-    duration: '0:33',
-    views: '28,901',
-    publishedAt: '1 tydzień temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder10'
-  },
-  {
-    id: 'short-011',
-    title: 'Stealth Takedown Montage 🥷',
-    thumbnail: null,
-    duration: '0:51',
-    views: '35,678',
-    publishedAt: '2 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder11'
-  },
-  {
-    id: 'short-012',
-    title: 'Crazy Physics Glitch 🌀',
-    thumbnail: null,
-    duration: '0:22',
-    views: '56,234',
-    publishedAt: '2 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder12'
-  },
-  {
-    id: 'short-013',
-    title: 'Perfect Headshot Streak 🎯',
-    thumbnail: null,
-    duration: '0:44',
-    views: '21,456',
-    publishedAt: '2 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder13'
-  },
-  {
-    id: 'short-014',
-    title: 'Parkour Skills Showcase 🏃',
-    thumbnail: null,
-    duration: '0:37',
-    views: '41,890',
-    publishedAt: '2 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder14'
-  },
-  {
-    id: 'short-015',
-    title: 'Puzzle Solved in 10 Seconds 🧩',
-    thumbnail: null,
-    duration: '0:29',
-    views: '18,765',
-    publishedAt: '2 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder15'
-  },
-  {
-    id: 'short-016',
-    title: 'Ultimate Combo Move 🔥',
-    thumbnail: null,
-    duration: '0:41',
-    views: '33,123',
-    publishedAt: '3 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder16'
-  },
-  {
-    id: 'short-017',
-    title: 'Near Death Experience 💀',
-    thumbnail: null,
-    duration: '0:26',
-    views: '52,890',
-    publishedAt: '3 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder17'
-  },
-  {
-    id: 'short-018',
-    title: 'Easter Egg Discovery 🥚',
-    thumbnail: null,
-    duration: '0:47',
-    views: '24,567',
-    publishedAt: '3 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder18'
-  },
-  {
-    id: 'short-019',
-    title: 'Epic Explosion Escape 💣',
-    thumbnail: null,
-    duration: '0:35',
-    views: '38,234',
-    publishedAt: '3 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder19'
-  },
-  {
-    id: 'short-020',
-    title: 'Cinematic Moment Captured 🎬',
-    thumbnail: null,
-    duration: '0:53',
-    views: '45,678',
-    publishedAt: '3 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder20'
-  },
-  {
-    id: 'short-021',
-    title: 'Pro Gamer Move 🎮',
-    thumbnail: null,
-    duration: '0:31',
-    views: '29,456',
-    publishedAt: '4 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder21'
-  },
-  {
-    id: 'short-022',
-    title: 'Clutch Save Moment 🙌',
-    thumbnail: null,
-    duration: '0:43',
-    views: '36,789',
-    publishedAt: '4 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder22'
-  },
-  {
-    id: 'short-023',
-    title: 'Insane Parkour Route 🏔️',
-    thumbnail: null,
-    duration: '0:49',
-    views: '27,123',
-    publishedAt: '4 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder23'
-  },
-  {
-    id: 'short-024',
-    title: 'Weapon Mastery Display ⚔️',
-    thumbnail: null,
-    duration: '0:38',
-    views: '32,567',
-    publishedAt: '4 tygodnie temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder24'
-  },
-  {
-    id: 'short-025',
-    title: 'Beautiful Scenery Shot 🌄',
-    thumbnail: null,
-    duration: '0:25',
-    views: '41,234',
-    publishedAt: '1 miesiąc temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder25'
-  },
-  {
-    id: 'short-026',
-    title: 'Funny AI Behavior 🤖',
-    thumbnail: null,
-    duration: '0:36',
-    views: '58,901',
-    publishedAt: '1 miesiąc temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder26'
-  },
-  {
-    id: 'short-027',
-    title: 'Record Breaking Run 🏃‍♀️',
-    thumbnail: null,
-    duration: '0:54',
-    views: '34,567',
-    publishedAt: '1 miesiąc temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder27'
-  },
-  {
-    id: 'short-028',
-    title: 'Lara Croft Best Moments ⭐',
-    thumbnail: null,
-    duration: '0:58',
-    views: '72,345',
-    publishedAt: '1 miesiąc temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder28'
-  },
-  {
-    id: 'short-029',
-    title: 'Lucky Shot Collection 🍀',
-    thumbnail: null,
-    duration: '0:46',
-    views: '39,876',
-    publishedAt: '1 miesiąc temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder29'
-  },
-  {
-    id: 'short-030',
-    title: 'Epic Finale Cutscene 🎭',
-    thumbnail: null,
-    duration: '0:57',
-    views: '51,234',
-    publishedAt: '1 miesiąc temu',
-    videoUrl: 'https://youtube.com/shorts/placeholder30'
-  }
-];
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? `http://${window.location.hostname}:${window.location.port}/api`  // Local development
+  : '/api';  // Production
 
 // ===================================
 // STATE MANAGEMENT
 // ===================================
 
 const state = {
+  allShorts: [],
   visibleShorts: 12,
   shortsPerLoad: 12,
-  allShorts: [],
   newestShort: null,
-  popularShort: null
+  popularShort: null,
+  loading: false
 };
+
+// ===================================
+// API FUNCTIONS
+// ===================================
+
+/**
+ * Fetch shorts from API
+ * @returns {Promise<Array>} Array of short video objects
+ */
+async function fetchShorts() {
+  try {
+    console.log('[Highlights] Fetching shorts from API');
+
+    const response = await fetch(`${API_BASE_URL}/youtube?playlist=shorts`);
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to fetch shorts');
+    }
+
+    const data = await response.json();
+
+    console.log(`[Highlights] Received ${data.count} shorts`, data.cached ? '(cached)' : '(fresh)');
+
+    return data.videos || [];
+
+  } catch (error) {
+    console.error('[Highlights] Error fetching shorts:', error);
+    throw error;
+  }
+}
 
 // ===================================
 // INITIALIZATION
@@ -301,18 +62,59 @@ const state = {
 /**
  * Initialize shorts with badges
  */
-function initializeShorts() {
-  state.allShorts = [...MOCK_SHORTS];
+async function initializeShorts() {
+  try {
+    state.loading = true;
 
-  // Find newest short (first in array)
-  state.newestShort = state.allShorts[0];
+    // Fetch shorts from API
+    state.allShorts = await fetchShorts();
 
-  // Find most popular short (highest views)
-  state.popularShort = state.allShorts.reduce((max, current) => {
-    const maxViews = parseInt(max.views.replace(/,/g, ''));
-    const currentViews = parseInt(current.views.replace(/,/g, ''));
-    return currentViews > maxViews ? current : max;
-  }, state.allShorts[0]);
+    if (state.allShorts.length === 0) {
+      console.warn('[Highlights] No shorts found');
+      return;
+    }
+
+    // Find newest short (first in array - most recent)
+    state.newestShort = state.allShorts[0];
+
+    // Find most popular short (highest views)
+    state.popularShort = state.allShorts.reduce((max, current) => {
+      const maxViews = parseViewCount(max.views);
+      const currentViews = parseViewCount(current.views);
+      return currentViews > maxViews ? current : max;
+    }, state.allShorts[0]);
+
+    state.loading = false;
+
+    console.log('[Highlights] Initialized:', {
+      total: state.allShorts.length,
+      newest: state.newestShort.title,
+      popular: state.popularShort.title
+    });
+
+  } catch (error) {
+    state.loading = false;
+    throw error;
+  }
+}
+
+/**
+ * Parse view count string to number
+ * @param {string} viewString - View count string (e.g., "1.2K", "3.4M")
+ * @returns {number} View count as number
+ */
+function parseViewCount(viewString) {
+  if (!viewString) return 0;
+
+  const str = viewString.toUpperCase().replace(/[^0-9.KM]/g, '');
+
+  if (str.includes('M')) {
+    return parseFloat(str.replace('M', '')) * 1000000;
+  } else if (str.includes('K')) {
+    return parseFloat(str.replace('K', '')) * 1000;
+  }
+
+  return parseFloat(str) || 0;
 }
 
 // ===================================
@@ -321,6 +123,8 @@ function initializeShorts() {
 
 /**
  * Create HTML for a short card
+ * @param {object} short - Short video object from API
+ * @returns {HTMLElement} Short card element
  */
 function createShortCard(short) {
   const card = document.createElement('div');
@@ -331,15 +135,16 @@ function createShortCard(short) {
 
   // Determine badge
   let badge = '';
-  if (short.id === state.newestShort.id) {
+  if (short.id === state.newestShort?.id) {
     badge = '<div class="new-badge">NEW</div>';
-  } else if (short.id === state.popularShort.id) {
+  } else if (short.id === state.popularShort?.id) {
     badge = '<div class="popular-badge">POPULAR</div>';
   }
 
   card.innerHTML = `
     <div class="short-thumbnail">
       ${badge}
+      ${short.thumbnail ? `<img src="${short.thumbnail}" alt="${short.title}" loading="lazy">` : ''}
       <div class="duration-badge">${short.duration}</div>
     </div>
     <div class="short-info">
@@ -387,6 +192,20 @@ function renderShorts() {
   const loadMoreBtn = document.getElementById('load-more-btn');
 
   if (!grid) return;
+
+  // Show loading state
+  if (state.loading) {
+    grid.innerHTML = '<div class="loading-message">Ładowanie shorts...</div>';
+    if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+    return;
+  }
+
+  // No shorts available
+  if (state.allShorts.length === 0) {
+    grid.innerHTML = '<div class="no-videos-message">Brak shorts dostępnych</div>';
+    if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+    return;
+  }
 
   const shortsToShow = state.allShorts.slice(0, state.visibleShorts);
 
@@ -460,79 +279,42 @@ function loadMoreShorts() {
 // EVENT LISTENERS
 // ===================================
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize and render
-  initializeShorts();
-  renderShorts();
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    // Show loading
+    renderShorts();
 
-  // Load More button
-  const loadMoreBtn = document.getElementById('load-more-btn');
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', loadMoreShorts);
+    // Initialize and render
+    await initializeShorts();
+    renderShorts();
+
+    // Load More button
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', loadMoreShorts);
+    }
+
+  } catch (error) {
+    console.error('[Highlights] Initialization error:', error);
+
+    const grid = document.getElementById('shorts-grid');
+    if (grid) {
+      grid.innerHTML = `
+        <div class="error-message">
+          <p>❌ Nie udało się załadować shorts</p>
+          <p>Spróbuj odświeżyć stronę</p>
+        </div>
+      `;
+    }
   }
 });
-
-// ===================================
-// UTILITY: Future API Integration
-// ===================================
-
-/**
- * Fetch shorts from YouTube API (placeholder)
- */
-async function fetchShortsFromAPI() {
-  // TODO: Implement YouTube API integration
-  // Filter by duration < 60 seconds
-  // Example:
-  // const response = await fetch('/api/shorts');
-  // const data = await response.json();
-  // return data.shorts.filter(short => short.duration < 60);
-
-  return MOCK_SHORTS;
-}
-
-/**
- * Format API response to short structure
- */
-function formatAPIShort(apiShort) {
-  // TODO: Map YouTube API response
-  // return {
-  //   id: apiShort.id.videoId,
-  //   title: apiShort.snippet.title,
-  //   thumbnail: apiShort.snippet.thumbnails.medium.url,
-  //   duration: formatDuration(apiShort.contentDetails.duration),
-  //   views: formatViews(apiShort.statistics.viewCount),
-  //   publishedAt: formatDate(apiShort.snippet.publishedAt),
-  //   videoUrl: `https://youtube.com/shorts/${apiShort.id.videoId}`
-  // };
-
-  return apiShort;
-}
-
-/**
- * Parse ISO 8601 duration to seconds
- */
-function parseDuration(isoDuration) {
-  // Example: PT1M30S = 90 seconds
-  const match = isoDuration.match(/PT(?:(\d+)M)?(?:(\d+)S)?/);
-  const minutes = parseInt(match[1] || 0);
-  const seconds = parseInt(match[2] || 0);
-  return minutes * 60 + seconds;
-}
-
-/**
- * Format duration to MM:SS
- */
-function formatDuration(seconds) {
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
 
 // Export for potential use
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     renderShorts,
     loadMoreShorts,
-    initializeShorts
+    initializeShorts,
+    fetchShorts
   };
 }
