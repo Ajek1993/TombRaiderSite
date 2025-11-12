@@ -24,3 +24,11 @@ build/
 # Environment
 .env
 .env.local
+.env*.local
+
+# Vercel
+.vercel
+
+# Backup files
+.backup/
+*.backup

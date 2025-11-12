@@ -39,8 +39,17 @@ Strona gamingowa poświęcona kanałowi YouTube z gameplay'ami z serii Tomb Raid
 ```
 claude-project/
 ├── index.html                 # Strona główna
-├── README.md                  # Dokumentacja
+├── gameplays.html             # Strona z gameplay'ami
+├── highlights.html            # Strona z shorts/highlights
+├── README.md                  # Dokumentacja główna
+├── CHANGELOG.md               # Historia zmian
 ├── .gitignore                 # Git ignore rules
+├── .env.local                 # Environment variables (local)
+├── package.json               # Dependencies & scripts
+├── vercel.json                # Vercel deployment config
+│
+├── api/                       # Vercel serverless functions
+│   └── youtube.js             # YouTube API endpoint
 │
 ├── assets/
 │   ├── css/
@@ -50,35 +59,51 @@ claude-project/
 │   │   ├── hero.css           # Hero section & Intro styles
 │   │   ├── cards.css          # Card components (gameplay, highlights, widgets)
 │   │   ├── footer.css         # Footer styles
-│   │   └── animations.css     # Animations & effects
+│   │   ├── animations.css     # Animations & effects
+│   │   ├── gameplays.css      # Gameplays page styles
+│   │   └── highlights.css     # Highlights page styles
 │   │
 │   ├── js/
-│   │   └── main.js            # Main JavaScript (navigation, parallax, widgets)
+│   │   ├── main.js            # Main JavaScript (navigation, parallax, widgets)
+│   │   ├── gameplays.js       # Gameplays page logic + YouTube API
+│   │   └── highlights.js      # Highlights page logic + YouTube API
 │   │
-│   └── images/                # (do utworzenia) Images & assets
-│       ├── favicon-16x16.png
-│       ├── favicon-32x32.png
-│       ├── apple-touch-icon.png
-│       ├── og-image.jpg
-│       └── parallax/          # Parallax background layers
+│   └── images/                # Images & assets
+│       ├── icons/             # Icon files
+│       ├── thumbnails/        # Video thumbnails
+│       ├── backgrounds/       # Background images
+│       ├── parallax/          # Parallax layers
+│       └── ui/                # UI elements
 │
-├── docs/                      # Design documentation
-│   ├── sitemap.md
-│   ├── tomb-raider-concept.md
-│   ├── color-palette.md
-│   ├── wireframes.md
-│   ├── branding-logo.md
-│   ├── typography.md
-│   ├── animations-effects.md
-│   ├── mockups-desktop.md
-│   └── mockups-mobile.md
+├── config/
+│   └── playlists.js           # YouTube playlist mapping
 │
-├── specs/                     # Project specifications
-│   └── plan.md
+├── lib/
+│   ├── cache.js               # 24h in-memory cache
+│   └── youtube-api.js         # YouTube API helpers
 │
-└── src/                       # (future) Source components
-    ├── components/
-    └── pages/
+├── scripts/
+│   └── dev-server.js          # Local development Express server
+│
+└── docs/                      # Documentation
+    ├── README.md              # Documentation index
+    ├── design/                # Design documentation
+    │   ├── animations-effects.md
+    │   ├── branding-logo.md
+    │   ├── color-palette.md
+    │   ├── mockups-desktop.md
+    │   ├── mockups-mobile.md
+    │   ├── sitemap.md
+    │   ├── tomb-raider-concept.md
+    │   ├── typography.md
+    │   └── wireframes.md
+    ├── guides/                # Setup & usage guides
+    │   ├── API_SETUP.md       # YouTube API setup
+    │   ├── CUSTOMIZATION.md   # Customization guide
+    │   └── QUICKSTART.md      # Quick start guide
+    └── specs/                 # Project specifications
+        ├── idea.md
+        └── plan.md
 ```
 
 ## 🎨 Paleta Kolorów
@@ -108,31 +133,43 @@ claude-project/
 ## 🚀 Uruchomienie Lokalne
 
 ### Wymagania
+- Node.js 16+ (dla YouTube API integration)
 - Nowoczesna przeglądarka (Chrome, Firefox, Safari, Edge)
-- Serwer HTTP (opcjonalnie dla development)
 
-### Metoda 1: Live Server (VS Code)
+### Metoda 1: Development Server (Zalecana)
+```bash
+# Zainstaluj zależności
+npm install
+
+# Uruchom development server
+npm run dev
+```
+Serwer uruchomi się na http://localhost:6969
+
+**Uwaga:** Wymaga `.env.local` z kluczem YouTube API. Zobacz [`docs/guides/API_SETUP.md`](docs/guides/API_SETUP.md)
+
+### Metoda 2: Live Server (VS Code)
 1. Zainstaluj rozszerzenie "Live Server" w VS Code
 2. Otwórz folder projektu w VS Code
 3. Kliknij prawym na `index.html` → "Open with Live Server"
 
-### Metoda 2: Python HTTP Server
+**Uwaga:** YouTube API nie będzie działać bez backendu
+
+### Metoda 3: Python HTTP Server
 ```bash
 # Python 3
 python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
 ```
 Następnie otwórz: http://localhost:8000
 
-### Metoda 3: Node.js http-server
+**Uwaga:** YouTube API nie będzie działać bez backendu
+
+### Metoda 4: Node.js http-server
 ```bash
 npx http-server -p 8000
 ```
 
-### Metoda 4: Bezpośrednio w przeglądarce
-Otwórz plik `index.html` bezpośrednio w przeglądarce (niektóre funkcje mogą nie działać bez serwera).
+**Uwaga:** YouTube API nie będzie działać bez backendu
 
 ## 📦 Deployment
 
