@@ -191,3 +191,182 @@
     --grid-gap: 16px;
   }
 }
+
+/* ===================================================================
+   THEME OVERRIDES
+   =================================================================== */
+
+/* ============ THEME 1: ORIGINAL (Default - Current Colors) ============ */
+html[data-theme="original"] {
+  /* Uses default :root variables defined above */
+}
+
+/* ============ THEME 2: PINK GAMER GIRL ============ */
+html[data-theme="pink-gamer"] {
+  /* Primary Neon Colors */
+  --cyber-pink: #FF1493;
+  --cyber-pink-dark: #C71585;
+  --cyber-pink-light: #FF69B4;
+  --cyber-pink-glow: rgba(255, 20, 147, 0.5);
+
+  --neon-cyan: #FF69B4; /* Pink variant */
+  --neon-cyan-dark: #FF1493;
+  --neon-cyan-light: #FFB6C1;
+  --neon-cyan-glow: rgba(255, 105, 180, 0.5);
+
+  --electric-purple: #DA70D6; /* Orchid */
+  --electric-purple-dark: #BA55D3;
+  --electric-purple-light: #EE82EE;
+  --electric-purple-glow: rgba(218, 112, 214, 0.5);
+
+  --gold-accent: #FFB6C1; /* Light pink */
+  --gold-dark: #FF69B4;
+  --gold-light: #FFC0CB;
+  --gold-glow: rgba(255, 182, 193, 0.6);
+
+  /* Background Colors */
+  --dark-bg: #2E1A2B; /* Purple-pink dark */
+  --dark-bg-rgb: 46, 26, 43;
+
+  --slate-dark: #4A2847;
+  --slate-dark-light: #5A3857;
+  --slate-dark-rgb: 74, 40, 71;
+
+  --near-black: #1A0F18;
+  --near-black-rgb: 26, 15, 24;
+
+  /* Link Colors */
+  --link-default: #FF69B4;
+  --link-hover: #FF1493;
+  --link-visited: #DA70D6;
+  --link-active: #FFB6C1;
+
+  /* Gradients */
+  --gradient-cyber: linear-gradient(135deg, #2E1A2B 0%, #4A2847 50%, #2E1A2B 100%);
+  --gradient-neon: linear-gradient(90deg, #FF1493 0%, #FF69B4 50%, #FFB6C1 100%);
+
+  /* Box Shadows */
+  --shadow-pink: 0 0 10px rgba(255, 20, 147, 0.7), 0 0 20px rgba(255, 20, 147, 0.5);
+  --shadow-cyan: 0 0 10px rgba(255, 105, 180, 0.7), 0 0 20px rgba(255, 105, 180, 0.5);
+  --shadow-purple: 0 0 10px rgba(218, 112, 214, 0.7), 0 0 20px rgba(218, 112, 214, 0.5);
+}
+
+/* ============ THEME 3: MATRIX GREEN ============ */
+html[data-theme="matrix"] {
+  /* Primary Neon Colors */
+  --cyber-pink: #00FF00; /* Bright green */
+  --cyber-pink-dark: #00CC00;
+  --cyber-pink-light: #39FF14;
+  --cyber-pink-glow: rgba(0, 255, 0, 0.5);
+
+  --neon-cyan: #00FF00; /* Neon green */
+  --neon-cyan-dark: #00CC00;
+  --neon-cyan-light: #39FF14;
+  --neon-cyan-glow: rgba(0, 255, 0, 0.5);
+
+  --electric-purple: #32CD32; /* Lime green */
+  --electric-purple-dark: #228B22;
+  --electric-purple-light: #7FFF00;
+  --electric-purple-glow: rgba(50, 205, 50, 0.5);
+
+  --gold-accent: #00FF00;
+  --gold-dark: #00CC00;
+  --gold-light: #7FFF00;
+  --gold-glow: rgba(0, 255, 0, 0.6);
+
+  /* Background Colors */
+  --dark-bg: #0D0D0D; /* Near black */
+  --dark-bg-rgb: 13, 13, 13;
+
+  --slate-dark: #1A1A1A;
+  --slate-dark-light: #2A2A2A;
+  --slate-dark-rgb: 26, 26, 26;
+
+  --near-black: #000000;
+  --near-black-rgb: 0, 0, 0;
+
+  /* Text Colors */
+  --text-primary: #00FF00;
+  --text-secondary: #39FF14;
+  --text-muted: #00CC00;
+  --text-disabled: #006600;
+
+  /* Link Colors */
+  --link-default: #00FF00;
+  --link-hover: #39FF14;
+  --link-visited: #00CC00;
+  --link-active: #7FFF00;
+
+  /* Gradients */
+  --gradient-cyber: linear-gradient(135deg, #000000 0%, #0D0D0D 50%, #000000 100%);
+  --gradient-neon: linear-gradient(90deg, #00FF00 0%, #39FF14 50%, #00FF00 100%);
+
+  /* Box Shadows */
+  --shadow-pink: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5);
+  --shadow-cyan: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5);
+  --shadow-purple: 0 0 10px rgba(50, 205, 50, 0.7), 0 0 20px rgba(50, 205, 50, 0.5);
+  --shadow-gold: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5);
+
+  /* Text Shadows */
+  --text-glow-pink: 0 0 5px #00FF00, 0 0 10px #00FF00;
+  --text-glow-cyan: 0 0 5px #00FF00, 0 0 10px #00FF00;
+  --text-glow-gold: 0 0 5px #00FF00, 0 0 10px #00FF00;
+  --text-glow-purple: 0 0 5px #32CD32, 0 0 10px #32CD32;
+}
+
+/* ============ THEME 4: BLUE CYBER ============ */
+html[data-theme="blue-cyber"] {
+  /* Primary Neon Colors */
+  --cyber-pink: #00BFFF; /* Deep sky blue */
+  --cyber-pink-dark: #0080FF;
+  --cyber-pink-light: #1E90FF;
+  --cyber-pink-glow: rgba(0, 191, 255, 0.5);
+
+  --neon-cyan: #00FFFF; /* Cyan */
+  --neon-cyan-dark: #00CED1;
+  --neon-cyan-light: #7FFFD4;
+  --neon-cyan-glow: rgba(0, 255, 255, 0.5);
+
+  --electric-purple: #1E90FF; /* Dodger blue */
+  --electric-purple-dark: #0080FF;
+  --electric-purple-light: #4169E1;
+  --electric-purple-glow: rgba(30, 144, 255, 0.5);
+
+  --gold-accent: #87CEEB; /* Sky blue */
+  --gold-dark: #4682B4;
+  --gold-light: #B0E0E6;
+  --gold-glow: rgba(135, 206, 235, 0.6);
+
+  /* Background Colors */
+  --dark-bg: #0A1929; /* Deep navy */
+  --dark-bg-rgb: 10, 25, 41;
+
+  --slate-dark: #1B2838;
+  --slate-dark-light: #2B3848;
+  --slate-dark-rgb: 27, 40, 56;
+
+  --near-black: #020814;
+  --near-black-rgb: 2, 8, 20;
+
+  /* Link Colors */
+  --link-default: #00BFFF;
+  --link-hover: #1E90FF;
+  --link-visited: #4169E1;
+  --link-active: #87CEEB;
+
+  /* Gradients */
+  --gradient-cyber: linear-gradient(135deg, #0A1929 0%, #1B2838 50%, #0A1929 100%);
+  --gradient-neon: linear-gradient(90deg, #00BFFF 0%, #1E90FF 50%, #00FFFF 100%);
+
+  /* Box Shadows */
+  --shadow-pink: 0 0 10px rgba(0, 191, 255, 0.7), 0 0 20px rgba(0, 191, 255, 0.5);
+  --shadow-cyan: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+  --shadow-purple: 0 0 10px rgba(30, 144, 255, 0.7), 0 0 20px rgba(30, 144, 255, 0.5);
+  --shadow-gold: 0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4);
+
+  /* Text Shadows */
+  --text-glow-pink: 0 0 5px #00BFFF, 0 0 10px #00BFFF;
+  --text-glow-cyan: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+  --text-glow-gold: 0 0 5px #87CEEB, 0 0 10px #87CEEB;
+  --text-glow-purple: 0 0 5px #1E90FF, 0 0 10px #1E90FF;
+}
