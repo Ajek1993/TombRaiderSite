@@ -588,3 +588,13 @@ h3 {
     font-size: var(--text-base);
   }
 }
+
+/* ============================================
+   MATRIX THEME CONTRAST FIX
+   ============================================ */
+
+/* Fix button contrast in Matrix theme (green on green issue) */
+html[data-theme="matrix"] .btn-primary {
+  color: #000000;
+  text-shadow: none;
+}

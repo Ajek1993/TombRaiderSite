@@ -361,3 +361,17 @@
     max-width: 100%;
   }
 }
+
+/* ============================================
+   MATRIX THEME CONTRAST FIX
+   ============================================ */
+
+/* Fix play icon contrast in Matrix theme (green on green issue) */
+html[data-theme="matrix"] .play-icon {
+  color: #000000;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+}
+
+html[data-theme="matrix"] .video-placeholder:hover .play-icon {
+  box-shadow: 0 0 50px rgba(0, 255, 0, 1);
+}

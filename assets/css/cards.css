@@ -491,3 +491,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ============================================
+   MATRIX THEME CONTRAST FIX
+   ============================================ */
+
+/* Fix badge contrast in Matrix theme (green on green issue) */
+html[data-theme="matrix"] .badge-new {
+  color: #000000;
+}

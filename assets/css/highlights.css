@@ -454,3 +454,13 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+/* ============================================
+   MATRIX THEME CONTRAST FIX
+   ============================================ */
+
+/* Fix button contrast in Matrix theme (green on green issue) */
+html[data-theme="matrix"] .watch-btn {
+  color: #000000;
+  text-shadow: none;
+}

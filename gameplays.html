@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="/assets/css/theme-switcher.css">
   <link rel="stylesheet" href="/assets/css/animations.css">
   <link rel="stylesheet" href="/assets/css/gameplays.css">
+  <link rel="stylesheet" href="/assets/css/modal.css">
 </head>
 <body>
   <!-- Skip to content for accessibility -->
@@ -407,8 +408,30 @@
     </div>
   </footer>
 
+  <!-- Video Modal -->
+  <div class="video-modal-overlay" id="videoModalOverlay">
+    <div class="video-modal" id="videoModal">
+      <div class="video-modal-header">
+        <h2 class="video-modal-title" id="videoModalTitle"></h2>
+        <button class="video-modal-close" id="videoModalClose" aria-label="Zamknij">
+          ×
+        </button>
+      </div>
+      <div class="video-modal-content">
+        <iframe
+          id="videoModalIframe"
+          class="video-modal-iframe"
+          src=""
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript -->
   <script src="/assets/js/theme-switcher.js"></script>
+  <script src="/assets/js/video-modal.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/gameplays.js"></script>
 </body>

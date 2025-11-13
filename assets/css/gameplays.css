@@ -628,3 +628,13 @@
   outline: 3px solid var(--neon-cyan);
   outline-offset: 2px;
 }
+
+/* ============================================
+   MATRIX THEME CONTRAST FIX
+   ============================================ */
+
+/* Fix button contrast in Matrix theme (green on green issue) */
+html[data-theme="matrix"] .watch-btn {
+  color: #000000;
+  text-shadow: none;
+}

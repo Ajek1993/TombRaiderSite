@@ -131,11 +131,25 @@ function createVideoCard(video, isNew = false) {
           </span>
         </div>
       </div>
-      <a href="${video.videoUrl}" class="watch-btn" target="_blank" rel="noopener">
+      <button
+        class="watch-btn"
+        data-video-id="${video.id}"
+        data-video-title="${video.title}"
+        aria-label="Oglądaj ${video.title}">
         ▶ Oglądaj
-      </a>
+      </button>
     </div>
   `;
+
+  // Add click event listener to open modal
+  const watchBtn = card.querySelector('.watch-btn');
+  if (watchBtn && window.VideoModal) {
+    watchBtn.addEventListener('click', () => {
+      const videoId = watchBtn.getAttribute('data-video-id');
+      const videoTitle = watchBtn.getAttribute('data-video-title');
+      window.VideoModal.open(videoId, videoTitle);
+    });
+  }
 
   return card;
 }
