@@ -187,6 +187,8 @@
   gap: var(--space-lg);
   justify-content: center;
   flex-wrap: wrap;
+  z-index: 10;
+  position: relative;
 }
 
 /* ===================================================================
@@ -209,6 +211,7 @@
   background: rgba(138, 43, 226, 0.1);
   border: 2px solid var(--electric-purple-glow);
   text-align: center;
+  padding: 20px;
 }
 
 .quote-icon {
@@ -257,11 +260,21 @@
   justify-content: center;
   width: 100px;
   height: 100px;
+  min-height: 100px;
   background: var(--gradient-neon);
   border-radius: 50%;
   font-size: var(--text-5xl);
   border: 3px solid var(--gold-accent);
   box-shadow: 0 0 20px var(--gold-glow);
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .about-card h3 {
@@ -374,4 +387,55 @@ html[data-theme="matrix"] .play-icon {
 
 html[data-theme="matrix"] .video-placeholder:hover .play-icon {
   box-shadow: 0 0 50px rgba(0, 255, 0, 1);
+}
+
+/* ============================================
+   DYNAMIC VIDEO EMBED STYLES
+   ============================================ */
+
+/* Video embed wrapper for YouTube iframes */
+.video-embed-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  background: var(--near-black);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.video-embed-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-embed-info {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+.video-embed-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  text-shadow: var(--text-glow-cyan);
+}
+
+.video-embed-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* Quote widget button spacing fix */
+#random-quote-btn {
+  margin-top: var(--space-md);
 }

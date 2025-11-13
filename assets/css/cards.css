@@ -89,7 +89,7 @@
 }
 
 .thumbnail-small {
-  padding-bottom: 75%; /* 4:3 for smaller cards */
+  padding-bottom: 0%; /* No padding for image-based thumbnails */
 }
 
 .thumbnail-small .thumbnail-icon {

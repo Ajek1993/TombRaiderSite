@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="/assets/css/footer.css">
   <link rel="stylesheet" href="/assets/css/theme-switcher.css">
   <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/modal.css">
 </head>
 <body>
   <!-- Skip to content for accessibility -->
@@ -58,9 +59,9 @@
         <li><a href="/" class="nav-link active">Home</a></li>
         <li><a href="/gameplays.html" class="nav-link">Gameplay'e</a></li>
         <li><a href="/highlights.html" class="nav-link">Highlights</a></li>
-        <li><a href="/gallery.html" class="nav-link">Galeria</a></li>
+        <!-- <li><a href="/gallery.html" class="nav-link">Galeria</a></li> -->
         <li><a href="/announcements.html" class="nav-link">Zapowiedzi</a></li>
-        <li><a href="/about.html" class="nav-link">O Mnie</a></li>
+        <li><a href="#hero" class="nav-link">O Mnie</a></li>
       </ul>
 
       <!-- Nav Actions -->
@@ -105,9 +106,9 @@
       <li><a href="/" class="mobile-menu-link active">🏠 Home</a></li>
       <li><a href="/gameplays.html" class="mobile-menu-link">🎮 Gameplay'e</a></li>
       <li><a href="/highlights.html" class="mobile-menu-link">⭐ Highlights</a></li>
-      <li><a href="/gallery.html" class="mobile-menu-link">🖼️ Galeria</a></li>
+      <!-- <li><a href="/gallery.html" class="mobile-menu-link">🖼️ Galeria</a></li> -->
       <li><a href="/announcements.html" class="mobile-menu-link">📅 Zapowiedzi</a></li>
-      <li><a href="/about.html" class="mobile-menu-link">👤 O Mnie</a></li>
+      <li><a href="#hero" class="mobile-menu-link">👤 O Mnie</a></li>
     </ul>
 
     <div class="section-divider"></div>
@@ -125,9 +126,9 @@
         <!-- <a href="https://discord.gg/placeholder" class="mobile-social-link" target="_blank" rel="noopener">
           <span>💬</span> Discord
         </a> -->
-        <a href="https://instagram.com/placeholder" class="mobile-social-link" target="_blank" rel="noopener">
+        <!-- <a href="https://instagram.com/placeholder" class="mobile-social-link" target="_blank" rel="noopener">
           <span>📷</span> Instagram
-        </a>
+        </a> -->
       </div>
     </div>
 
@@ -231,7 +232,7 @@
           <!-- About Card -->
           <div class="about-card card">
             <div class="avatar-container">
-              <div class="avatar">👤</div>
+              <div class="avatar"></div>
             </div>
             <h3>Cześć! Jestem Bruxa</h3>
             <p>
@@ -266,78 +267,8 @@
         <h2 class="section-title">🎮 Najnowsze Gameplay'e - Tomb Raider</h2>
 
         <div class="gameplay-grid grid-4">
-          <!-- Gameplay Card 1 -->
-          <article class="gameplay-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder">
-                <span class="thumbnail-icon">🏛️</span>
-              </div>
-              <span class="badge badge-new">NEW!</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Shadow of Tomb Raider - #15</h3>
-              <div class="card-metadata">
-                <span>🕐 45:23</span>
-                <span>👁 2.8k</span>
-                <span>📅 2h temu</span>
-              </div>
-              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
-            </div>
-          </article>
-
-          <!-- Gameplay Card 2 -->
-          <article class="gameplay-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder">
-                <span class="thumbnail-icon">🏛️</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Shadow of Tomb Raider - #14</h3>
-              <div class="card-metadata">
-                <span>🕐 52:10</span>
-                <span>👁 3.1k</span>
-                <span>📅 3 dni temu</span>
-              </div>
-              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
-            </div>
-          </article>
-
-          <!-- Gameplay Card 3 -->
-          <article class="gameplay-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder">
-                <span class="thumbnail-icon">🏛️</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Rise of Tomb Raider - #22</h3>
-              <div class="card-metadata">
-                <span>🕐 38:45</span>
-                <span>👁 3.2k</span>
-                <span>📅 1 tydzień temu</span>
-              </div>
-              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
-            </div>
-          </article>
-
-          <!-- Gameplay Card 4 -->
-          <article class="gameplay-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder">
-                <span class="thumbnail-icon">🏛️</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Tomb Raider I-III - Part 8</h3>
-              <div class="card-metadata">
-                <span>🕐 41:33</span>
-                <span>👁 1.9k</span>
-                <span>📅 1 tydzień temu</span>
-              </div>
-              <a href="#" class="btn btn-secondary btn-small">Oglądaj →</a>
-            </div>
-          </article>
+          <!-- Dynamically loaded by home.js -->
+          <p class="loading-message">Ładowanie najnowszych gameplay'ów...</p>
         </div>
 
         <div class="section-cta">
@@ -356,69 +287,8 @@
         <h2 class="section-title">⭐ Highlights - Najlepsze Momenty</h2>
 
         <div class="highlights-grid grid-4">
-          <!-- Highlight Card 1 -->
-          <article class="highlight-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder thumbnail-small">
-                <span class="thumbnail-icon">⚔️</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title-small">Epic Boss Fight</h3>
-              <div class="card-metadata-small">
-                <span>🕐 5:32</span>
-                <span>👁 8.5k</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Highlight Card 2 -->
-          <article class="highlight-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder thumbnail-small">
-                <span class="thumbnail-icon">😂</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title-small">Funny Fail Moment</h3>
-              <div class="card-metadata-small">
-                <span>🕐 2:15</span>
-                <span>👁 12k</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Highlight Card 3 -->
-          <article class="highlight-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder thumbnail-small">
-                <span class="thumbnail-icon">🏆</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title-small">100% Complete!</h3>
-              <div class="card-metadata-small">
-                <span>🕐 8:45</span>
-                <span>👁 6.2k</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Highlight Card 4 -->
-          <article class="highlight-card card">
-            <div class="card-thumbnail-wrapper">
-              <div class="thumbnail-placeholder thumbnail-small">
-                <span class="thumbnail-icon">🔍</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title-small">Secret Found!</h3>
-              <div class="card-metadata-small">
-                <span>🕐 3:20</span>
-                <span>👁 4.8k</span>
-              </div>
-            </div>
-          </article>
+          <!-- Dynamically loaded by home.js -->
+          <p class="loading-message">Ładowanie najlepszych momentów...</p>
         </div>
 
         <div class="section-cta">
@@ -542,11 +412,11 @@
             <h3 class="widget-title">🏺 Odkryte Artefakty</h3>
             <div class="widget-content">
               <div class="stat-box">
-                <div class="stat-number">127</div>
+                <div class="stat-number" id="total-gameplays">...</div>
                 <div class="stat-label">Gameplay'ów</div>
               </div>
               <div class="stat-box">
-                <div class="stat-number">18</div>
+                <div class="stat-number" id="total-highlights">...</div>
                 <div class="stat-label">Highlights</div>
               </div>
               <div class="stat-box">
@@ -556,16 +426,11 @@
             </div>
           </div>
 
-          <!-- Latest Upload Widget -->
+          <!-- Most Viewed Widget -->
           <div class="widget-card card">
-            <h3 class="widget-title">📺 Najnowszy Upload</h3>
-            <div class="widget-content">
-              <div class="thumbnail-placeholder thumbnail-small">
-                <span class="thumbnail-icon">🎬</span>
-              </div>
-              <p class="upload-title">Shadow of TR - #15</p>
-              <p class="upload-time">📅 2 godziny temu</p>
-              <a href="#" class="btn btn-secondary btn-full">Oglądaj →</a>
+            <h3 class="widget-title">🏆 Najczęściej Oglądany</h3>
+            <div class="widget-content" id="most-viewed-widget">
+              <p class="loading-message">Ładowanie...</p>
             </div>
           </div>
         </div>
@@ -618,7 +483,7 @@
           <ul class="footer-links">
             <li><a href="https://www.youtube.com/@bruxa7656" target="_blank">▶ YouTube</a></li>
             <li><a href="https://www.tiktok.com/@xbruksiax" target="_blank">♪ TikTok</a></li>
-            <li><a href="https://instagram.com/placeholder" target="_blank">📷 Instagram</a></li>
+            <!-- <li><a href="https://instagram.com/placeholder" target="_blank">📷 Instagram</a></li> -->
             <!-- <li><a href="https://discord.gg/placeholder" target="_blank">💬 Discord</a></li> -->
           </ul>
         </div>
@@ -664,8 +529,31 @@
     </div>
   </footer>
 
+  <!-- Video Modal -->
+  <div class="video-modal-overlay" id="videoModalOverlay">
+    <div class="video-modal" id="videoModal">
+      <div class="video-modal-header">
+        <h2 class="video-modal-title" id="videoModalTitle"></h2>
+        <button class="video-modal-close" id="videoModalClose" aria-label="Zamknij">
+          ×
+        </button>
+      </div>
+      <div class="video-modal-content">
+        <iframe
+          id="videoModalIframe"
+          class="video-modal-iframe"
+          src=""
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript -->
   <script src="/assets/js/theme-switcher.js"></script>
+  <script src="/assets/js/video-modal.js"></script>
   <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/home.js"></script>
 </body>
 </html>
