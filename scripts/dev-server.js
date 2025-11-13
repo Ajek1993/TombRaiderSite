@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.get('/api/youtube', async (req, res) => {
   try {
     // Import the serverless function handler
-    const youtubeHandler = require('./api/youtube.js');
+    const youtubeHandler = require('../api/youtube.js');
 
     // Call the handler with Express req/res
     await youtubeHandler(req, res);
@@ -75,13 +75,13 @@ app.get('/api/health', (req, res) => {
 // ===================================
 
 // Serve static files from root directory
-app.use(express.static(path.join(__dirname), {
+app.use(express.static(path.join(__dirname, '..'), {
   extensions: ['html', 'htm'],
   index: 'index.html'
 }));
 
 // Serve assets directory
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(path.join(__dirname, '..', 'assets')));
 
 // ===================================
 // ERROR HANDLING
@@ -89,7 +89,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'index.html'));
+  res.status(404).sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Error handler

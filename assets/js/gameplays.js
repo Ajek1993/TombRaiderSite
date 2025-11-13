@@ -236,8 +236,9 @@ function toggleAccordion(category) {
     content.classList.remove('collapsed');
     header.querySelector('.accordion-icon').textContent = '−';
 
-    // Load videos if not loaded yet
-    if (!state.videosData[category] && !state.loading[category]) {
+    // Render videos if grid is empty (even if data is already loaded)
+    const grid = document.querySelector(`[data-videos-grid="${category}"]`);
+    if (grid && grid.children.length === 0 && state.videosData[category]) {
       renderVideos(category);
     }
   }
