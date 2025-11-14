@@ -87,10 +87,10 @@ async function fetchAllPlaylists() {
     // Flatten all videos
     const allVideos = results.flat();
 
-    // Separate gameplays (non-shorts) and sort by date (newest first)
+    // Separate gameplays (non-shorts) and sort by actual publication date (newest first across all playlists)
     const gameplayVideos = allVideos
       .filter(v => !v.isShort)
-      .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      .sort((a, b) => new Date(b.publishedAtRaw) - new Date(a.publishedAtRaw));
 
     console.log(`[Home] Loaded ${allVideos.length} total videos, ${gameplayVideos.length} gameplays`);
 
@@ -443,9 +443,9 @@ async function initHomePage() {
     }
 
     if (gameplayVideos.length > 0) {
-      // Update hero with oldest gameplay (last in sorted array)
-      const oldestGameplay = gameplayVideos[gameplayVideos.length - 1];
-      updateHeroVideo(oldestGameplay);
+      // Update hero with newest gameplay (first in sorted array)
+      const newestGameplay = gameplayVideos[0];
+      updateHeroVideo(newestGameplay);
 
       // Update latest gameplays section
       updateLatestGameplays(gameplayVideos);
