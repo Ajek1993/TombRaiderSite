@@ -173,16 +173,70 @@ function updateHeroVideo(video) {
 function updateChannelInfo(channelInfo) {
   if (!channelInfo) return;
 
+  console.log('[Home] Channel Info received:', channelInfo);
+  console.log('[Home] Subscriber count value:', channelInfo.subscriberCount);
+
   // Update avatar
   const avatarElement = document.querySelector('.avatar');
   if (avatarElement) {
     avatarElement.innerHTML = `<img src="${channelInfo.avatar}" alt="${channelInfo.title}" loading="lazy">`;
   }
 
-  // Update subscriber count
+  // Update subscriber count with animation
   const subscriberElement = document.getElementById('subscriber-count');
-  if (subscriberElement) {
-    subscriberElement.textContent = channelInfo.subscriberCount;
+  console.log('[Home] Subscriber element found:', !!subscriberElement);
+  if (subscriberElement && channelInfo.subscriberCount) {
+    console.log('[Home] Updating subscriber count to:', channelInfo.subscriberCount);
+
+    // Parse the target count from formatted string (e.g., "47.2k" -> 47200)
+    const countText = channelInfo.subscriberCount;
+    let targetCount;
+
+    if (countText.toLowerCase().includes('m')) {
+      targetCount = parseFloat(countText) * 1000000;
+    } else if (countText.toLowerCase().includes('k')) {
+      targetCount = parseFloat(countText) * 1000;
+    } else {
+      targetCount = parseInt(countText);
+    }
+
+    // Animate the counter
+    const duration = 2000; // 2 seconds
+    const startCount = 0;
+    const startTime = Date.now();
+
+    function animateCount() {
+      const now = Date.now();
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const currentCount = Math.floor(startCount + (targetCount - startCount) * progress);
+
+      // Format with k/M suffix
+      if (currentCount >= 1000000) {
+        subscriberElement.textContent = (currentCount / 1000000).toFixed(1) + 'M';
+      } else if (currentCount >= 1000) {
+        subscriberElement.textContent = (currentCount / 1000).toFixed(1) + 'k';
+      } else {
+        subscriberElement.textContent = currentCount;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animateCount);
+      }
+    }
+
+    // Start animation when element is in viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount();
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    observer.observe(subscriberElement);
   }
 }
 

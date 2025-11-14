@@ -58,6 +58,24 @@ app.get('/api/youtube', async (req, res) => {
   }
 });
 
+// Channel API endpoint
+app.get('/api/channel', async (req, res) => {
+  try {
+    // Import the serverless function handler
+    const channelHandler = require('../api/channel.js');
+
+    // Call the handler with Express req/res
+    await channelHandler(req, res);
+
+  } catch (error) {
+    console.error('[Server] Channel API Error:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    });
+  }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({

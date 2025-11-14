@@ -226,50 +226,6 @@ if (randomGameplayBtn) {
 }
 
 // ===================================================================
-// SUBSCRIBER COUNTER ANIMATION
-// ===================================================================
-
-const subscriberCount = document.getElementById('subscriber-count');
-
-if (subscriberCount) {
-  const targetCount = 47200; // Example count
-  const duration = 2000; // 2 seconds
-  const startCount = 0;
-  const startTime = Date.now();
-
-  function animateCount() {
-    const now = Date.now();
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    const currentCount = Math.floor(startCount + (targetCount - startCount) * progress);
-
-    // Format with k suffix
-    if (currentCount >= 1000) {
-      subscriberCount.textContent = (currentCount / 1000).toFixed(1) + 'k';
-    } else {
-      subscriberCount.textContent = currentCount;
-    }
-
-    if (progress < 1) {
-      requestAnimationFrame(animateCount);
-    }
-  }
-
-  // Start animation when element is in viewport
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount();
-        observer.unobserve(entry.target);
-      }
-    });
-  });
-
-  observer.observe(subscriberCount);
-}
-
-// ===================================================================
 // SCROLL REVEAL ANIMATIONS
 // ===================================================================
 
