@@ -159,25 +159,37 @@ function createShortCard(short) {
           <span>${short.publishedAt}</span>
         </div>
       </div>
-      <a href="${short.videoUrl}" class="watch-btn" target="_blank" rel="noopener">
+      <button class="watch-btn" data-video-id="${short.id}" data-video-title="${short.title}">
         ▶ Oglądaj
-      </a>
+      </button>
     </div>
   `;
 
-  // Click on card = click on watch button
+  // Click on card or button opens modal
+  const openModal = () => {
+    if (window.VideoModal) {
+      window.VideoModal.open(short.id, short.title);
+    } else {
+      // Fallback to YouTube if modal not available
+      window.open(short.videoUrl, '_blank');
+    }
+  };
+
   card.addEventListener('click', (e) => {
-    if (e.target.classList.contains('watch-btn')) return;
-    const watchBtn = card.querySelector('.watch-btn');
-    if (watchBtn) watchBtn.click();
+    if (e.target.classList.contains('watch-btn')) {
+      e.preventDefault();
+      openModal();
+    } else if (!e.target.closest('a')) {
+      // Allow clicking anywhere on card to open video
+      openModal();
+    }
   });
 
   // Keyboard support
   card.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      const watchBtn = card.querySelector('.watch-btn');
-      if (watchBtn) watchBtn.click();
+      openModal();
     }
   });
 

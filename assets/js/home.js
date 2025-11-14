@@ -173,9 +173,6 @@ function updateHeroVideo(video) {
 function updateChannelInfo(channelInfo) {
   if (!channelInfo) return;
 
-  console.log('[Home] Channel Info received:', channelInfo);
-  console.log('[Home] Subscriber count value:', channelInfo.subscriberCount);
-
   // Update avatar
   const avatarElement = document.querySelector('.avatar');
   if (avatarElement) {
@@ -184,9 +181,7 @@ function updateChannelInfo(channelInfo) {
 
   // Update subscriber count with animation
   const subscriberElement = document.getElementById('subscriber-count');
-  console.log('[Home] Subscriber element found:', !!subscriberElement);
   if (subscriberElement && channelInfo.subscriberCount) {
-    console.log('[Home] Updating subscriber count to:', channelInfo.subscriberCount);
 
     // Parse the target count from formatted string (e.g., "47.2k" -> 47200)
     const countText = channelInfo.subscriberCount;
