@@ -47,7 +47,12 @@ async function fetchShorts() {
 
     console.log(`[Highlights] Received ${data.count} shorts`, data.cached ? '(cached)' : '(fresh)');
 
-    return data.videos || [];
+    // Sortuj shortsy po dacie publikacji (od najnowszych do najstarszych)
+    const sortedVideos = (data.videos || []).sort((a, b) => {
+      return new Date(b.publishedAtRaw) - new Date(a.publishedAtRaw);
+    });
+
+    return sortedVideos;
 
   } catch (error) {
     console.error('[Highlights] Error fetching shorts:', error);

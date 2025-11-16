@@ -90,9 +90,9 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Fetch from YouTube API
+    // Fetch from YouTube API (all items with pagination)
     console.log(`[API] Fetching playlist from YouTube: ${playlistId}`);
-    const videos = await fetchPlaylistItems(playlistId, apiKey, 50);
+    const videos = await fetchPlaylistItems(playlistId, apiKey);
 
     // Store in cache
     cache.set(cacheKey, videos);
