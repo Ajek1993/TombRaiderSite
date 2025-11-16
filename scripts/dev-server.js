@@ -20,7 +20,7 @@ app.use(express.json());
 // CORS headers
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
@@ -76,6 +76,24 @@ app.get('/api/channel', async (req, res) => {
   }
 });
 
+// Announcements API endpoint (all methods)
+app.all('/api/announcements', async (req, res) => {
+  try {
+    // Import the serverless function handler
+    const announcementsHandler = require('../api/announcements.js');
+
+    // Call the handler with Express req/res
+    await announcementsHandler(req, res);
+
+  } catch (error) {
+    console.error('[Server] Announcements API Error:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    });
+  }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -83,6 +101,7 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
     env: {
       hasApiKey: !!process.env.YOUTUBE_API_KEY,
+      hasGoogleSheets: !!process.env.GOOGLE_SHEETS_ID,
       nodeVersion: process.version
     }
   });
@@ -126,14 +145,17 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log('\n🚀 Development Server Started!');
   console.log(`📍 URL: http://localhost:${PORT}`);
-  console.log(`🔑 API Key: ${process.env.YOUTUBE_API_KEY ? '✅ Loaded' : '❌ Missing'}`);
+  console.log(`🔑 YouTube API: ${process.env.YOUTUBE_API_KEY ? '✅ Loaded' : '❌ Missing'}`);
+  console.log(`📊 Google Sheets: ${process.env.GOOGLE_SHEETS_ID ? '✅ Configured' : '❌ Not configured'}`);
   console.log('\n📄 Available pages:');
   console.log(`   - http://localhost:${PORT}/`);
   console.log(`   - http://localhost:${PORT}/gameplays.html`);
   console.log(`   - http://localhost:${PORT}/highlights.html`);
+  console.log(`   - http://localhost:${PORT}/admin/announcements.html`);
   console.log('\n🔌 API endpoints:');
   console.log(`   - http://localhost:${PORT}/api/youtube?playlist=tr1`);
   console.log(`   - http://localhost:${PORT}/api/youtube?playlist=shorts`);
+  console.log(`   - http://localhost:${PORT}/api/announcements`);
   console.log(`   - http://localhost:${PORT}/api/health`);
   console.log('\n💡 Press Ctrl+C to stop\n');
 });
