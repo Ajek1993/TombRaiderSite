@@ -357,6 +357,7 @@
   color: var(--neon-cyan);
   text-transform: uppercase;
   margin-bottom: var(--space-lg);
+  padding-top: var(--space-md);
   padding-bottom: var(--space-md);
   border-bottom: 2px solid var(--neon-cyan-glow);
 }
