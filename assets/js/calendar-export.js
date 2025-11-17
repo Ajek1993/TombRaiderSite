@@ -103,28 +103,22 @@ function downloadICS(content, filename) {
 
 /**
  * Handle "Add to Calendar" button click
+ * Opens Google Calendar with pre-filled event
  * @param {Object} streamData - Stream announcement data
  */
 function handleAddToCalendar(streamData) {
   try {
-    // Generate .ics content
-    const icsContent = generateICS(streamData);
+    // Generate Google Calendar URL
+    const googleCalendarURL = generateGoogleCalendarURL(streamData);
 
-    // Create filename from stream title and date
-    const safeTitle = (streamData.title || 'stream')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-    const filename = `${safeTitle}-${streamData.date}.ics`;
-
-    // Trigger download
-    downloadICS(icsContent, filename);
+    // Open Google Calendar in new tab
+    window.open(googleCalendarURL, '_blank');
 
     // Show success feedback
-    showCalendarFeedback('✓ Plik kalendarza pobrany!', 'success');
+    showCalendarFeedback('✓ Otwarto Google Calendar!', 'success');
   } catch (error) {
-    console.error('Error generating calendar file:', error);
-    showCalendarFeedback('Błąd podczas tworzenia pliku kalendarza', 'error');
+    console.error('Error opening Google Calendar:', error);
+    showCalendarFeedback('Błąd podczas otwierania kalendarza', 'error');
   }
 }
 
@@ -163,25 +157,35 @@ function showCalendarFeedback(message, type = 'info') {
 }
 
 /**
- * Alternative: Generate Google Calendar URL
- * Can be used as an additional option
+ * Generate Google Calendar URL with pre-filled event details
+ * @param {Object} streamData - Stream announcement data
+ * @returns {String} Google Calendar URL
  */
 function generateGoogleCalendarURL(streamData) {
   const streamDate = new Date(`${streamData.date}T${streamData.time}`);
-  const streamEnd = new Date(streamDate.getTime() + (2 * 60 * 60 * 1000));
+  const streamEnd = new Date(streamDate.getTime() + (2 * 60 * 60 * 1000)); // 2-hour stream
 
-  // Format for Google Calendar
+  // Format for Google Calendar (YYYYMMDDTHHMMSSZ)
   const formatGoogleDate = (date) => {
     const pad = (n) => String(n).padStart(2, '0');
     return `${date.getUTCFullYear()}${pad(date.getUTCMonth() + 1)}${pad(date.getUTCDate())}T${pad(date.getUTCHours())}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}Z`;
   };
 
+  // Build description with features
+  let description = streamData.description || '';
+  if (streamData.platformLink) {
+    description += `\n\nLink do streamu: ${streamData.platformLink}`;
+  }
+  if (streamData.features && streamData.features.length > 0) {
+    description += `\n\nCo będzie podczas streamu:\n${streamData.features.map(f => `• ${f}`).join('\n')}`;
+  }
+
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: streamData.title || 'Stream xBruksiax',
     dates: `${formatGoogleDate(streamDate)}/${formatGoogleDate(streamEnd)}`,
-    details: streamData.description || '',
-    location: streamData.platformLink || streamData.platform || 'TikTok Live',
+    details: description,
+    location: streamData.platformLink || `${streamData.platform} Live`,
   });
 
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
