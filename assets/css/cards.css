@@ -69,6 +69,14 @@
   overflow: hidden;
 }
 
+
+/* Card Thumbnail Image - Full Width */
+.card-thumbnail {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
 .thumbnail-placeholder {
   position: relative;
   width: 100%;
