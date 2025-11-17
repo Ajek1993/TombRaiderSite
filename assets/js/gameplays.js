@@ -11,23 +11,46 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
   ? `http://${window.location.hostname}:${window.location.port}/api`  // Local development
   : '/api';  // Production
 
-const CATEGORIES = ['tr1', 'tr1ub', 'tr2', 'tr2gold', 'tr3', 'tlolc'];
+// ===================================
+// GAME DETECTION & DYNAMIC CATEGORIES
+// ===================================
+
+/**
+ * Get current game from URL parameter
+ * @returns {string} Game key (tomb-raider or other)
+ */
+function getGameFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const game = params.get('game');
+
+  // Default to tomb-raider if not specified or invalid
+  if (!game || !PLAYLISTS[game] || game === 'shorts') {
+    return 'tomb-raider';
+  }
+
+  return game;
+}
+
+// Get current game and its categories dynamically
+const currentGame = getGameFromUrl();
+const CATEGORIES = Object.keys(PLAYLISTS[currentGame] || {});
+
+console.log(`[Gameplays] Loading game: ${currentGame}, categories:`, CATEGORIES);
 
 // ===================================
 // STATE MANAGEMENT
 // ===================================
 
+// Initialize visibleVideos dynamically for current categories
+const initialVisibleVideos = {};
+CATEGORIES.forEach(cat => {
+  initialVisibleVideos[cat] = 3; // Show 3 videos initially per category
+});
+
 const state = {
   videosData: {},  // Stores fetched videos per category
   videoCounts: {}, // Stores video counts per category
-  visibleVideos: {
-    tr1: 3,
-    tr1ub: 3,
-    tr2: 3,
-    tr2gold: 3,
-    tr3: 3,
-    tlolc: 3
-  },
+  visibleVideos: initialVisibleVideos,
   videosPerLoad: 4,
   loading: {}  // Track loading state per category
 };
@@ -290,16 +313,119 @@ function scrollToCategory(categoryId) {
 }
 
 // ===================================
+// DYNAMIC ACCORDION BUILDER
+// ===================================
+
+/**
+ * Build category accordions dynamically based on current game
+ */
+function buildCategoryAccordions() {
+  const container = document.getElementById('categories-container');
+
+  if (!container) {
+    console.error('[Gameplays] Categories container not found');
+    return;
+  }
+
+  const playlists = PLAYLISTS[currentGame];
+
+  if (!playlists) {
+    container.innerHTML = '<div class="no-content-message"><p>Nie znaleziono playlist dla tej kategorii</p></div>';
+    return;
+  }
+
+  // Build HTML for each category
+  const accordionsHTML = Object.keys(playlists).map((key, index) => {
+    const playlist = playlists[key];
+    const isExpanded = index === 0; // First one expanded by default
+
+    return `
+      <div class="category-accordion" id="${key}">
+        <button class="category-header" data-category="${key}" aria-expanded="${isExpanded}">
+          <div class="category-title">
+            <span class="category-icon">${playlist.icon}</span>
+            <h2>${playlist.name}</h2>
+            <span class="video-count" data-count="${key}">Loading...</span>
+          </div>
+          <span class="accordion-icon">${isExpanded ? '−' : '+'}</span>
+        </button>
+        <div class="category-content${isExpanded ? '' : ' collapsed'}" data-category-content="${key}">
+          <div class="videos-grid" data-videos-grid="${key}">
+            <!-- Videos will be loaded by JavaScript -->
+          </div>
+          <button class="load-more-btn" data-category="${key}" style="display: none;">
+            <span>Pokaż więcej</span>
+            <span class="btn-icon">↓</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = accordionsHTML;
+
+  // Build quick navigation
+  buildQuickNavigation();
+}
+
+/**
+ * Build quick navigation links dynamically
+ */
+function buildQuickNavigation() {
+  const quickNavLinks = document.querySelector('.quick-nav-links');
+
+  if (!quickNavLinks) return;
+
+  const playlists = PLAYLISTS[currentGame];
+
+  const linksHTML = Object.keys(playlists).map(key => {
+    const playlist = playlists[key];
+    // Use shortName property from playlist config
+    const shortName = playlist.shortName || playlist.name;
+    return `<a href="#${key}" class="quick-nav-link">${shortName}</a>`;
+  }).join('');
+
+  quickNavLinks.innerHTML = linksHTML;
+}
+
+/**
+ * Update page header with game-specific content
+ */
+function updatePageHeader() {
+  const metadata = getGameMetadata(currentGame);
+
+  const titleElement = document.querySelector('.page-title h1');
+  const descElement = document.querySelector('.page-description');
+
+  if (titleElement) {
+    titleElement.innerHTML = `
+      <span class="title-icon">${metadata.icon}</span>
+      ${metadata.title}
+    `;
+  }
+
+  if (descElement) {
+    descElement.textContent = metadata.description;
+  }
+}
+
+// ===================================
 // EVENT LISTENERS
 // ===================================
 
 document.addEventListener('DOMContentLoaded', async () => {
 
+  // Build dynamic accordions based on URL param
+  buildCategoryAccordions();
+  updatePageHeader();
+
   // Fetch all category counts first (pre-load all data)
   await fetchAllCategoryCounts();
 
-  // Render initial videos for TR1 (first category, expanded by default)
-  renderVideos('tr1');
+  // Render initial videos for first category (expanded by default)
+  if (CATEGORIES.length > 0) {
+    renderVideos(CATEGORIES[0]);
+  }
 
   // Accordion headers
   document.querySelectorAll('.category-header').forEach(header => {
