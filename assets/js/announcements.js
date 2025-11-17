@@ -67,6 +67,12 @@ async function loadAndRenderAnnouncements() {
     // Render sections
     renderUpcomingStream();
     renderPastStreams();
+
+    // Add loaded class to trigger fade-in animation
+    const section = document.getElementById('upcoming-stream-section');
+    if (section) {
+      section.classList.add('loaded');
+    }
   } catch (error) {
     console.error('Error loading announcements:', error);
     hideUpcomingSection();

@@ -119,7 +119,8 @@ async function loadAnnouncements() {
   try {
     showLoading();
 
-    const response = await fetch(API_BASE);
+    // Add cache-busting to always get fresh data
+    const response = await fetch(`${API_BASE}?_t=${Date.now()}`);
     const data = await response.json();
 
     if (data.success) {
