@@ -166,6 +166,75 @@ function renderUpcomingStream() {
       countdown.style.display = 'none';
     }
   }
+
+  // Setup "Przypomij Mi" (Remind Me) button
+  setupReminderButton(announcement);
+
+  // Setup "Dodaj do Kalendarza" (Add to Calendar) button
+  setupCalendarButton(announcement);
+}
+
+/**
+ * Setup reminder button functionality
+ */
+function setupReminderButton(announcement) {
+  const reminderButton = document.querySelector('.stream-actions .btn-primary');
+  if (!reminderButton) return;
+
+  // Add class for styling
+  reminderButton.classList.add('btn-reminder');
+
+  // Check if reminder already exists
+  if (typeof hasReminder === 'function' && hasReminder(announcement.id)) {
+    updateReminderButtonState(announcement.id, true);
+  }
+
+  // Add click event listener
+  reminderButton.onclick = async (e) => {
+    e.preventDefault();
+
+    // Check if reminder already exists
+    if (typeof hasReminder === 'function' && hasReminder(announcement.id)) {
+      // Remove reminder
+      if (typeof removeReminder === 'function') {
+        removeReminder(announcement.id);
+      }
+    } else {
+      // Add reminder
+      if (typeof addReminder === 'function') {
+        await addReminder(announcement);
+      } else {
+        console.warn('Reminder functionality not loaded');
+        alert('Funkcja przypomnień nie jest dostępna. Sprawdź czy skrypt stream-reminders.js jest załadowany.');
+      }
+    }
+  };
+}
+
+/**
+ * Setup calendar button functionality
+ */
+function setupCalendarButton(announcement) {
+  const calendarButtons = document.querySelectorAll('.stream-actions .btn-secondary');
+
+  // Find the calendar button (first btn-secondary)
+  const calendarButton = calendarButtons[0];
+  if (!calendarButton) return;
+
+  // Add class for styling
+  calendarButton.classList.add('btn-calendar');
+
+  // Add click event listener
+  calendarButton.onclick = (e) => {
+    e.preventDefault();
+
+    if (typeof handleAddToCalendar === 'function') {
+      handleAddToCalendar(announcement);
+    } else {
+      console.warn('Calendar export functionality not loaded');
+      alert('Funkcja kalendarza nie jest dostępna. Sprawdź czy skrypt calendar-export.js jest załadowany.');
+    }
+  };
 }
 
 /**

@@ -605,6 +605,44 @@ h3 {
 }
 
 /* ============================================
+   STREAM BUTTONS - REMINDER & CALENDAR
+   ============================================ */
+
+/* Reminder button active state */
+.btn-reminder.reminder-active {
+  background: var(--color-success, #10b981);
+  border-color: var(--color-success, #10b981);
+}
+
+.btn-reminder.reminder-active:hover {
+  background: var(--color-success-dark, #059669);
+  border-color: var(--color-success-dark, #059669);
+}
+
+/* Toast notification animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+/* ============================================
    MATRIX THEME CONTRAST FIX
    ============================================ */
 
