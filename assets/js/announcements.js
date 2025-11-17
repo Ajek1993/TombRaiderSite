@@ -313,24 +313,26 @@ function renderPastStreams() {
 
   section.style.display = 'block';
 
-  const grid = section.querySelector('.highlights-grid');
-  if (!grid) return;
+  // Update count in toggle button
+  const toggleButton = section.querySelector('.past-streams-toggle');
+  if (toggleButton) {
+    const titleElement = toggleButton.querySelector('h2');
+    if (titleElement) {
+      titleElement.innerHTML = `<span class="title-icon">📺</span> Poprzednie Streamy (${pastAnnouncements.length})`;
+    }
+  }
 
-  // Render past streams as cards (max 6)
-  grid.innerHTML = pastAnnouncements.slice(0, 6).map(ann => `
-    <div class="card highlight-card">
-      <div class="card-thumbnail-wrapper">
-        ${ann.thumbnail
-          ? `<img src="${escapeHtml(ann.thumbnail)}" alt="${escapeHtml(ann.title)}" style="width: 100%; height: auto;">`
-          : `<div class="thumbnail-placeholder"><span class="thumbnail-icon">📺</span></div>`
-        }
-      </div>
-      <div class="card-content">
-        <h3 class="card-title-small">${escapeHtml(ann.title)}</h3>
-        <div class="card-metadata-small">
-          <span>📅 ${formatDate(ann.date)}</span>
-          <span>⏰ ${ann.time || '--:--'}</span>
-        </div>
+  // Render past streams as simple list items (no thumbnails)
+  const list = section.querySelector('.past-streams-list');
+  if (!list) return;
+
+  list.innerHTML = pastAnnouncements.map(ann => `
+    <div class="past-stream-item">
+      <h3 class="past-stream-title">${escapeHtml(ann.title)}</h3>
+      <div class="past-stream-metadata">
+        <span>📅 ${formatDate(ann.date)}</span>
+        <span>⏰ ${ann.time || '--:--'}</span>
+        ${ann.platform ? `<span>📡 ${escapeHtml(ann.platform)}</span>` : ''}
       </div>
     </div>
   `).join('');
@@ -345,20 +347,18 @@ function createPastStreamsSection() {
 
   const pastSection = document.createElement('section');
   pastSection.id = 'past-streams-section';
-  pastSection.className = 'section section-highlights';
+  pastSection.className = 'section section-past-streams';
 
   pastSection.innerHTML = `
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
+      <button class="past-streams-toggle" onclick="togglePastStreams()" aria-expanded="false">
+        <h2>
           <span class="title-icon">📺</span>
-          Poprzednie Streamy
+          Poprzednie Streamy (0)
         </h2>
-        <p class="section-description">
-          Archiwum zakończonych streamów
-        </p>
-      </div>
-      <div class="highlights-grid"></div>
+        <span class="toggle-icon">▼</span>
+      </button>
+      <div class="past-streams-list collapsed"></div>
     </div>
   `;
 
@@ -367,6 +367,62 @@ function createPastStreamsSection() {
 
   // Render content
   renderPastStreams();
+}
+
+/**
+ * Toggle past streams list visibility
+ */
+function togglePastStreams() {
+  const section = document.getElementById('past-streams-section');
+  if (!section) return;
+
+  const toggle = section.querySelector('.past-streams-toggle');
+  const list = section.querySelector('.past-streams-list');
+  const icon = section.querySelector('.toggle-icon');
+
+  if (!toggle || !list || !icon) return;
+
+  const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+  if (isExpanded) {
+    // Collapse
+    list.classList.add('collapsed');
+    toggle.setAttribute('aria-expanded', 'false');
+    icon.textContent = '▼';
+  } else {
+    // Expand
+    list.classList.remove('collapsed');
+    toggle.setAttribute('aria-expanded', 'true');
+    icon.textContent = '▲';
+  }
+}
+
+/**
+ * Toggle past streams list visibility
+ */
+function togglePastStreams() {
+  const section = document.getElementById('past-streams-section');
+  if (!section) return;
+
+  const toggle = section.querySelector('.past-streams-toggle');
+  const list = section.querySelector('.past-streams-list');
+  const icon = section.querySelector('.toggle-icon');
+
+  if (!toggle || !list || !icon) return;
+
+  const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+  if (isExpanded) {
+    // Collapse
+    list.classList.add('collapsed');
+    toggle.setAttribute('aria-expanded', 'false');
+    icon.textContent = '▼';
+  } else {
+    // Expand
+    list.classList.remove('collapsed');
+    toggle.setAttribute('aria-expanded', 'true');
+    icon.textContent = '▲';
+  }
 }
 
 /**
