@@ -35,7 +35,7 @@ https://[twoja-domena]/admin/announcements.html
 ### Pierwsze Logowanie
 
 1. Wejdź na stronę panelu admina
-2. Wprowadź hasło: `bruxa2025` (możesz poprosić Arka o zmianę hasła)
+2. Wprowadź hasło admina (ustawione w zmiennej środowiskowej `ADMIN_PASSWORD`)
 3. Kliknij **"Zaloguj się"**
 
 🔒 **Uwaga**: Hasło jest zapisywane lokalnie w przeglądarce - jeśli wyczyścisz ciasteczka, będziesz musiała zalogować się ponownie.
