@@ -66,7 +66,20 @@
       </div>
     </header>
 
+    <!-- Tab Navigation -->
+    <nav class="admin-tabs">
+      <button class="tab-btn active" data-tab="announcements">
+        Zapowiedzi Streamów
+      </button>
+      <button class="tab-btn" data-tab="faq">
+        FAQ
+      </button>
+    </nav>
+
     <div class="admin-container">
+
+      <!-- Announcements Tab -->
+      <div class="tab-content active" id="announcementsTab">
 
       <!-- Form Section -->
       <section class="admin-section">
@@ -248,10 +261,147 @@
         </div>
       </section>
 
+      </div>
+      <!-- End Announcements Tab -->
+
+      <!-- FAQ Tab -->
+      <div class="tab-content" id="faqTab">
+
+        <!-- FAQ Form Section -->
+        <section class="admin-section">
+          <div class="section-header">
+            <h2 id="faqFormTitle">Dodaj Nowe FAQ</h2>
+            <button id="cancelFaqEditBtn" class="btn btn-secondary" style="display: none;">
+              Anuluj edycję
+            </button>
+          </div>
+
+          <form id="faqForm" class="announcement-form">
+            <input type="hidden" id="faqId" name="id">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="faqQuestion">
+                  Pytanie <span class="required">*</span>
+                </label>
+                <textarea
+                  id="faqQuestion"
+                  name="question"
+                  rows="2"
+                  placeholder="np. Jak często są streamy?"
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="faqAnswer">
+                  Odpowiedź <span class="required">*</span>
+                </label>
+                <textarea
+                  id="faqAnswer"
+                  name="answer"
+                  rows="4"
+                  placeholder="Wpisz odpowiedź na pytanie..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="faqCategory">
+                  Kategoria <span class="required">*</span>
+                </label>
+                <select id="faqCategory" name="category" required>
+                  <option value="Ogólne/O Kanale">Ogólne/O Kanale</option>
+                  <option value="Streamy/Techniczne">Streamy/Techniczne</option>
+                  <option value="Gry/Gameplay">Gry/Gameplay</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="faqOrder">
+                  Kolejność
+                </label>
+                <input
+                  type="number"
+                  id="faqOrder"
+                  name="order"
+                  placeholder="0"
+                  min="0"
+                  value="0"
+                >
+                <small>Niższa liczba = wyższa pozycja</small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="faqVisible" name="visible" checked>
+                  Widoczne na stronie
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="faqSubmitBtn">
+                Dodaj FAQ
+              </button>
+              <button type="reset" class="btn btn-secondary">
+                Wyczyść formularz
+              </button>
+            </div>
+          </form>
+
+          <div class="form-message" id="faqFormMessage"></div>
+        </section>
+
+        <!-- FAQ List Section -->
+        <section class="admin-section">
+          <div class="section-header">
+            <h2>Wszystkie FAQ</h2>
+            <button id="refreshFaqBtn" class="btn btn-secondary">
+              🔄 Odśwież
+            </button>
+          </div>
+
+          <div class="announcements-table-wrapper">
+            <div id="faqLoadingSpinner" class="loading-spinner">
+              Ładowanie FAQ...
+            </div>
+
+            <table class="announcements-table" id="faqTable" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Pytanie</th>
+                  <th>Kategoria</th>
+                  <th>Kolejność</th>
+                  <th>Widoczne</th>
+                  <th>Akcje</th>
+                </tr>
+              </thead>
+              <tbody id="faqTableBody">
+                <!-- Rows will be populated by JavaScript -->
+              </tbody>
+            </table>
+
+            <div id="faqEmptyState" class="empty-state" style="display: none;">
+              <p>Brak FAQ. Dodaj pierwsze pytanie używając formularza powyżej.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <!-- End FAQ Tab -->
+
     </div>
   </div>
 
   <!-- JavaScript -->
   <script src="/assets/js/admin-announcements.js"></script>
+  <script src="/assets/js/admin-faq.js"></script>
 </body>
 </html>

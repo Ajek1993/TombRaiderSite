@@ -532,4 +532,71 @@
   .announcement-actions .btn {
     width: 100%;
   }
+
+  .admin-tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1 1 calc(50% - var(--space-sm));
+  }
+}
+
+/* ===================================================================
+   TAB NAVIGATION
+   =================================================================== */
+
+.admin-tabs {
+  background: var(--slate-dark);
+  border-bottom: 2px solid rgba(138, 43, 226, 0.3);
+  padding: 0 var(--space-lg);
+  display: flex;
+  gap: var(--space-sm);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  padding: var(--space-lg) var(--space-xl);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  position: relative;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(138, 43, 226, 0.1);
+}
+
+.tab-btn.active {
+  color: var(--gold-accent);
+  border-bottom-color: var(--gold-accent);
+  background: rgba(218, 165, 32, 0.05);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

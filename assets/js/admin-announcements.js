@@ -81,6 +81,30 @@ function setupEventListeners() {
 
   // Refresh
   refreshBtn.addEventListener('click', () => loadAnnouncements());
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabName = btn.dataset.tab;
+      console.log('Switching to tab:', tabName);
+      switchTab(tabName);
+    });
+  });
+}
+
+/**
+ * Switch between tabs
+ */
+function switchTab(tabName) {
+  // Update tab buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabName);
+  });
+
+  // Update tab content
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.toggle('active', content.id === `${tabName}Tab`);
+  });
 }
 
 /**

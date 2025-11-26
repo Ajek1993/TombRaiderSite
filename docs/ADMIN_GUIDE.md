@@ -8,13 +8,22 @@ Ten dokument opisuje jak używać panelu admina do zarządzania zapowiedziami st
 
 ## 📋 Spis Treści
 
+### Zapowiedzi Streamów
 1. [Pierwsze Uruchomienie](#pierwsze-uruchomienie)
 2. [Logowanie do Panelu](#logowanie-do-panelu)
 3. [Dodawanie Nowej Zapowiedzi](#dodawanie-nowej-zapowiedzi)
 4. [Edycja Zapowiedzi](#edycja-zapowiedzi)
 5. [Zmiana Statusu](#zmiana-statusu)
 6. [Usuwanie Zapowiedzi](#usuwanie-zapowiedzi)
-7. [Najczęstsze Problemy](#najczęstsze-problemy)
+
+### FAQ (Często Zadawane Pytania)
+7. [Zarządzanie FAQ](#zarządzanie-faq)
+8. [Dodawanie Nowego FAQ](#dodawanie-nowego-faq)
+9. [Edycja FAQ](#edycja-faq)
+10. [Kategorie FAQ](#kategorie-faq)
+
+### Ogólne
+11. [Najczęstsze Problemy](#najczęstsze-problemy)
 
 ---
 
@@ -184,6 +193,168 @@ Najszybszy sposób na zmianę statusu zapowiedzi:
 
 ---
 
+## ❓ Zarządzanie FAQ
+
+Panel admina pozwala teraz zarządzać FAQ (Często Zadawanymi Pytaniami) na stronie!
+
+### Dostęp do FAQ
+
+1. Zaloguj się do panelu admina
+2. Kliknij zakładkę **"FAQ"** w menu na górze strony
+3. Zobaczysz formularz do dodawania pytań i listę wszystkich FAQ
+
+---
+
+## ➕ Dodawanie Nowego FAQ
+
+### Krok po kroku:
+
+1. **Przejdź do zakładki FAQ** w panelu admina
+
+2. **Wypełnij formularz**:
+
+   #### Pytanie ⭐ (Wymagane)
+   - Wpisz pytanie, które często zadają widzowie
+   - Np. "Jak często są streamy?"
+
+   #### Odpowiedź ⭐ (Wymagane)
+   - Pełna odpowiedź na pytanie
+   - Możesz używać wielu linii
+   - Przykład:
+     ```
+     Streamy odbywają się 3-4 razy w tygodniu.
+
+     Zwykle streamuję w poniedziałki, środy i piątki o godzinie 14:00.
+     Subskrybuj kanał aby dostać powiadomienie!
+     ```
+
+   #### Kategoria ⭐ (Wymagane)
+   - Wybierz jedną z trzech kategorii:
+     - **Ogólne/O Kanale** - pytania o kanał, streamerke, harmonogram
+     - **Streamy/Techniczne** - pytania o jakość, platformy, sprzęt
+     - **Gry/Gameplay** - pytania o gry, plany, rozgrywkę
+
+   #### Kolejność
+   - Liczba określająca pozycję pytania (0 = na górze)
+   - Niższa liczba = wyższa pozycja na stronie
+   - Domyślnie: 0
+
+   #### Widoczne na stronie
+   - Zaznacz checkbox jeśli pytanie ma być widoczne
+   - Odznacz aby ukryć pytanie (np. robocze wersje)
+
+3. **Kliknij "Dodaj FAQ"**
+
+4. **Sprawdź komunikat**:
+   - ✅ Zielony = Sukces!
+   - ❌ Czerwony = Błąd
+
+5. **Zobaczysz nowe FAQ** w tabeli poniżej
+
+---
+
+## ✏️ Edycja FAQ
+
+### Jak edytować istniejące FAQ:
+
+1. **Znajdź FAQ** w tabeli na dole strony
+2. **Kliknij przycisk "Edytuj"**
+3. Formularz wypełni się danymi tego pytania
+4. **Zmień** co chcesz:
+   - Popraw treść pytania lub odpowiedzi
+   - Zmień kategorię
+   - Zmień kolejność wyświetlania
+   - Ukryj/pokaż pytanie
+5. **Kliknij "Zaktualizuj FAQ"**
+6. **Gotowe!** Zmiany są widoczne od razu na stronie
+
+### Anulowanie edycji:
+
+Jeśli zmieniłaś zdanie, kliknij **"Anuluj edycję"** - formularz się wyczyści.
+
+---
+
+## 📁 Kategorie FAQ
+
+FAQ są podzielone na trzy kategorie, które ułatwiają widzom znalezienie odpowiedzi:
+
+### 🏠 Ogólne/O Kanale
+Pytania związane z kanałem, streamerką, harmonogramem:
+- "Jak często są streamy?"
+- "O co chodzi z tym kanałem?"
+- "Gdzie mogę Cię znaleźć?"
+
+### 🎮 Streamy/Techniczne
+Pytania o techniczne aspekty streamów:
+- "Na jakiej platformie streamujesz?"
+- "Jaki masz sprzęt?"
+- "Jak poprawić jakość streamu?"
+
+### 🎯 Gry/Gameplay
+Pytania o gry i rozgrywkę:
+- "Jakie gry grasz?"
+- "Czy będziesz grać w [gra]?"
+- "Jak zacząć grać w Tomb Raider?"
+
+### Jak wyglądają kategorie na stronie?
+
+Na stronie FAQ widzowie mogą filtrować pytania według kategorii, klikając przyciski na górze:
+- **Wszystkie** - pokazuje wszystkie pytania
+- **Ogólne/O Kanale** - tylko pytania z tej kategorii
+- **Streamy/Techniczne** - tylko pytania z tej kategorii
+- **Gry/Gameplay** - tylko pytania z tej kategorii
+
+---
+
+## 🗑️ Usuwanie FAQ
+
+### Jak usunąć pytanie:
+
+1. **Znajdź FAQ** w tabeli
+2. **Kliknij przycisk "Usuń"**
+3. **Potwierdź** usunięcie w oknie dialogowym
+4. FAQ zniknie **na zawsze** (nie ma cofnięcia!)
+
+⚠️ **Uwaga**: Zamiast usuwania, możesz **odhaczyć "Widoczne na stronie"** - pytanie zostanie ukryte, ale będzie możliwe do przywrócenia później.
+
+---
+
+## 💡 Wskazówki dla FAQ
+
+### ✅ DO:
+
+- **Używaj prostego języka** - pisz tak jakbyś rozmawiała z przyjaciółką
+- **Bądź konkretna** - podawaj dokładne informacje (daty, godziny, linki)
+- **Grupuj podobne pytania** - jeśli dwa pytania są podobne, połącz je w jedno
+- **Aktualizuj regularnie** - sprawdzaj czy informacje są aktualne
+- **Dodawaj często zadawane pytania** - obserwuj co ludzie pytają w komentarzach
+- **Używaj kategorii sensownie** - przypisuj pytania do odpowiednich kategorii
+
+### ❌ DON'T:
+
+- **Nie pisz zbyt długich odpowiedzi** - max 3-4 zdania (albo krótkie akapity)
+- **Nie dodawaj pytań "na zapas"** - tylko rzeczywiście często zadawane
+- **Nie zostawiaj pustych odpowiedzi** - każde pytanie musi mieć odpowiedź
+- **Nie ukrywaj ważnych FAQ** - upewnij się, że checkbox jest zaznaczony
+
+---
+
+## 🔍 Jak Wygląda FAQ na Stronie?
+
+### Strona FAQ
+- Dostępna pod adresem: `/faq.html`
+- Link w nawigacji i stopce
+- Accordion layout (kliknij pytanie = rozwija się odpowiedź)
+- Filtry kategorii na górze
+- Responsywny design (działa na telefonach)
+
+### Układ pytań:
+- Pytania są sortowane według **kolejności** (niższa liczba = wyżej)
+- W tej samej kolejności są sortowane według daty dodania
+- Każde pytanie ma badge z kategorią
+
+---
+
 ## ⚠️ Najczęstsze Problemy
 
 ### Problem: "Błąd podczas ładowania zapowiedzi"
@@ -295,6 +466,7 @@ Teraz jesteś gotowa do zarządzania zapowiedziami streamów! Powodzenia! 🚀
 
 ---
 
-**Wersja dokumentu**: 1.0
-**Data ostatniej aktualizacji**: 16 Listopada 2025
+**Wersja dokumentu**: 2.0
+**Data ostatniej aktualizacji**: 26 Listopada 2025
 **Autor**: Claude Code & Arek
+**Zmiany w wersji 2.0**: Dodano sekcję zarządzania FAQ

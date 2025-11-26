@@ -94,6 +94,24 @@ app.all('/api/announcements', async (req, res) => {
   }
 });
 
+// FAQ API endpoint (all methods)
+app.all('/api/faq', async (req, res) => {
+  try {
+    // Import the serverless function handler
+    const faqHandler = require('../api/faq.js');
+
+    // Call the handler with Express req/res
+    await faqHandler(req, res);
+
+  } catch (error) {
+    console.error('[Server] FAQ API Error:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    });
+  }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -151,11 +169,13 @@ app.listen(PORT, () => {
   console.log(`   - http://localhost:${PORT}/`);
   console.log(`   - http://localhost:${PORT}/gameplays.html`);
   console.log(`   - http://localhost:${PORT}/highlights.html`);
+  console.log(`   - http://localhost:${PORT}/faq.html`);
   console.log(`   - http://localhost:${PORT}/admin/announcements.html`);
   console.log('\n🔌 API endpoints:');
   console.log(`   - http://localhost:${PORT}/api/youtube?playlist=tr1`);
   console.log(`   - http://localhost:${PORT}/api/youtube?playlist=shorts`);
   console.log(`   - http://localhost:${PORT}/api/announcements`);
+  console.log(`   - http://localhost:${PORT}/api/faq`);
   console.log(`   - http://localhost:${PORT}/api/health`);
   console.log('\n💡 Press Ctrl+C to stop\n');
 });
