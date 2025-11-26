@@ -69,7 +69,10 @@
     modalTitle.textContent = title || 'Video';
 
     // Build YouTube embed URL with autoplay
-    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    // Use youtube-nocookie.com if user hasn't consented to cookies
+    const hasConsent = window.cookieConsent ? window.cookieConsent.checkConsent() : null;
+    const domain = hasConsent === true ? 'youtube.com' : 'youtube-nocookie.com';
+    const embedUrl = `https://www.${domain}/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 
     // Set iframe source
     modalIframe.src = embedUrl;
