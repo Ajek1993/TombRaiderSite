@@ -6,43 +6,8 @@
 // ===================================================================
 // MOBILE MENU
 // ===================================================================
-
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-const body = document.body;
-
-if (hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-
-    // Update aria-expanded
-    const isExpanded = hamburger.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', isExpanded);
-  });
-
-  // Close menu when clicking on a link
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      body.style.overflow = '';
-      hamburger.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Close menu when clicking outside
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      body.style.overflow = '';
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
+// NOTE: Mobile menu is initialized after navbar is rendered
+// See initializeNavbar() function below
 
 // ===================================================================
 // PARALLAX SCROLLING
@@ -76,29 +41,8 @@ window.addEventListener('scroll', () => {
 // ===================================================================
 // STICKY NAVIGATION
 // ===================================================================
-
-const navbar = document.getElementById('navbar');
-let lastScrollTop = 0;
-const scrollThreshold = 100;
-
-window.addEventListener('scroll', () => {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (scrollTop > scrollThreshold) {
-    if (scrollTop > lastScrollTop) {
-      // Scrolling down - hide navbar
-      navbar.classList.add('hidden');
-    } else {
-      // Scrolling up - show navbar
-      navbar.classList.remove('hidden');
-    }
-  } else {
-    // At top - always show
-    navbar.classList.remove('hidden');
-  }
-
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+// NOTE: Sticky navigation is initialized after navbar is rendered
+// See initializeNavbar() function below
 
 // ===================================================================
 // RANDOM QUOTE GENERATOR
@@ -253,26 +197,34 @@ if (revealElements.length > 0) {
 // ===================================================================
 // SMOOTH SCROLL FOR ANCHOR LINKS
 // ===================================================================
+// NOTE: This is initialized globally but uses dynamic navbar height
+// See initializeSmoothScroll() function below
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href === '#') return;
+function initializeSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
 
-    e.preventDefault();
-    const target = document.querySelector(href);
+      e.preventDefault();
+      const target = document.querySelector(href);
 
-    if (target) {
-      const navbarHeight = navbar ? navbar.offsetHeight : 0;
-      const targetPosition = target.offsetTop - navbarHeight;
+      if (target) {
+        const navbar = document.getElementById('navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const targetPosition = target.offsetTop - navbarHeight;
 
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
-});
+}
+
+// Initialize smooth scroll once DOM is ready
+initializeSmoothScroll();
 
 // ===================================================================
 // ACTIVE NAV LINK HIGHLIGHTING
@@ -292,18 +244,8 @@ navLinks.forEach(link => {
 // ===================================================================
 // KEYBOARD NAVIGATION
 // ===================================================================
-
-// Escape key closes mobile menu
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    if (mobileMenu && mobileMenu.classList.contains('open')) {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      body.style.overflow = '';
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  }
-});
+// NOTE: Keyboard navigation is initialized after navbar is rendered
+// See initializeNavbar() function below
 
 // ===================================================================
 // PERFORMANCE OPTIMIZATIONS
@@ -337,6 +279,110 @@ console.log('%c🏺 Tomb Raider Gaming Website', 'color: #FFD700; font-size: 24p
 console.log('%cWitaj, odkrywco!', 'color: #00FFFF; font-size: 16px;');
 console.log('%cJeśli szukasz sekretów w konsoli, gratulacje! 🎮', 'color: #FF1493; font-size: 14px;');
 console.log('%cStworzone z Claude Code ❤️', 'color: #8A2BE2; font-size: 12px;');
+
+// ===================================================================
+// NAVBAR INITIALIZATION
+// ===================================================================
+
+/**
+ * Initialize navbar functionality after navbar is rendered
+ * This function should be called after the navbar component is inserted into the DOM
+ */
+window.initializeNavbar = function() {
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const body = document.body;
+
+  // Check if elements exist
+  if (!navbar) {
+    console.error('❌ Navbar element not found');
+    return;
+  }
+
+  // ===================================================================
+  // MOBILE MENU HANDLERS
+  // ===================================================================
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+
+      // Update aria-expanded
+      const isExpanded = hamburger.classList.contains('active');
+      hamburger.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Close menu when clicking on a link
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        body.style.overflow = '';
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        body.style.overflow = '';
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Escape key closes mobile menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (mobileMenu.classList.contains('open')) {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('open');
+          body.style.overflow = '';
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  }
+
+  // ===================================================================
+  // STICKY NAVIGATION
+  // ===================================================================
+
+  let lastScrollTop = 0;
+  const scrollThreshold = 100;
+
+  // Check if quick-nav exists (used on gameplays page)
+  const quickNav = document.querySelector('.quick-nav');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > scrollThreshold) {
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down - hide navbar (and quick-nav if exists)
+        navbar.classList.add('hidden');
+        if (quickNav) quickNav.classList.add('hidden');
+      } else {
+        // Scrolling up - show navbar (and quick-nav if exists)
+        navbar.classList.remove('hidden');
+        if (quickNav) quickNav.classList.remove('hidden');
+      }
+    } else {
+      // At top - always show
+      navbar.classList.remove('hidden');
+      if (quickNav) quickNav.classList.remove('hidden');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  console.log('✅ Navbar initialized successfully');
+};
 
 // ===================================================================
 // INITIALIZE

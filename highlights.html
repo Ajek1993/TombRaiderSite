@@ -146,6 +146,14 @@
       document.getElementById('navbar-root').innerHTML = renderNavbar('highlights');
       document.getElementById('mobile-menu-root').innerHTML = renderMobileMenu('highlights');
       document.getElementById('footer-root').innerHTML = renderFooter();
+
+      // Initialize navbar functionality after rendering
+      // Wait for next tick to ensure DOM is updated
+      setTimeout(() => {
+        if (window.initializeNavbar) {
+          window.initializeNavbar();
+        }
+      }, 0);
     </script>
 
     <!-- JavaScript -->

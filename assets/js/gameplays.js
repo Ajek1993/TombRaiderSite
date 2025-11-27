@@ -462,35 +462,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Sync quick-nav visibility with main navbar
-  const quickNav = document.querySelector('.quick-nav');
-  const navbar = document.getElementById('navbar');
-  let lastScrollTop = 0;
-  const scrollThreshold = 100;
-
-  if (quickNav && navbar) {
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (scrollTop > scrollThreshold) {
-        if (scrollTop > lastScrollTop) {
-          // Scrolling down - hide both navbar and quick-nav
-          navbar.classList.add('hidden');
-          quickNav.classList.add('hidden');
-        } else {
-          // Scrolling up - show both
-          navbar.classList.remove('hidden');
-          quickNav.classList.remove('hidden');
-        }
-      } else {
-        // At top - always show both
-        navbar.classList.remove('hidden');
-        quickNav.classList.remove('hidden');
-      }
-
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
-  }
+  // Quick-nav visibility is now managed by window.initializeNavbar() in main.js
+  // This ensures consistent behavior across all navigation elements
 
 });
 
