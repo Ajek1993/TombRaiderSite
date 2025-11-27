@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/css/faq.css" />
     <link rel="stylesheet" href="/assets/css/theme-switcher.css" />
     <link rel="stylesheet" href="/assets/css/cookie-banner.css" />
+    <link rel="stylesheet" href="/assets/css/search.css" />
 
     <!-- Favicon -->
     <link
@@ -102,14 +103,15 @@
 
     <!-- Load Components First -->
     <script type="module">
-      import { renderNavbar } from '/assets/js/components/navbar.js';
-      import { renderMobileMenu } from '/assets/js/components/mobile-menu.js';
-      import { renderFooter } from '/assets/js/components/footer.js';
+      import { renderNavbar } from "/assets/js/components/navbar.js";
+      import { renderMobileMenu } from "/assets/js/components/mobile-menu.js";
+      import { renderFooter } from "/assets/js/components/footer.js";
 
       // Render components
-      document.getElementById('navbar-root').innerHTML = renderNavbar('');
-      document.getElementById('mobile-menu-root').innerHTML = renderMobileMenu('');
-      document.getElementById('footer-root').innerHTML = renderFooter();
+      document.getElementById("navbar-root").innerHTML = renderNavbar("");
+      document.getElementById("mobile-menu-root").innerHTML =
+        renderMobileMenu("");
+      document.getElementById("footer-root").innerHTML = renderFooter();
     </script>
 
     <!-- JavaScript -->
@@ -117,5 +119,8 @@
     <script src="/assets/js/theme-switcher.js"></script>
     <script src="/assets/js/cookie-consent.js"></script>
     <script src="/assets/js/faq.js"></script>
+    <script src="/assets/js/video-modal.js"></script>
+    <script src="/config/playlists.js"></script>
+    <script src="/assets/js/components/search.js"></script>
   </body>
 </html>
