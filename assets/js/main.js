@@ -218,7 +218,6 @@ if (randomGameplayBtn) {
     randomGameplayBtn.disabled = true;
 
     setTimeout(() => {
-      alert('Funkcjonalność w budowie! Wkrótce będziesz mógł odkrywać losowe grobowce.');
       randomGameplayBtn.textContent = '🎲 Odkryj Losowy Grób';
       randomGameplayBtn.disabled = false;
     }, 1000);
