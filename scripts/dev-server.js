@@ -3,9 +3,9 @@
  * Express server for local development with API support
  */
 
-require('dotenv').config({ path: '.env.local' });
-const express = require('express');
-const path = require('path');
+require("dotenv").config({ path: ".env.local" });
+const express = require("express");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 6969;
@@ -19,11 +19,11 @@ app.use(express.json());
 
 // CORS headers
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return res.sendStatus(200);
   }
 
@@ -41,87 +41,102 @@ app.use((req, res, next) => {
 // ===================================
 
 // YouTube API endpoint
-app.get('/api/youtube', async (req, res) => {
+app.get("/api/youtube", async (req, res) => {
   try {
     // Import the serverless function handler
-    const youtubeHandler = require('../api/youtube.js');
+    const youtubeHandler = require("../api/youtube.js");
 
     // Call the handler with Express req/res
     await youtubeHandler(req, res);
-
   } catch (error) {
-    console.error('[Server] API Error:', error);
+    console.error("[Server] API Error:", error);
     res.status(500).json({
-      error: 'Internal server error',
-      message: error.message
+      error: "Internal server error",
+      message: error.message,
     });
   }
 });
 
 // Channel API endpoint
-app.get('/api/channel', async (req, res) => {
+app.get("/api/channel", async (req, res) => {
   try {
     // Import the serverless function handler
-    const channelHandler = require('../api/channel.js');
+    const channelHandler = require("../api/channel.js");
 
     // Call the handler with Express req/res
     await channelHandler(req, res);
-
   } catch (error) {
-    console.error('[Server] Channel API Error:', error);
+    console.error("[Server] Channel API Error:", error);
     res.status(500).json({
-      error: 'Internal server error',
-      message: error.message
+      error: "Internal server error",
+      message: error.message,
     });
   }
 });
 
 // Announcements API endpoint (all methods)
-app.all('/api/announcements', async (req, res) => {
+app.all("/api/announcements", async (req, res) => {
   try {
     // Import the serverless function handler
-    const announcementsHandler = require('../api/announcements.js');
+    const announcementsHandler = require("../api/announcements.js");
 
     // Call the handler with Express req/res
     await announcementsHandler(req, res);
-
   } catch (error) {
-    console.error('[Server] Announcements API Error:', error);
+    console.error("[Server] Announcements API Error:", error);
     res.status(500).json({
-      error: 'Internal server error',
-      message: error.message
+      error: "Internal server error",
+      message: error.message,
     });
   }
 });
 
 // FAQ API endpoint (all methods)
-app.all('/api/faq', async (req, res) => {
+app.all("/api/faq", async (req, res) => {
   try {
     // Import the serverless function handler
-    const faqHandler = require('../api/faq.js');
+    const faqHandler = require("../api/faq.js");
 
     // Call the handler with Express req/res
     await faqHandler(req, res);
-
   } catch (error) {
-    console.error('[Server] FAQ API Error:', error);
+    console.error("[Server] FAQ API Error:", error);
     res.status(500).json({
-      error: 'Internal server error',
-      message: error.message
+      error: "Internal server error",
+      message: error.message,
+    });
+  }
+});
+
+// Auth Login API endpoint
+app.post("/api/auth/login", async (req, res) => {
+  try {
+    // Import the serverless function handler
+    const loginHandler = require("../api/auth/login.js");
+
+    // Call the handler with Express req/res
+    await loginHandler(req, res);
+  } catch (error) {
+    console.error("[Server] Auth Login API Error:", error);
+    res.status(500).json({
+      error: "Internal server error",
+      message: error.message,
     });
   }
 });
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
-    status: 'ok',
+    status: "ok",
     timestamp: new Date().toISOString(),
     env: {
       hasApiKey: !!process.env.YOUTUBE_API_KEY,
       hasGoogleSheets: !!process.env.GOOGLE_SHEETS_ID,
-      nodeVersion: process.version
-    }
+      hasAdminPassword: !!process.env.ADMIN_PASSWORD,
+      hasJwtSecret: !!process.env.JWT_SECRET,
+      nodeVersion: process.version,
+    },
   });
 });
 
@@ -130,13 +145,15 @@ app.get('/api/health', (req, res) => {
 // ===================================
 
 // Serve static files from root directory
-app.use(express.static(path.join(__dirname, '..'), {
-  extensions: ['html', 'htm'],
-  index: 'index.html'
-}));
+app.use(
+  express.static(path.join(__dirname, ".."), {
+    extensions: ["html", "htm"],
+    index: "index.html",
+  })
+);
 
 // Serve assets directory
-app.use('/assets', express.static(path.join(__dirname, '..', 'assets')));
+app.use("/assets", express.static(path.join(__dirname, "..", "assets")));
 
 // ===================================
 // ERROR HANDLING
@@ -144,15 +161,15 @@ app.use('/assets', express.static(path.join(__dirname, '..', 'assets')));
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, '..', 'index.html'));
+  res.status(404).sendFile(path.join(__dirname, "..", "index.html"));
 });
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.error('[Server] Error:', err);
+  console.error("[Server] Error:", err);
   res.status(500).json({
-    error: 'Server error',
-    message: err.message
+    error: "Server error",
+    message: err.message,
   });
 });
 
@@ -161,32 +178,51 @@ app.use((err, req, res, next) => {
 // ===================================
 
 app.listen(PORT, () => {
-  console.log('\n🚀 Development Server Started!');
+  console.log("\n🚀 Development Server Started!");
   console.log(`📍 URL: http://localhost:${PORT}`);
-  console.log(`🔑 YouTube API: ${process.env.YOUTUBE_API_KEY ? '✅ Loaded' : '❌ Missing'}`);
-  console.log(`📊 Google Sheets: ${process.env.GOOGLE_SHEETS_ID ? '✅ Configured' : '❌ Not configured'}`);
-  console.log('\n📄 Available pages:');
+  console.log(
+    `🔑 YouTube API: ${
+      process.env.YOUTUBE_API_KEY ? "✅ Loaded" : "❌ Missing"
+    }`
+  );
+  console.log(
+    `📊 Google Sheets: ${
+      process.env.GOOGLE_SHEETS_ID ? "✅ Configured" : "❌ Not configured"
+    }`
+  );
+  console.log(
+    `🔐 Admin Password: ${
+      process.env.ADMIN_PASSWORD ? "✅ Configured" : "❌ Not configured"
+    }`
+  );
+  console.log(
+    `🔑 JWT Secret: ${
+      process.env.JWT_SECRET ? "✅ Configured" : "❌ Not configured"
+    }`
+  );
+  console.log("\n📄 Available pages:");
   console.log(`   - http://localhost:${PORT}/`);
   console.log(`   - http://localhost:${PORT}/gameplays.html`);
   console.log(`   - http://localhost:${PORT}/highlights.html`);
   console.log(`   - http://localhost:${PORT}/faq.html`);
   console.log(`   - http://localhost:${PORT}/admin/announcements.html`);
-  console.log('\n🔌 API endpoints:');
+  console.log("\n🔌 API endpoints:");
   console.log(`   - http://localhost:${PORT}/api/youtube?playlist=tr1`);
   console.log(`   - http://localhost:${PORT}/api/youtube?playlist=shorts`);
   console.log(`   - http://localhost:${PORT}/api/announcements`);
   console.log(`   - http://localhost:${PORT}/api/faq`);
+  console.log(`   - http://localhost:${PORT}/api/auth/login`);
   console.log(`   - http://localhost:${PORT}/api/health`);
-  console.log('\n💡 Press Ctrl+C to stop\n');
+  console.log("\n💡 Press Ctrl+C to stop\n");
 });
 
 // Handle graceful shutdown
-process.on('SIGINT', () => {
-  console.log('\n\n👋 Shutting down server...');
+process.on("SIGINT", () => {
+  console.log("\n\n👋 Shutting down server...");
   process.exit(0);
 });
 
-process.on('SIGTERM', () => {
-  console.log('\n\n👋 Shutting down server...');
+process.on("SIGTERM", () => {
+  console.log("\n\n👋 Shutting down server...");
   process.exit(0);
 });

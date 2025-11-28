@@ -1,35 +1,38 @@
 /**
  * Admin Panel - Stream Announcements Management
- * Handles authentication, form submission, and announcement CRUD operations
+ * Handles JWT authentication, form submission, and announcement CRUD operations
  */
 
 // Configuration
-const ADMIN_PASSWORD = 'bruxa2025'; // Simple password - change this!
-const API_BASE = '/api/announcements';
+const API_BASE = "/api/announcements";
+const API_LOGIN = "/api/auth/login";
 
 // State
+let authToken = localStorage.getItem("adminToken");
 let currentEditId = null;
 let announcements = [];
 
 // DOM Elements
-const loginScreen = document.getElementById('loginScreen');
-const adminPanel = document.getElementById('adminPanel');
-const loginForm = document.getElementById('loginForm');
-const loginError = document.getElementById('loginError');
-const logoutBtn = document.getElementById('logoutBtn');
-const announcementForm = document.getElementById('announcementForm');
-const formTitle = document.getElementById('formTitle');
-const submitBtn = document.getElementById('submitBtn');
-const cancelEditBtn = document.getElementById('cancelEditBtn');
-const formMessage = document.getElementById('formMessage');
-const refreshBtn = document.getElementById('refreshBtn');
-const loadingSpinner = document.getElementById('loadingSpinner');
-const announcementsTable = document.getElementById('announcementsTable');
-const announcementsTableBody = document.getElementById('announcementsTableBody');
-const emptyState = document.getElementById('emptyState');
+const loginScreen = document.getElementById("loginScreen");
+const adminPanel = document.getElementById("adminPanel");
+const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
+const logoutBtn = document.getElementById("logoutBtn");
+const announcementForm = document.getElementById("announcementForm");
+const formTitle = document.getElementById("formTitle");
+const submitBtn = document.getElementById("submitBtn");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
+const formMessage = document.getElementById("formMessage");
+const refreshBtn = document.getElementById("refreshBtn");
+const loadingSpinner = document.getElementById("loadingSpinner");
+const announcementsTable = document.getElementById("announcementsTable");
+const announcementsTableBody = document.getElementById(
+  "announcementsTableBody"
+);
+const emptyState = document.getElementById("emptyState");
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   checkAuth();
   setupEventListeners();
 });
@@ -38,8 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
  * Check if user is authenticated
  */
 function checkAuth() {
-  const isAuthenticated = localStorage.getItem('adminAuth') === 'true';
-  if (isAuthenticated) {
+  const token = localStorage.getItem("adminToken");
+  if (token) {
+    authToken = token;
     showAdminPanel();
     loadAnnouncements();
   } else {
@@ -51,16 +55,16 @@ function checkAuth() {
  * Show login screen
  */
 function showLoginScreen() {
-  loginScreen.style.display = 'flex';
-  adminPanel.style.display = 'none';
+  loginScreen.style.display = "flex";
+  adminPanel.style.display = "none";
 }
 
 /**
  * Show admin panel
  */
 function showAdminPanel() {
-  loginScreen.style.display = 'none';
-  adminPanel.style.display = 'block';
+  loginScreen.style.display = "none";
+  adminPanel.style.display = "block";
 }
 
 /**
@@ -68,25 +72,25 @@ function showAdminPanel() {
  */
 function setupEventListeners() {
   // Login
-  loginForm.addEventListener('submit', handleLogin);
+  loginForm.addEventListener("submit", handleLogin);
 
   // Logout
-  logoutBtn.addEventListener('click', handleLogout);
+  logoutBtn.addEventListener("click", handleLogout);
 
   // Form submission
-  announcementForm.addEventListener('submit', handleFormSubmit);
+  announcementForm.addEventListener("submit", handleFormSubmit);
 
   // Cancel edit
-  cancelEditBtn.addEventListener('click', cancelEdit);
+  cancelEditBtn.addEventListener("click", cancelEdit);
 
   // Refresh
-  refreshBtn.addEventListener('click', () => loadAnnouncements());
+  refreshBtn.addEventListener("click", () => loadAnnouncements());
 
   // Tab switching
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
       const tabName = btn.dataset.tab;
-      console.log('Switching to tab:', tabName);
+      console.log("Switching to tab:", tabName);
       switchTab(tabName);
     });
   });
@@ -97,32 +101,49 @@ function setupEventListeners() {
  */
 function switchTab(tabName) {
   // Update tab buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.tab === tabName);
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.tab === tabName);
   });
 
   // Update tab content
-  document.querySelectorAll('.tab-content').forEach(content => {
-    content.classList.toggle('active', content.id === `${tabName}Tab`);
+  document.querySelectorAll(".tab-content").forEach((content) => {
+    content.classList.toggle("active", content.id === `${tabName}Tab`);
   });
 }
 
 /**
- * Handle login
+ * Handle login with JWT
  */
-function handleLogin(e) {
+async function handleLogin(e) {
   e.preventDefault();
-  const password = document.getElementById('password').value;
+  const password = document.getElementById("password").value;
 
-  if (password === ADMIN_PASSWORD) {
-    localStorage.setItem('adminAuth', 'true');
-    loginError.textContent = '';
-    showAdminPanel();
-    loadAnnouncements();
-  } else {
-    loginError.textContent = 'Nieprawidłowe hasło!';
+  try {
+    const response = await fetch(API_LOGIN, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+
+    const data = await response.json();
+
+    if (data.success && data.token) {
+      authToken = data.token;
+      localStorage.setItem("adminToken", authToken);
+      loginError.textContent = "";
+      showAdminPanel();
+      loadAnnouncements();
+    } else {
+      loginError.textContent = data.message || "Nieprawidłowe hasło!";
+      setTimeout(() => {
+        loginError.textContent = "";
+      }, 3000);
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    loginError.textContent = "Błąd logowania!";
     setTimeout(() => {
-      loginError.textContent = '';
+      loginError.textContent = "";
     }, 3000);
   }
 }
@@ -131,9 +152,21 @@ function handleLogin(e) {
  * Handle logout
  */
 function handleLogout() {
-  localStorage.removeItem('adminAuth');
+  authToken = null;
+  localStorage.removeItem("adminToken");
   showLoginScreen();
   loginForm.reset();
+}
+
+/**
+ * Get authentication headers
+ */
+function getAuthHeaders() {
+  const headers = { "Content-Type": "application/json" };
+  if (authToken) {
+    headers.Authorization = `Bearer ${authToken}`;
+  }
+  return headers;
 }
 
 /**
@@ -151,11 +184,11 @@ async function loadAnnouncements() {
       announcements = data.announcements || [];
       renderAnnouncementsTable();
     } else {
-      throw new Error(data.message || 'Failed to load announcements');
+      throw new Error(data.message || "Failed to load announcements");
     }
   } catch (error) {
-    console.error('Error loading announcements:', error);
-    showMessage('Błąd podczas ładowania zapowiedzi: ' + error.message, 'error');
+    console.error("Error loading announcements:", error);
+    showMessage("Błąd podczas ładowania zapowiedzi: " + error.message, "error");
     hideLoading();
   }
 }
@@ -164,16 +197,16 @@ async function loadAnnouncements() {
  * Show loading spinner
  */
 function showLoading() {
-  loadingSpinner.style.display = 'block';
-  announcementsTable.style.display = 'none';
-  emptyState.style.display = 'none';
+  loadingSpinner.style.display = "block";
+  announcementsTable.style.display = "none";
+  emptyState.style.display = "none";
 }
 
 /**
  * Hide loading spinner
  */
 function hideLoading() {
-  loadingSpinner.style.display = 'none';
+  loadingSpinner.style.display = "none";
 }
 
 /**
@@ -183,15 +216,17 @@ function renderAnnouncementsTable() {
   hideLoading();
 
   if (announcements.length === 0) {
-    announcementsTable.style.display = 'none';
-    emptyState.style.display = 'block';
+    announcementsTable.style.display = "none";
+    emptyState.style.display = "block";
     return;
   }
 
-  announcementsTable.style.display = 'table';
-  emptyState.style.display = 'none';
+  announcementsTable.style.display = "table";
+  emptyState.style.display = "none";
 
-  announcementsTableBody.innerHTML = announcements.map(ann => `
+  announcementsTableBody.innerHTML = announcements
+    .map(
+      (ann) => `
     <tr>
       <td>
         <div class="announcement-title">${escapeHtml(ann.title)}</div>
@@ -199,42 +234,52 @@ function renderAnnouncementsTable() {
       <td>
         <div class="announcement-datetime">
           <span class="announcement-date">${formatDate(ann.date)}</span>
-          <span class="announcement-time">${ann.time || '--:--'}</span>
+          <span class="announcement-time">${ann.time || "--:--"}</span>
         </div>
       </td>
       <td>
         <span class="announcement-platform">${escapeHtml(ann.platform)}</span>
       </td>
       <td>
-        <span class="announcement-status ${ann.status}">${formatStatus(ann.status)}</span>
+        <span class="announcement-status ${ann.status}">${formatStatus(
+        ann.status
+      )}</span>
       </td>
       <td>
         <div class="announcement-actions">
-          <button class="btn btn-secondary btn-small" onclick="editAnnouncement('${ann.id}')">
+          <button class="btn btn-secondary btn-small" onclick="editAnnouncement('${
+            ann.id
+          }')">
             Edytuj
           </button>
-          <button class="btn btn-warning btn-small" onclick="changeStatus('${ann.id}', '${ann.status}')">
+          <button class="btn btn-warning btn-small" onclick="changeStatus('${
+            ann.id
+          }', '${ann.status}')">
             Status
           </button>
-          <button class="btn btn-danger btn-small" onclick="deleteAnnouncement('${ann.id}')">
+          <button class="btn btn-danger btn-small" onclick="deleteAnnouncement('${
+            ann.id
+          }')">
             Usuń
           </button>
         </div>
       </td>
     </tr>
-  `).join('');
+  `
+    )
+    .join("");
 }
 
 /**
  * Format date for display
  */
 function formatDate(dateString) {
-  if (!dateString) return 'Brak daty';
+  if (!dateString) return "Brak daty";
   const date = new Date(dateString);
-  return date.toLocaleDateString('pl-PL', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("pl-PL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
@@ -243,9 +288,9 @@ function formatDate(dateString) {
  */
 function formatStatus(status) {
   const statusMap = {
-    scheduled: 'Zaplanowany',
-    live: 'Na Żywo',
-    completed: 'Zakończony',
+    scheduled: "Zaplanowany",
+    live: "Na Żywo",
+    completed: "Zakończony",
   };
   return statusMap[status] || status;
 }
@@ -254,7 +299,7 @@ function formatStatus(status) {
  * Escape HTML to prevent XSS
  */
 function escapeHtml(text) {
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   div.textContent = text;
   return div.innerHTML;
 }
@@ -269,37 +314,41 @@ async function handleFormSubmit(e) {
 
   // Build announcement object
   const announcement = {
-    title: formData.get('title'),
-    description: formData.get('description'),
-    date: formData.get('date'),
-    time: formData.get('time'),
-    platform: formData.get('platform'),
-    platformLink: formData.get('platformLink'),
-    features: formData.get('features')
-      ? formData.get('features').split('\n').map(f => f.trim()).filter(f => f)
+    title: formData.get("title"),
+    description: formData.get("description"),
+    date: formData.get("date"),
+    time: formData.get("time"),
+    platform: formData.get("platform"),
+    platformLink: formData.get("platformLink"),
+    features: formData.get("features")
+      ? formData
+          .get("features")
+          .split("\n")
+          .map((f) => f.trim())
+          .filter((f) => f)
       : [],
-    status: formData.get('status'),
-    thumbnail: formData.get('thumbnail'),
+    status: formData.get("status"),
+    thumbnail: formData.get("thumbnail"),
   };
 
   try {
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Zapisywanie...';
+    submitBtn.textContent = "Zapisywanie...";
 
     let response;
     if (currentEditId) {
       // Update existing
       announcement.id = currentEditId;
       response = await fetch(API_BASE, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: getAuthHeaders(),
         body: JSON.stringify(announcement),
       });
     } else {
       // Create new
       response = await fetch(API_BASE, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: getAuthHeaders(),
         body: JSON.stringify(announcement),
       });
     }
@@ -308,21 +357,21 @@ async function handleFormSubmit(e) {
 
     if (data.success) {
       showMessage(
-        currentEditId ? 'Zapowiedź zaktualizowana!' : 'Zapowiedź dodana!',
-        'success'
+        currentEditId ? "Zapowiedź zaktualizowana!" : "Zapowiedź dodana!",
+        "success"
       );
       announcementForm.reset();
       cancelEdit();
       loadAnnouncements();
     } else {
-      throw new Error(data.message || 'Failed to save announcement');
+      throw new Error(data.message || "Failed to save announcement");
     }
   } catch (error) {
-    console.error('Error saving announcement:', error);
-    showMessage('Błąd: ' + error.message, 'error');
+    console.error("Error saving announcement:", error);
+    showMessage("Błąd: " + error.message, "error");
   } finally {
     submitBtn.disabled = false;
-    submitBtn.textContent = currentEditId ? 'Zapisz zmiany' : 'Dodaj Zapowiedź';
+    submitBtn.textContent = currentEditId ? "Zapisz zmiany" : "Dodaj Zapowiedź";
   }
 }
 
@@ -330,30 +379,33 @@ async function handleFormSubmit(e) {
  * Edit announcement
  */
 function editAnnouncement(id) {
-  const announcement = announcements.find(a => a.id === id);
+  const announcement = announcements.find((a) => a.id === id);
   if (!announcement) return;
 
   // Set form to edit mode
   currentEditId = id;
-  formTitle.textContent = 'Edytuj Zapowiedź';
-  submitBtn.textContent = 'Zapisz zmiany';
-  cancelEditBtn.style.display = 'inline-block';
+  formTitle.textContent = "Edytuj Zapowiedź";
+  submitBtn.textContent = "Zapisz zmiany";
+  cancelEditBtn.style.display = "inline-block";
 
   // Fill form with announcement data
-  document.getElementById('title').value = announcement.title || '';
-  document.getElementById('description').value = announcement.description || '';
-  document.getElementById('date').value = announcement.date || '';
-  document.getElementById('time').value = announcement.time || '';
-  document.getElementById('platform').value = announcement.platform || 'TikTok';
-  document.getElementById('platformLink').value = announcement.platformLink || '';
-  document.getElementById('features').value = Array.isArray(announcement.features)
-    ? announcement.features.join('\n')
-    : '';
-  document.getElementById('status').value = announcement.status || 'scheduled';
-  document.getElementById('thumbnail').value = announcement.thumbnail || '';
+  document.getElementById("title").value = announcement.title || "";
+  document.getElementById("description").value = announcement.description || "";
+  document.getElementById("date").value = announcement.date || "";
+  document.getElementById("time").value = announcement.time || "";
+  document.getElementById("platform").value = announcement.platform || "TikTok";
+  document.getElementById("platformLink").value =
+    announcement.platformLink || "";
+  document.getElementById("features").value = Array.isArray(
+    announcement.features
+  )
+    ? announcement.features.join("\n")
+    : "";
+  document.getElementById("status").value = announcement.status || "scheduled";
+  document.getElementById("thumbnail").value = announcement.thumbnail || "";
 
   // Scroll to form
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 /**
@@ -361,9 +413,9 @@ function editAnnouncement(id) {
  */
 function cancelEdit() {
   currentEditId = null;
-  formTitle.textContent = 'Dodaj Nową Zapowiedź';
-  submitBtn.textContent = 'Dodaj Zapowiedź';
-  cancelEditBtn.style.display = 'none';
+  formTitle.textContent = "Dodaj Nową Zapowiedź";
+  submitBtn.textContent = "Dodaj Zapowiedź";
+  cancelEditBtn.style.display = "none";
   announcementForm.reset();
 }
 
@@ -372,31 +424,31 @@ function cancelEdit() {
  */
 async function changeStatus(id, currentStatus) {
   const statusCycle = {
-    scheduled: 'live',
-    live: 'completed',
-    completed: 'scheduled',
+    scheduled: "live",
+    live: "completed",
+    completed: "scheduled",
   };
 
-  const newStatus = statusCycle[currentStatus] || 'scheduled';
+  const newStatus = statusCycle[currentStatus] || "scheduled";
 
   try {
     const response = await fetch(API_BASE, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PUT",
+      headers: getAuthHeaders(),
       body: JSON.stringify({ id, status: newStatus }),
     });
 
     const data = await response.json();
 
     if (data.success) {
-      showMessage(`Status zmieniony na: ${formatStatus(newStatus)}`, 'success');
+      showMessage(`Status zmieniony na: ${formatStatus(newStatus)}`, "success");
       loadAnnouncements();
     } else {
-      throw new Error(data.message || 'Failed to update status');
+      throw new Error(data.message || "Failed to update status");
     }
   } catch (error) {
-    console.error('Error updating status:', error);
-    showMessage('Błąd: ' + error.message, 'error');
+    console.error("Error updating status:", error);
+    showMessage("Błąd: " + error.message, "error");
   }
 }
 
@@ -404,26 +456,27 @@ async function changeStatus(id, currentStatus) {
  * Delete announcement
  */
 async function deleteAnnouncement(id) {
-  if (!confirm('Czy na pewno chcesz usunąć tę zapowiedź?')) {
+  if (!confirm("Czy na pewno chcesz usunąć tę zapowiedź?")) {
     return;
   }
 
   try {
     const response = await fetch(`${API_BASE}?id=${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
+      headers: getAuthHeaders(),
     });
 
     const data = await response.json();
 
     if (data.success) {
-      showMessage('Zapowiedź usunięta!', 'success');
+      showMessage("Zapowiedź usunięta!", "success");
       loadAnnouncements();
     } else {
-      throw new Error(data.message || 'Failed to delete announcement');
+      throw new Error(data.message || "Failed to delete announcement");
     }
   } catch (error) {
-    console.error('Error deleting announcement:', error);
-    showMessage('Błąd: ' + error.message, 'error');
+    console.error("Error deleting announcement:", error);
+    showMessage("Błąd: " + error.message, "error");
   }
 }
 
@@ -433,9 +486,9 @@ async function deleteAnnouncement(id) {
 function showMessage(text, type) {
   formMessage.textContent = text;
   formMessage.className = `form-message ${type}`;
-  formMessage.style.display = 'block';
+  formMessage.style.display = "block";
 
   setTimeout(() => {
-    formMessage.style.display = 'none';
+    formMessage.style.display = "none";
   }, 5000);
 }

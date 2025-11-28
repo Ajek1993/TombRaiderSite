@@ -200,7 +200,7 @@ fetch('/api/announcements')
 ### Current Implementation:
 
 **Admin Panel:**
-- Simple password in JavaScript (`bruxa2025`)
+- Simple password in JavaScript
 - Stored in localStorage
 - No server-side validation
 
