@@ -1,11 +1,13 @@
 # Plan Kompleksowej Optymalizacji SEO - Bruxa Gaming (Tomb Raider)
 
 ## Cel
+
 Maksymalna optymalizacja strony pod pozycjonowanie w Google dla polskiego rynku, bez konieczności wykupywania płatnego hostingu. Wszystkie optymalizacje będą działać na obecnym hostingu Vercel (darmowy tier).
 
 ## Podsumowanie Obecnego Stanu
 
 **Struktura strony:**
+
 - 6 stron publicznych: index.html, gameplays.html, highlights.html, faq.html, privacy.html, cookies.html
 - 1 strona admin: admin/announcements.html
 - Vanilla JavaScript (bez frameworków - świetnie dla wydajności)
@@ -13,6 +15,7 @@ Maksymalna optymalizacja strony pod pozycjonowanie w Google dla polskiego rynku,
 - Język: Polski (lang="pl")
 
 **Główne braki SEO:**
+
 - ❌ Brak robots.txt i sitemap.xml
 - ❌ Brak canonical URLs
 - ❌ Niepełne tagi Open Graph (brak og:url, og:locale, og:site_name)
@@ -22,6 +25,7 @@ Maksymalna optymalizacja strony pod pozycjonowanie w Google dla polskiego rynku,
 - ❌ CSS i JS nie zoptymalizowane pod ładowanie
 
 **Co już działa dobrze:**
+
 - ✅ Podstawowe meta tagi (description, keywords, author)
 - ✅ Dobra dostępność (skip-to-content, ARIA labels)
 - ✅ RODO/GDPR compliance
@@ -33,6 +37,7 @@ Maksymalna optymalizacja strony pod pozycjonowanie w Google dla polskiego rynku,
 ## FAZA 1: KRYTYCZNE PODSTAWY SEO (4-6 godzin)
 
 ### 1.1 Utworzenie robots.txt
+
 **Plik:** `/robots.txt` (nowy plik w katalogu głównym)
 
 ```txt
@@ -51,17 +56,18 @@ Allow: /highlights.html
 Allow: /faq.html
 
 # Sitemap
-Sitemap: https://bruxagaming.vercel.app/sitemap.xml
+Sitemap: https://bruxa-tomb-raider.vercel.app//sitemap.xml
 
 # Crawl-delay (opcjonalnie, zapobiega przeciążeniu)
 Crawl-delay: 1
 ```
 
-**Uwaga:** Zamień `https://bruxagaming.vercel.app` na rzeczywisty URL Twojej domeny.
+**Uwaga:** Zamień `https://bruxa-tomb-raider.vercel.app/` na rzeczywisty URL Twojej domeny.
 
 ---
 
 ### 1.2 Utworzenie sitemap.xml
+
 **Plik:** `/sitemap.xml` (nowy plik w katalogu głównym)
 
 ```xml
@@ -71,63 +77,64 @@ Crawl-delay: 1
 
   <!-- Homepage -->
   <url>
-    <loc>https://bruxagaming.vercel.app/</loc>
+    <loc>https://bruxa-tomb-raider.vercel.app//</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxagaming.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxa-tomb-raider.vercel.app//"/>
   </url>
 
   <!-- Gameplays -->
   <url>
-    <loc>https://bruxagaming.vercel.app/gameplays.html</loc>
+    <loc>https://bruxa-tomb-raider.vercel.app//gameplays.html</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxagaming.vercel.app/gameplays.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxa-tomb-raider.vercel.app//gameplays.html"/>
   </url>
 
   <!-- Highlights -->
   <url>
-    <loc>https://bruxagaming.vercel.app/highlights.html</loc>
+    <loc>https://bruxa-tomb-raider.vercel.app//highlights.html</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxagaming.vercel.app/highlights.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxa-tomb-raider.vercel.app//highlights.html"/>
   </url>
 
   <!-- FAQ -->
   <url>
-    <loc>https://bruxagaming.vercel.app/faq.html</loc>
+    <loc>https://bruxa-tomb-raider.vercel.app//faq.html</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxagaming.vercel.app/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxa-tomb-raider.vercel.app//faq.html"/>
   </url>
 
   <!-- Privacy Policy -->
   <url>
-    <loc>https://bruxagaming.vercel.app/privacy.html</loc>
+    <loc>https://bruxa-tomb-raider.vercel.app//privacy.html</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxagaming.vercel.app/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxa-tomb-raider.vercel.app//privacy.html"/>
   </url>
 
   <!-- Cookie Policy -->
   <url>
-    <loc>https://bruxagaming.vercel.app/cookies.html</loc>
+    <loc>https://bruxa-tomb-raider.vercel.app//cookies.html</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxagaming.vercel.app/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bruxa-tomb-raider.vercel.app//cookies.html"/>
   </url>
 
 </urlset>
 ```
 
 **Uwagi:**
-- Zamień wszystkie `https://bruxagaming.vercel.app` na rzeczywisty URL
+
+- Zamień wszystkie `https://bruxa-tomb-raider.vercel.app/` na rzeczywisty URL
 - Aktualizuj `<lastmod>` po każdej znaczącej zmianie na stronie
 - `<priority>` określa ważność strony (1.0 = najważniejsza)
 - `<changefreq>` informuje roboty jak często sprawdzać zmiany
@@ -137,6 +144,7 @@ Crawl-delay: 1
 ### 1.3 Dodanie Canonical URLs do wszystkich stron
 
 **Pliki do edycji:**
+
 - `index.html`
 - `gameplays.html`
 - `highlights.html`
@@ -148,22 +156,34 @@ Crawl-delay: 1
 
 ```html
 <!-- index.html -->
-<link rel="canonical" href="https://bruxagaming.vercel.app/" />
+<link rel="canonical" href="https://bruxa-tomb-raider.vercel.app//" />
 
 <!-- gameplays.html -->
-<link rel="canonical" href="https://bruxagaming.vercel.app/gameplays.html" />
+<link
+  rel="canonical"
+  href="https://bruxa-tomb-raider.vercel.app//gameplays.html"
+/>
 
 <!-- highlights.html -->
-<link rel="canonical" href="https://bruxagaming.vercel.app/highlights.html" />
+<link
+  rel="canonical"
+  href="https://bruxa-tomb-raider.vercel.app//highlights.html"
+/>
 
 <!-- faq.html -->
-<link rel="canonical" href="https://bruxagaming.vercel.app/faq.html" />
+<link rel="canonical" href="https://bruxa-tomb-raider.vercel.app//faq.html" />
 
 <!-- privacy.html -->
-<link rel="canonical" href="https://bruxagaming.vercel.app/privacy.html" />
+<link
+  rel="canonical"
+  href="https://bruxa-tomb-raider.vercel.app//privacy.html"
+/>
 
 <!-- cookies.html -->
-<link rel="canonical" href="https://bruxagaming.vercel.app/cookies.html" />
+<link
+  rel="canonical"
+  href="https://bruxa-tomb-raider.vercel.app//cookies.html"
+/>
 ```
 
 **Cel:** Zapobiega problemom z duplikacją treści (np. gdyby strona była dostępna pod różnymi URL).
@@ -178,23 +198,50 @@ Crawl-delay: 1
 
 ```html
 <!-- Open Graph Meta Tags -->
-<meta property="og:url" content="https://bruxagaming.vercel.app/" />
+<meta property="og:url" content="https://bruxa-tomb-raider.vercel.app//" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Bruxa Gaming - Tomb Raider Gameplay PL" />
+<meta
+  property="og:site_name"
+  content="Bruxa Gaming - Tomb Raider Gameplay PL"
+/>
 <meta property="og:locale" content="pl_PL" />
-<meta property="og:title" content="Bruxa Gaming - Tomb Raider Gameplay po Polsku | TR1-TR6 Remastered" />
-<meta property="og:description" content="🎮 Pełne gameplay'e z serii Tomb Raider po polsku! Oglądaj przejścia TR1-TR6 Remastered, najlepsze momenty z gry, streamy na TikTok. Dołącz do przygód z Larą Croft!" />
-<meta property="og:image" content="https://bruxagaming.vercel.app/assets/images/og-image.jpg" />
+<meta
+  property="og:title"
+  content="Bruxa Gaming - Tomb Raider Gameplay po Polsku | TR1-TR6 Remastered"
+/>
+<meta
+  property="og:description"
+  content="🎮 Pełne gameplay'e z serii Tomb Raider po polsku! Oglądaj przejścia TR1-TR6 Remastered, najlepsze momenty z gry, streamy na TikTok. Dołącz do przygód z Larą Croft!"
+/>
+<meta
+  property="og:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-image.jpg"
+/>
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Bruxa Gaming - Tomb Raider Gameplay Banner" />
+<meta
+  property="og:image:alt"
+  content="Bruxa Gaming - Tomb Raider Gameplay Banner"
+/>
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Bruxa Gaming - Tomb Raider Gameplay po Polsku" />
-<meta name="twitter:description" content="🎮 Pełne gameplay'e z serii Tomb Raider po polsku! TR1-TR6 Remastered, highlights, streamy TikTok." />
-<meta name="twitter:image" content="https://bruxagaming.vercel.app/assets/images/og-image.jpg" />
-<meta name="twitter:image:alt" content="Bruxa Gaming - Tomb Raider Gameplay Banner" />
+<meta
+  name="twitter:title"
+  content="Bruxa Gaming - Tomb Raider Gameplay po Polsku"
+/>
+<meta
+  name="twitter:description"
+  content="🎮 Pełne gameplay'e z serii Tomb Raider po polsku! TR1-TR6 Remastered, highlights, streamy TikTok."
+/>
+<meta
+  name="twitter:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-image.jpg"
+/>
+<meta
+  name="twitter:image:alt"
+  content="Bruxa Gaming - Tomb Raider Gameplay Banner"
+/>
 ```
 
 ---
@@ -203,13 +250,28 @@ Crawl-delay: 1
 
 ```html
 <!-- Open Graph Meta Tags -->
-<meta property="og:url" content="https://bruxagaming.vercel.app/gameplays.html" />
+<meta
+  property="og:url"
+  content="https://bruxa-tomb-raider.vercel.app//gameplays.html"
+/>
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Bruxa Gaming - Tomb Raider Gameplay PL" />
+<meta
+  property="og:site_name"
+  content="Bruxa Gaming - Tomb Raider Gameplay PL"
+/>
 <meta property="og:locale" content="pl_PL" />
-<meta property="og:title" content="Gameplay'e - Tomb Raider po Polsku | Bruxa Gaming" />
-<meta property="og:description" content="📺 Kompletne przejścia Tomb Raider 1-6 Remastered po polsku! Wszystkie poziomy, sekrety, skarby. Oglądaj gameplay z Larą Croft!" />
-<meta property="og:image" content="https://bruxagaming.vercel.app/assets/images/og-gameplays.jpg" />
+<meta
+  property="og:title"
+  content="Gameplay'e - Tomb Raider po Polsku | Bruxa Gaming"
+/>
+<meta
+  property="og:description"
+  content="📺 Kompletne przejścia Tomb Raider 1-6 Remastered po polsku! Wszystkie poziomy, sekrety, skarby. Oglądaj gameplay z Larą Croft!"
+/>
+<meta
+  property="og:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-gameplays.jpg"
+/>
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Tomb Raider Gameplays - Bruxa Gaming" />
@@ -217,8 +279,14 @@ Crawl-delay: 1
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Gameplay'e - Tomb Raider po Polsku" />
-<meta name="twitter:description" content="📺 Kompletne przejścia Tomb Raider 1-6 Remastered po polsku! Wszystkie poziomy, sekrety." />
-<meta name="twitter:image" content="https://bruxagaming.vercel.app/assets/images/og-gameplays.jpg" />
+<meta
+  name="twitter:description"
+  content="📺 Kompletne przejścia Tomb Raider 1-6 Remastered po polsku! Wszystkie poziomy, sekrety."
+/>
+<meta
+  name="twitter:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-gameplays.jpg"
+/>
 ```
 
 ---
@@ -227,22 +295,46 @@ Crawl-delay: 1
 
 ```html
 <!-- Open Graph Meta Tags -->
-<meta property="og:url" content="https://bruxagaming.vercel.app/highlights.html" />
+<meta
+  property="og:url"
+  content="https://bruxa-tomb-raider.vercel.app//highlights.html"
+/>
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Bruxa Gaming - Tomb Raider Gameplay PL" />
+<meta
+  property="og:site_name"
+  content="Bruxa Gaming - Tomb Raider Gameplay PL"
+/>
 <meta property="og:locale" content="pl_PL" />
-<meta property="og:title" content="Highlights - Najlepsze Momenty z Tomb Raider | Bruxa Gaming" />
-<meta property="og:description" content="⭐ Najlepsze momenty, funny fails i epickie sceny z Tomb Raider! Krótkie wideo z gameplay'ów po polsku. Obejrzyj highlights!" />
-<meta property="og:image" content="https://bruxagaming.vercel.app/assets/images/og-highlights.jpg" />
+<meta
+  property="og:title"
+  content="Highlights - Najlepsze Momenty z Tomb Raider | Bruxa Gaming"
+/>
+<meta
+  property="og:description"
+  content="⭐ Najlepsze momenty, funny fails i epickie sceny z Tomb Raider! Krótkie wideo z gameplay'ów po polsku. Obejrzyj highlights!"
+/>
+<meta
+  property="og:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-highlights.jpg"
+/>
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Tomb Raider Highlights - Bruxa Gaming" />
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Highlights - Najlepsze Momenty z Tomb Raider" />
-<meta name="twitter:description" content="⭐ Najlepsze momenty, funny fails i epickie sceny z Tomb Raider po polsku!" />
-<meta name="twitter:image" content="https://bruxagaming.vercel.app/assets/images/og-highlights.jpg" />
+<meta
+  name="twitter:title"
+  content="Highlights - Najlepsze Momenty z Tomb Raider"
+/>
+<meta
+  name="twitter:description"
+  content="⭐ Najlepsze momenty, funny fails i epickie sceny z Tomb Raider po polsku!"
+/>
+<meta
+  name="twitter:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-highlights.jpg"
+/>
 ```
 
 ---
@@ -253,28 +345,55 @@ Crawl-delay: 1
 
 ```html
 <!-- Open Graph Meta Tags -->
-<meta property="og:url" content="https://bruxagaming.vercel.app/faq.html" />
+<meta
+  property="og:url"
+  content="https://bruxa-tomb-raider.vercel.app//faq.html"
+/>
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Bruxa Gaming - Tomb Raider Gameplay PL" />
+<meta
+  property="og:site_name"
+  content="Bruxa Gaming - Tomb Raider Gameplay PL"
+/>
 <meta property="og:locale" content="pl_PL" />
-<meta property="og:title" content="FAQ - Najczęściej Zadawane Pytania | Bruxa Gaming" />
-<meta property="og:description" content="❓ Odpowiedzi na pytania o gameplay'e Tomb Raider, streamy, harmonogram publikacji. Wszystko co musisz wiedzieć o kanale!" />
-<meta property="og:image" content="https://bruxagaming.vercel.app/assets/images/og-image.jpg" />
+<meta
+  property="og:title"
+  content="FAQ - Najczęściej Zadawane Pytania | Bruxa Gaming"
+/>
+<meta
+  property="og:description"
+  content="❓ Odpowiedzi na pytania o gameplay'e Tomb Raider, streamy, harmonogram publikacji. Wszystko co musisz wiedzieć o kanale!"
+/>
+<meta
+  property="og:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-image.jpg"
+/>
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="FAQ - Najczęściej Zadawane Pytania" />
-<meta name="twitter:description" content="❓ Odpowiedzi na pytania o gameplay'e Tomb Raider, streamy, harmonogram." />
-<meta name="twitter:image" content="https://bruxagaming.vercel.app/assets/images/og-image.jpg" />
+<meta
+  name="twitter:description"
+  content="❓ Odpowiedzi na pytania o gameplay'e Tomb Raider, streamy, harmonogram."
+/>
+<meta
+  name="twitter:image"
+  content="https://bruxa-tomb-raider.vercel.app//assets/images/og-image.jpg"
+/>
 ```
 
 **Dodatkowo w faq.html dodaj brakujące meta tagi:**
 
 ```html
-<meta name="description" content="Najczęściej zadawane pytania o gameplay'e Tomb Raider, streamy na TikTok, harmonogram publikacji wideo. Znajdź odpowiedzi na wszystkie pytania!" />
-<meta name="keywords" content="tomb raider faq, pytania tomb raider, gameplay pytania, bruxa gaming faq, lara croft pytania" />
+<meta
+  name="description"
+  content="Najczęściej zadawane pytania o gameplay'e Tomb Raider, streamy na TikTok, harmonogram publikacji wideo. Znajdź odpowiedzi na wszystkie pytania!"
+/>
+<meta
+  name="keywords"
+  content="tomb raider faq, pytania tomb raider, gameplay pytania, bruxa gaming faq, lara croft pytania"
+/>
 <meta name="author" content="Bruxa Gaming" />
 <meta name="robots" content="index, follow" />
 ```
@@ -286,22 +405,40 @@ Crawl-delay: 1
 **Plik:** `index.html`
 
 ```html
-<meta name="description" content="🎮 Tomb Raider gameplay po polsku! Pełne przejścia TR1-TR6 Remastered, najlepsze momenty, streamy TikTok. Dołącz do przygód z Larą Croft na Bruxa Gaming!" />
-<meta name="keywords" content="tomb raider gameplay po polsku, tomb raider pl, lara croft gra, tomb raider remastered polska, tomb raider przejście po polsku, bruxa gaming, tomb raider 1 gameplay, tomb raider 2 polska, tomb raider stream" />
+<meta
+  name="description"
+  content="🎮 Tomb Raider gameplay po polsku! Pełne przejścia TR1-TR6 Remastered, najlepsze momenty, streamy TikTok. Dołącz do przygód z Larą Croft na Bruxa Gaming!"
+/>
+<meta
+  name="keywords"
+  content="tomb raider gameplay po polsku, tomb raider pl, lara croft gra, tomb raider remastered polska, tomb raider przejście po polsku, bruxa gaming, tomb raider 1 gameplay, tomb raider 2 polska, tomb raider stream"
+/>
 ```
 
 **Plik:** `gameplays.html`
 
 ```html
-<meta name="description" content="📺 Kompletne gameplay'e Tomb Raider 1-6 Remastered po polsku! Wszystkie poziomy, sekrety, skarby. Pełne przejścia gier z Larą Croft. Oglądaj teraz!" />
-<meta name="keywords" content="tomb raider 1 gameplay po polsku, tomb raider 2 przejście, tomb raider 3 polska, tomb raider remastered gameplay, lara croft gameplay pl, tomb raider unfinished business, tomb raider golden mask" />
+<meta
+  name="description"
+  content="📺 Kompletne gameplay'e Tomb Raider 1-6 Remastered po polsku! Wszystkie poziomy, sekrety, skarby. Pełne przejścia gier z Larą Croft. Oglądaj teraz!"
+/>
+<meta
+  name="keywords"
+  content="tomb raider 1 gameplay po polsku, tomb raider 2 przejście, tomb raider 3 polska, tomb raider remastered gameplay, lara croft gameplay pl, tomb raider unfinished business, tomb raider golden mask"
+/>
 ```
 
 **Plik:** `highlights.html`
 
 ```html
-<meta name="description" content="⭐ Najlepsze momenty z Tomb Raider po polsku! Funny fails, epickie skoki, trudne poziomy. Krótkie wideo highlights z gameplay'ów Lary Croft!" />
-<meta name="keywords" content="tomb raider highlights, tomb raider funny moments, lara croft fails, tomb raider best moments, tomb raider shorts, tomb raider najlepsze momenty" />
+<meta
+  name="description"
+  content="⭐ Najlepsze momenty z Tomb Raider po polsku! Funny fails, epickie skoki, trudne poziomy. Krótkie wideo highlights z gameplay'ów Lary Croft!"
+/>
+<meta
+  name="keywords"
+  content="tomb raider highlights, tomb raider funny moments, lara croft fails, tomb raider best moments, tomb raider shorts, tomb raider najlepsze momenty"
+/>
 ```
 
 ---
@@ -317,23 +454,23 @@ Crawl-delay: 1
 ```html
 <!-- Schema.org JSON-LD - WebSite with SearchAction -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Bruxa Gaming - Tomb Raider Gameplay PL",
-  "alternateName": "Bruxa Gaming",
-  "url": "https://bruxagaming.vercel.app/",
-  "description": "Pełne gameplay'e z serii Tomb Raider po polsku. Przejścia TR1-TR6 Remastered, highlights, streamy.",
-  "inLanguage": "pl-PL",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://bruxagaming.vercel.app/?search={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bruxa Gaming - Tomb Raider Gameplay PL",
+    "alternateName": "Bruxa Gaming",
+    "url": "https://bruxa-tomb-raider.vercel.app//",
+    "description": "Pełne gameplay'e z serii Tomb Raider po polsku. Przejścia TR1-TR6 Remastered, highlights, streamy.",
+    "inLanguage": "pl-PL",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://bruxa-tomb-raider.vercel.app//?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
   }
-}
 </script>
 ```
 
@@ -350,27 +487,28 @@ Crawl-delay: 1
 ```html
 <!-- Schema.org JSON-LD - Organization -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Bruxa Gaming",
-  "url": "https://bruxagaming.vercel.app/",
-  "logo": "https://bruxagaming.vercel.app/assets/images/logo.png",
-  "description": "Kanał gamingowy specjalizujący się w gameplay'ach Tomb Raider po polsku",
-  "sameAs": [
-    "https://www.youtube.com/@bruxagaming",
-    "https://www.tiktok.com/@bruxagaming"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "Customer Service",
-    "email": "kontakt@bruxagaming.pl"
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bruxa Gaming",
+    "url": "https://bruxa-tomb-raider.vercel.app//",
+    "logo": "https://bruxa-tomb-raider.vercel.app//assets/images/logo.png",
+    "description": "Kanał gamingowy specjalizujący się w gameplay'ach Tomb Raider po polsku",
+    "sameAs": [
+      "https://www.youtube.com/@bruxagaming",
+      "https://www.tiktok.com/@bruxagaming"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "email": "kontakt@bruxagaming.pl"
+    }
   }
-}
 </script>
 ```
 
 **Uwagi:**
+
 - Zamień email na prawdziwy adres kontaktowy
 - Dodaj prawdziwe linki do YouTube i TikTok
 - Logo będzie trzeba stworzyć później (512x512px PNG)
@@ -394,45 +532,47 @@ class SchemaGenerator {
    * @returns {Object} Schema.org VideoObject
    */
   static generateVideoSchema(video) {
-    const videoId = video.id?.videoId || video.snippet?.resourceId?.videoId || '';
+    const videoId =
+      video.id?.videoId || video.snippet?.resourceId?.videoId || "";
     const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
     // Wyciągnij długość wideo w formacie ISO 8601
-    const duration = video.contentDetails?.duration || 'PT0S';
+    const duration = video.contentDetails?.duration || "PT0S";
 
     // Data publikacji
     const uploadDate = video.snippet?.publishedAt || new Date().toISOString();
 
     // Thumbnail (najwyższa jakość dostępna)
-    const thumbnailUrl = video.snippet?.thumbnails?.maxres?.url ||
-                         video.snippet?.thumbnails?.high?.url ||
-                         video.snippet?.thumbnails?.medium?.url ||
-                         video.snippet?.thumbnails?.default?.url;
+    const thumbnailUrl =
+      video.snippet?.thumbnails?.maxres?.url ||
+      video.snippet?.thumbnails?.high?.url ||
+      video.snippet?.thumbnails?.medium?.url ||
+      video.snippet?.thumbnails?.default?.url;
 
     return {
       "@context": "https://schema.org",
       "@type": "VideoObject",
-      "name": video.snippet?.title || '',
-      "description": video.snippet?.description || '',
-      "thumbnailUrl": thumbnailUrl,
-      "uploadDate": uploadDate,
-      "duration": duration,
-      "contentUrl": videoUrl,
-      "embedUrl": embedUrl,
-      "publisher": {
+      name: video.snippet?.title || "",
+      description: video.snippet?.description || "",
+      thumbnailUrl: thumbnailUrl,
+      uploadDate: uploadDate,
+      duration: duration,
+      contentUrl: videoUrl,
+      embedUrl: embedUrl,
+      publisher: {
         "@type": "Organization",
-        "name": "Bruxa Gaming",
-        "logo": {
+        name: "Bruxa Gaming",
+        logo: {
           "@type": "ImageObject",
-          "url": "https://bruxagaming.vercel.app/assets/images/logo.png"
-        }
+          url: "https://bruxa-tomb-raider.vercel.app//assets/images/logo.png",
+        },
       },
-      "author": {
+      author: {
         "@type": "Person",
-        "name": "Bruxa Gaming"
+        name: "Bruxa Gaming",
       },
-      "inLanguage": "pl-PL"
+      inLanguage: "pl-PL",
     };
   }
 
@@ -441,8 +581,8 @@ class SchemaGenerator {
    * @param {Object} schema - Schema.org object
    */
   static injectSchema(schema) {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
     script.textContent = JSON.stringify(schema, null, 2);
     document.head.appendChild(script);
   }
@@ -453,28 +593,30 @@ class SchemaGenerator {
    * @param {String} listName - Nazwa listy
    * @returns {Object} Schema.org ItemList
    */
-  static generateVideoListSchema(videos, listName = 'Tomb Raider Gameplays') {
+  static generateVideoListSchema(videos, listName = "Tomb Raider Gameplays") {
     return {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": listName,
-      "description": `Lista ${videos.length} filmów z gameplay Tomb Raider`,
-      "itemListElement": videos.map((video, index) => ({
+      name: listName,
+      description: `Lista ${videos.length} filmów z gameplay Tomb Raider`,
+      itemListElement: videos.map((video, index) => ({
         "@type": "ListItem",
-        "position": index + 1,
-        "item": {
+        position: index + 1,
+        item: {
           "@type": "VideoObject",
-          "name": video.snippet?.title || '',
-          "url": `https://www.youtube.com/watch?v=${video.id?.videoId || video.snippet?.resourceId?.videoId || ''}`,
-          "thumbnailUrl": video.snippet?.thumbnails?.high?.url || ''
-        }
-      }))
+          name: video.snippet?.title || "",
+          url: `https://www.youtube.com/watch?v=${
+            video.id?.videoId || video.snippet?.resourceId?.videoId || ""
+          }`,
+          thumbnailUrl: video.snippet?.thumbnails?.high?.url || "",
+        },
+      })),
     };
   }
 }
 
 // Export dla użycia w innych plikach
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = SchemaGenerator;
 }
 ```
@@ -496,7 +638,7 @@ async function renderLatestGameplays() {
     const featuredVideos = videos.slice(0, 3);
 
     // Generuj VideoObject schema dla każdego filmu
-    featuredVideos.forEach(video => {
+    featuredVideos.forEach((video) => {
       const schema = SchemaGenerator.generateVideoSchema(video);
       SchemaGenerator.injectSchema(schema);
     });
@@ -504,7 +646,7 @@ async function renderLatestGameplays() {
     // Opcjonalnie: generuj ItemList schema dla całej listy
     const listSchema = SchemaGenerator.generateVideoListSchema(
       featuredVideos,
-      'Najnowsze Tomb Raider Gameplays'
+      "Najnowsze Tomb Raider Gameplays"
     );
     SchemaGenerator.injectSchema(listSchema);
   }
@@ -535,7 +677,7 @@ async function loadGameplays() {
     // Generuj schema dla pierwszych 10 filmów (lub wszystkich jeśli mniej)
     const videosForSchema = allVideos.slice(0, 10);
 
-    videosForSchema.forEach(video => {
+    videosForSchema.forEach((video) => {
       const schema = SchemaGenerator.generateVideoSchema(video);
       SchemaGenerator.injectSchema(schema);
     });
@@ -543,7 +685,7 @@ async function loadGameplays() {
     // ItemList schema dla całej kolekcji
     const listSchema = SchemaGenerator.generateVideoListSchema(
       videosForSchema,
-      'Kompletne Gameplay\'e Tomb Raider'
+      "Kompletne Gameplay'e Tomb Raider"
     );
     SchemaGenerator.injectSchema(listSchema);
   }
@@ -570,14 +712,14 @@ async function loadHighlights() {
   if (highlights && highlights.length > 0) {
     const highlightsForSchema = highlights.slice(0, 10);
 
-    highlightsForSchema.forEach(video => {
+    highlightsForSchema.forEach((video) => {
       const schema = SchemaGenerator.generateVideoSchema(video);
       SchemaGenerator.injectSchema(schema);
     });
 
     const listSchema = SchemaGenerator.generateVideoListSchema(
       highlightsForSchema,
-      'Najlepsze Momenty z Tomb Raider'
+      "Najlepsze Momenty z Tomb Raider"
     );
     SchemaGenerator.injectSchema(listSchema);
   }
@@ -609,19 +751,19 @@ async function renderFAQ(faqData) {
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": faqData.map(item => ({
+      mainEntity: faqData.map((item) => ({
         "@type": "Question",
-        "name": item.question || item.pytanie, // dostosuj do nazw kolumn w Sheets
-        "acceptedAnswer": {
+        name: item.question || item.pytanie, // dostosuj do nazw kolumn w Sheets
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": item.answer || item.odpowiedz // dostosuj do nazw kolumn
-        }
-      }))
+          text: item.answer || item.odpowiedz, // dostosuj do nazw kolumn
+        },
+      })),
     };
 
     // Wstrzyknij schema do DOM
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
     script.textContent = JSON.stringify(faqSchema, null, 2);
     document.head.appendChild(script);
   }
@@ -641,24 +783,24 @@ async function renderFAQ(faqData) {
 ```html
 <!-- Schema.org - Breadcrumb -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Strona Główna",
-      "item": "https://bruxagaming.vercel.app/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Gameplay'e",
-      "item": "https://bruxagaming.vercel.app/gameplays.html"
-    }
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strona Główna",
+        "item": "https://bruxa-tomb-raider.vercel.app//"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Gameplay'e",
+        "item": "https://bruxa-tomb-raider.vercel.app//gameplays.html"
+      }
+    ]
+  }
 </script>
 ```
 
@@ -669,24 +811,24 @@ async function renderFAQ(faqData) {
 ```html
 <!-- Schema.org - Breadcrumb -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Strona Główna",
-      "item": "https://bruxagaming.vercel.app/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Highlights",
-      "item": "https://bruxagaming.vercel.app/highlights.html"
-    }
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strona Główna",
+        "item": "https://bruxa-tomb-raider.vercel.app//"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Highlights",
+        "item": "https://bruxa-tomb-raider.vercel.app//highlights.html"
+      }
+    ]
+  }
 </script>
 ```
 
@@ -697,24 +839,24 @@ async function renderFAQ(faqData) {
 ```html
 <!-- Schema.org - Breadcrumb -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Strona Główna",
-      "item": "https://bruxagaming.vercel.app/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "FAQ",
-      "item": "https://bruxagaming.vercel.app/faq.html"
-    }
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strona Główna",
+        "item": "https://bruxa-tomb-raider.vercel.app//"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "FAQ",
+        "item": "https://bruxa-tomb-raider.vercel.app//faq.html"
+      }
+    ]
+  }
 </script>
 ```
 
@@ -805,6 +947,7 @@ const iframe = `<iframe
 **Stwórz nowy plik:** `assets/css/bundle.css`
 
 **Zawartość (w tej kolejności):**
+
 ```css
 /* Połącz zawartość WSZYSTKICH plików CSS w tej kolejności: */
 /* 1. variables.css */
@@ -834,19 +977,34 @@ const iframe = `<iframe
 ```html
 <style>
   /* Critical CSS - tylko najważniejsze style dla above-the-fold */
-  :root { --primary-color: #cd853f; /* ... */ }
-  body { margin: 0; font-family: 'Segoe UI', sans-serif; }
-  .navbar { /* style navbar */ }
-  .hero { /* style hero section */ }
+  :root {
+    --primary-color: #cd853f; /* ... */
+  }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+  }
+  .navbar {
+    /* style navbar */
+  }
+  .hero {
+    /* style hero section */
+  }
   /* ... tylko style widoczne przed scrollem */
 </style>
 
 <!-- Reszta CSS z defer -->
-<link rel="stylesheet" href="assets/css/bundle.css" media="print" onload="this.media='all'" />
+<link
+  rel="stylesheet"
+  href="assets/css/bundle.css"
+  media="print"
+  onload="this.media='all'"
+/>
 <noscript><link rel="stylesheet" href="assets/css/bundle.css" /></noscript>
 ```
 
 **Narzędzia do wyodrębnienia Critical CSS (darmowe):**
+
 - https://www.sitelocity.com/critical-path-css-generator
 - https://jonassebastianohlsson.com/criticalpathcssgenerator/
 
@@ -920,6 +1078,7 @@ const iframe = `<iframe
 ```
 
 **Efekt:**
+
 - Bezpieczeństwo (XSS protection, clickjacking prevention)
 - Cache dla statycznych zasobów (CSS, JS, obrazy)
 - Świeże HTML-e przy każdym odwiedzeniu
@@ -935,82 +1094,85 @@ const iframe = `<iframe
 ```html
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>404 - Strona nie znaleziona | Bruxa Gaming</title>
-  <link rel="stylesheet" href="assets/css/variables.css" />
-  <link rel="stylesheet" href="assets/css/reset.css" />
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>404 - Strona nie znaleziona | Bruxa Gaming</title>
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
 
-    .error-container {
-      max-width: 600px;
-    }
+      .error-container {
+        max-width: 600px;
+      }
 
-    h1 {
-      font-size: 120px;
-      margin: 0;
-      color: #cd853f;
-      text-shadow: 0 0 20px rgba(205, 133, 63, 0.5);
-    }
+      h1 {
+        font-size: 120px;
+        margin: 0;
+        color: #cd853f;
+        text-shadow: 0 0 20px rgba(205, 133, 63, 0.5);
+      }
 
-    h2 {
-      font-size: 32px;
-      margin: 20px 0;
-    }
+      h2 {
+        font-size: 32px;
+        margin: 20px 0;
+      }
 
-    p {
-      font-size: 18px;
-      margin: 20px 0;
-      opacity: 0.8;
-    }
+      p {
+        font-size: 18px;
+        margin: 20px 0;
+        opacity: 0.8;
+      }
 
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 40px;
-      background: #cd853f;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
+      .btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 40px;
+        background: #cd853f;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
 
-    .btn:hover {
-      background: #b8752e;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(205, 133, 63, 0.3);
-    }
+      .btn:hover {
+        background: #b8752e;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(205, 133, 63, 0.3);
+      }
 
-    .lara {
-      font-size: 80px;
-      margin: 20px 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="error-container">
-    <div class="lara">🏺</div>
-    <h1>404</h1>
-    <h2>Skarb nie został znaleziony!</h2>
-    <p>Przepraszamy, ale strona której szukasz nie istnieje. Może Lara Croft znalazła ją pierwsza?</p>
-    <a href="/" class="btn">Powrót do Strony Głównej</a>
-  </div>
-</body>
+      .lara {
+        font-size: 80px;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <div class="lara">🏺</div>
+      <h1>404</h1>
+      <h2>Skarb nie został znaleziony!</h2>
+      <p>
+        Przepraszamy, ale strona której szukasz nie istnieje. Może Lara Croft
+        znalazła ją pierwsza?
+      </p>
+      <a href="/" class="btn">Powrót do Strony Głównej</a>
+    </div>
+  </body>
 </html>
 ```
 
@@ -1072,7 +1234,10 @@ const iframe = `<iframe
 <link rel="manifest" href="/manifest.json" />
 <meta name="theme-color" content="#cd853f" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black-translucent"
+/>
 <meta name="apple-mobile-web-app-title" content="Bruxa Gaming" />
 ```
 
@@ -1134,6 +1299,7 @@ const iframe = `<iframe
 **Główne frazy do targetowania:**
 
 **High Volume (wysokie wyszukiwania):**
+
 - "tomb raider gameplay po polsku"
 - "tomb raider pl"
 - "lara croft gra"
@@ -1141,6 +1307,7 @@ const iframe = `<iframe
 - "tomb raider przejście po polsku"
 
 **Medium Volume:**
+
 - "tomb raider 1 gameplay"
 - "tomb raider 2 polska"
 - "tomb raider gameplay pl"
@@ -1148,6 +1315,7 @@ const iframe = `<iframe
 - "tomb raider po polsku"
 
 **Long-tail (niższa konkurencja, wyższa konwersja):**
+
 - "tomb raider 1 pełne przejście po polsku"
 - "tomb raider remastered sekrety"
 - "jak przejść tomb raider 1"
@@ -1155,6 +1323,7 @@ const iframe = `<iframe
 - "tomb raider golden mask po polsku"
 
 **Zastosuj te frazy w:**
+
 - Tytułach stron (`<title>`)
 - Meta descriptions
 - Nagłówkach H1, H2
@@ -1176,25 +1345,32 @@ const iframe = `<iframe
     <div class="about-content">
       <p>
         Witaj w <strong>Bruxa Gaming</strong> - Twoim miejscu na kompletne
-        <strong>gameplay'e Tomb Raider po polsku</strong>! Specjalizuję się
-        w pełnych przejściach klasycznej serii z <strong>Larą Croft</strong>,
-        od Tomb Raider 1 aż po TR6 w wersji Remastered.
+        <strong>gameplay'e Tomb Raider po polsku</strong>! Specjalizuję się w
+        pełnych przejściach klasycznej serii z <strong>Larą Croft</strong>, od
+        Tomb Raider 1 aż po TR6 w wersji Remastered.
       </p>
-      <p>
-        Na kanale znajdziesz:
-      </p>
+      <p>Na kanale znajdziesz:</p>
       <ul>
-        <li>📺 <strong>Pełne przejścia</strong> wszystkich części Tomb Raider (TR1-TR6 Remastered)</li>
-        <li>🎮 <strong>Dodatki i ekspansje</strong>: Unfinished Business, Golden Mask, Lost Artifact</li>
+        <li>
+          📺 <strong>Pełne przejścia</strong> wszystkich części Tomb Raider
+          (TR1-TR6 Remastered)
+        </li>
+        <li>
+          🎮 <strong>Dodatki i ekspansje</strong>: Unfinished Business, Golden
+          Mask, Lost Artifact
+        </li>
         <li>⭐ <strong>Highlights i najlepsze momenty</strong> z gier</li>
         <li>🔴 <strong>Streamy na żywo</strong> na TikTok z rozgrywką</li>
-        <li>💎 <strong>Wszystkie sekrety i skarby</strong> odkryte w każdym poziomie</li>
+        <li>
+          💎 <strong>Wszystkie sekrety i skarby</strong> odkryte w każdym
+          poziomie
+        </li>
       </ul>
       <p>
-        Każdy <strong>gameplay Tomb Raider</strong> jest nagrany w wysokiej jakości,
-        z polskim komentarzem i dokładnym pokazaniem wszystkich zagadek,
-        sekretów i trudnych fragmentów. Idealne zarówno dla weteranów serii
-        Tomb Raider, jak i dla nowych graczy którzy chcą poznać przygody
+        Każdy <strong>gameplay Tomb Raider</strong> jest nagrany w wysokiej
+        jakości, z polskim komentarzem i dokładnym pokazaniem wszystkich
+        zagadek, sekretów i trudnych fragmentów. Idealne zarówno dla weteranów
+        serii Tomb Raider, jak i dla nowych graczy którzy chcą poznać przygody
         <strong>Lary Croft</strong> po raz pierwszy.
       </p>
     </div>
@@ -1212,18 +1388,24 @@ const iframe = `<iframe
 
 ```html
 <!-- Przykłady -->
-<img src="assets/images/og-image.jpg" alt="Bruxa Gaming - Tomb Raider Gameplay po Polsku Banner" />
-<img src="assets/images/logo.png" alt="Bruxa Gaming Logo - Kanał Tomb Raider PL" />
+<img
+  src="assets/images/og-image.jpg"
+  alt="Bruxa Gaming - Tomb Raider Gameplay po Polsku Banner"
+/>
+<img
+  src="assets/images/logo.png"
+  alt="Bruxa Gaming Logo - Kanał Tomb Raider PL"
+/>
 ```
 
 **Dla dynamicznie generowanych thumbnails YouTube:**
 
 ```javascript
 // W plikach JS generujących karty wideo
-const img = document.createElement('img');
+const img = document.createElement("img");
 img.src = video.snippet.thumbnails.medium.url;
 img.alt = `${video.snippet.title} - Tomb Raider Gameplay PL`;
-img.loading = 'lazy';
+img.loading = "lazy";
 ```
 
 ---
@@ -1248,6 +1430,7 @@ img.loading = 'lazy';
 **Krok 2: Prześlij sitemap.xml**
 
 Po weryfikacji, w Google Search Console:
+
 1. Idź do "Sitemaps" w menu
 2. Wklej URL: `https://twoja-domena.vercel.app/sitemap.xml`
 3. Kliknij "Submit"
@@ -1259,6 +1442,7 @@ Po weryfikacji, w Google Search Console:
 **Narzędzie:** https://search.google.com/test/rich-results
 
 **Sprawdź:**
+
 1. Homepage - czy WebSite i Organization schema są poprawne
 2. Gameplays - czy VideoObject schema działa
 3. FAQ - czy FAQPage schema jest rozpoznawany
@@ -1272,6 +1456,7 @@ Po weryfikacji, w Google Search Console:
 **Narzędzie:** https://pagespeed.web.dev/
 
 **Sprawdź wydajność:**
+
 1. Testuj każdą stronę (index, gameplays, highlights)
 2. Cel: min. 90+ dla Mobile i Desktop
 3. Zwróć uwagę na Core Web Vitals:
@@ -1280,6 +1465,7 @@ Po weryfikacji, w Google Search Console:
    - CLS (Cumulative Layout Shift) < 0.1
 
 **Jeśli wyniki są słabe:**
+
 - Sprawdź czy wszystkie skrypty mają `defer`
 - Upewnij się że CSS jest zoptymalizowany
 - Dodaj więcej lazy loading
@@ -1313,7 +1499,7 @@ Po weryfikacji, w Google Search Console:
 
 ```xml
 <url>
-  <loc>https://bruxagaming.vercel.app/gameplays.html</loc>
+  <loc>https://bruxa-tomb-raider.vercel.app//gameplays.html</loc>
   <lastmod>2025-02-15</lastmod> <!-- ZAKTUALIZUJ tę datę -->
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
@@ -1329,6 +1515,7 @@ Po weryfikacji, w Google Search Console:
 **Co tydzień sprawdzaj:**
 
 1. **Google Search Console:**
+
    - Impressions (wyświetlenia w wynikach)
    - Clicks (kliknięcia)
    - CTR (click-through rate)
@@ -1336,6 +1523,7 @@ Po weryfikacji, w Google Search Console:
    - Które frazy przynoszą ruch
 
 2. **Google Analytics (jeśli zainstalowany):**
+
    - Liczba odwiedzin
    - Bounce rate
    - Czas na stronie
@@ -1352,11 +1540,13 @@ Po weryfikacji, w Google Search Console:
 **Jeśli chcesz jeszcze lepsze SEO, rozważ:**
 
 1. **Blog/Artykuły:**
+
    - Tworzenie artykułów typu "Jak przejść poziom X w Tomb Raider"
    - "10 najlepszych sekretów w Tomb Raider 2"
    - "Historia serii Tomb Raider"
 
 2. **Opisy wideo na YouTube:**
+
    - Dodaj link do swojej strony w opisach wszystkich filmów
    - Użyj polskich słów kluczowych
    - Dodaj timestamps (chaptery)
@@ -1370,6 +1560,7 @@ Po weryfikacji, w Google Search Console:
 ## PODSUMOWANIE - CHECKLIST IMPLEMENTACJI
 
 ### ✅ FAZA 1: KRYTYCZNE (DO ZROBIENIA NAJPIERW)
+
 - [ ] Utworzyć `/robots.txt`
 - [ ] Utworzyć `/sitemap.xml`
 - [ ] Dodać canonical URLs do wszystkich 6 stron
@@ -1378,6 +1569,7 @@ Po weryfikacji, w Google Search Console:
 - [ ] Zoptymalizować meta descriptions z polskimi słowami kluczowymi
 
 ### ✅ FAZA 2: SCHEMA.ORG
+
 - [ ] Dodać WebSite schema (index.html)
 - [ ] Dodać Organization schema (index.html)
 - [ ] Utworzyć `/assets/js/schema-generator.js`
@@ -1388,6 +1580,7 @@ Po weryfikacji, w Google Search Console:
 - [ ] Dodać BreadcrumbList schema (gameplays, highlights, faq)
 
 ### ✅ FAZA 3: WYDAJNOŚĆ
+
 - [ ] Dodać resource hints do wszystkich HTML (preconnect, dns-prefetch)
 - [ ] Dodać `defer` do wszystkich skryptów JavaScript
 - [ ] Dodać `loading="lazy"` do YouTube iframes
@@ -1395,6 +1588,7 @@ Po weryfikacji, w Google Search Console:
 - [ ] Zoptymalizować `vercel.json` (cache, security headers)
 
 ### ✅ FAZA 4: TECHNICZNE
+
 - [ ] Utworzyć `/404.html`
 - [ ] Dodać routing 404 w `vercel.json`
 - [ ] Utworzyć `/manifest.json`
@@ -1403,11 +1597,13 @@ Po weryfikacji, w Google Search Console:
 - [ ] Zoptymalizować tytuły stron (< 60 znaków)
 
 ### ✅ FAZA 5: CONTENT
+
 - [ ] Dodać rozszerzoną sekcję "O Mnie" z polskimi słowami kluczowymi
 - [ ] Dodać alt text do wszystkich obrazów (gdy będą)
 - [ ] Sprawdzić heading hierarchy (H1 → H2 → H3)
 
 ### ✅ FAZA 6: MONITORING
+
 - [ ] Zarejestrować się w Google Search Console
 - [ ] Dodać meta tag weryfikacyjny
 - [ ] Przesłać sitemap.xml
@@ -1416,6 +1612,7 @@ Po weryfikacji, w Google Search Console:
 - [ ] (Opcjonalnie) Zarejestrować w Bing Webmaster
 
 ### ✅ FAZA 7: ONGOING
+
 - [ ] Ustawić reminder do aktualizacji sitemap co tydzień
 - [ ] Regularnie sprawdzać Google Search Console
 - [ ] Monitorować pozycje w Google
@@ -1437,6 +1634,7 @@ Po weryfikacji, w Google Search Console:
 ## PLIKI DO MODYFIKACJI
 
 ### HTML (6 plików)
+
 1. `index.html` - Canonical, OG tags, schema, resource hints, defer
 2. `gameplays.html` - Canonical, OG tags, breadcrumb schema, resource hints
 3. `highlights.html` - Canonical, OG tags, breadcrumb schema, resource hints
@@ -1445,6 +1643,7 @@ Po weryfikacji, w Google Search Console:
 6. `cookies.html` - Canonical, resource hints
 
 ### JavaScript (4 pliki)
+
 7. `assets/js/home.js` - Dodać generowanie VideoObject schema
 8. `assets/js/gameplays.js` - Dodać generowanie VideoObject schema
 9. `assets/js/highlights.js` - Dodać generowanie VideoObject schema
@@ -1453,6 +1652,7 @@ Po weryfikacji, w Google Search Console:
 12. `assets/js/components/footer.js` - Usunąć link do admin
 
 ### Config
+
 13. `vercel.json` - Cache headers, security, 404 routing
 
 ---
@@ -1462,18 +1662,21 @@ Po weryfikacji, w Google Search Console:
 Po pełnej implementacji tego planu możesz oczekiwać:
 
 ### Krótkoterminowe (1-4 tygodnie)
+
 - ✅ Strona pojawi się w Google Search Console
 - ✅ Sitemap zostanie zaindeksowany
 - ✅ Rich snippets zaczną się pojawiać (gwiazdki FAQ, wideo)
 - ✅ Wynik PageSpeed Insights > 90
 
 ### Średnioterminowe (1-3 miesiące)
+
 - ✅ Pozycje w Google dla fraz "tomb raider gameplay po polsku"
 - ✅ Wzrost organicznego ruchu z wyszukiwarki
 - ✅ Wyświetlanie video snippets w wynikach
 - ✅ Lepsze CTR dzięki rich results
 
 ### Długoterminowe (3-6 miesięcy)
+
 - ✅ Top 10 dla głównych polskich fraz Tomb Raider
 - ✅ Featured snippets dla FAQ
 - ✅ Stabilny ruch organiczny
@@ -1483,7 +1686,6 @@ Po pełnej implementacji tego planu możesz oczekiwać:
 
 ## UWAGI KOŃCOWE
 
-1. **Zamień wszystkie `https://bruxagaming.vercel.app`** na swój rzeczywisty URL
 2. **Grafiki (og-image, logo)** - pomijamy teraz, dodasz później
 3. **YouTube API Key** - upewnij się że masz limity pod kontrolą
 4. **Testuj na dev environment** przed wdrożeniem na produkcję
@@ -1494,7 +1696,6 @@ Po pełnej implementacji tego planu możesz oczekiwać:
 
 ## POTRZEBUJESZ JESZCZE
 
-- [ ] Rzeczywisty URL domeny (zamień bruxagaming.vercel.app)
 - [ ] Email kontaktowy (dla Organization schema)
 - [ ] Linki do YouTube i TikTok (dla Organization schema)
 - [ ] Google Search Console account

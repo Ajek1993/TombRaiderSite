@@ -528,6 +528,24 @@ async function initHomePage() {
     // Setup random gameplay button
     setupRandomGameplayButton();
 
+    // Generate schema markup for SEO
+    if (gameplayVideos.length > 0 && window.SchemaGenerator) {
+      // Generuj VideoObject schema dla pierwszych 3 filmów
+      const featuredVideos = gameplayVideos.slice(0, 3);
+
+      featuredVideos.forEach((video) => {
+        const schema = window.SchemaGenerator.generateVideoSchema(video);
+        window.SchemaGenerator.injectSchema(schema);
+      });
+
+      // Generuj ItemList schema dla całej listy
+      const listSchema = window.SchemaGenerator.generateVideoListSchema(
+        featuredVideos,
+        "Najnowsze Tomb Raider Gameplays"
+      );
+      window.SchemaGenerator.injectSchema(listSchema);
+    }
+
     console.log('[Home] Home page initialized successfully');
 
   } catch (error) {

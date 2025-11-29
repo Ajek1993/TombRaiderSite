@@ -85,6 +85,28 @@
     <link rel="stylesheet" href="/assets/css/modal.css" />
     <link rel="stylesheet" href="/assets/css/cookie-banner.css" />
     <link rel="stylesheet" href="/assets/css/search.css" />
+    <!-- Schema.org - Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strona Główna",
+          "item": "https://bruxa-tomb-raider.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Gameplay'e",
+          "item": "https://bruxa-tomb-raider.vercel.app/gameplays.html"
+        }
+      ]
+    }
+    </script>
+
   </head>
   <body>
     <!-- Skip to content for accessibility -->
@@ -193,6 +215,7 @@
     <script src="/assets/js/video-modal.js"></script>
     <script src="/assets/js/components/search.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/schema-generator.js"></script>
     <script src="/assets/js/gameplays.js"></script>
   </body>
 </html>

@@ -83,6 +83,28 @@ function renderFAQ(faqList) {
 
   // Setup accordion click handlers
   setupAccordion();
+  
+  // Generate FAQPage schema for SEO
+  if (faqList.length > 0) {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqList.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer
+        }
+      }))
+    };
+
+    // Wstrzyknij schema do DOM
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(faqSchema, null, 2);
+    document.head.appendChild(script);
+  }
 }
 
 /**
