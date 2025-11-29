@@ -156,14 +156,6 @@ function updateHeroVideo(video) {
         loading="lazy">
       </iframe>
     </div>
-    <div class="video-embed-info">
-      <h3 class="video-embed-title">${video.title}</h3>
-      <div class="video-embed-meta">
-        <span>🕐 ${video.duration}</span>
-        <span>👁 ${video.views}</span>
-        <span>📅 ${video.publishedAt}</span>
-      </div>
-    </div>
   `;
 }
 

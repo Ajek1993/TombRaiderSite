@@ -277,7 +277,7 @@
   border-radius: 50%;
 }
 
-.about-card h3 {
+.about-card h2 {
   text-align: center;
   margin-bottom: var(--space-lg);
 }

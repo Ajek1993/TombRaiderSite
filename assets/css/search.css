@@ -34,25 +34,20 @@
     outline-offset: 2px;
 }
 
-/* Hide button when search is active */
-.search-container.active .search-btn {
-    display: none;
-}
-
 /* Search Input - expandable */
 .search-input-wrapper {
     position: absolute;
     right: 0;
     display: none;
     opacity: 0;
-    transform: translateX(10px);
+    pointer-events: none;
     transition: all 0.3s ease;
 }
 
-.search-container.active .search-input-wrapper {
+.search-input-wrapper.active {
     display: flex;
     opacity: 1;
-    transform: translateX(0);
+    pointer-events: auto;
 }
 
 .search-input {
@@ -102,20 +97,53 @@
     transform: translateY(-50%) rotate(90deg);
 }
 
+/* ===============================================
+   SEARCH DROPDOWN OVERLAY (outside navbar)
+   =============================================== */
+
+.search-dropdown-overlay {
+    position: fixed;
+    top: 80px;  /* Will be set by JS dynamically */
+    left: 0;
+    right: 0;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: calc(var(--z-fixed) - 1);  /* 299 - below navbar (300) */
+    padding: 0 20px;
+}
+
+.search-dropdown-overlay.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Desktop: constrain width and align right */
+@media (min-width: 769px) {
+    .search-dropdown-overlay {
+        left: auto;
+        width: auto;
+        max-width: 500px;
+    }
+}
+
 /* Search Results Dropdown */
 .search-results {
-    position: absolute;
-    top: calc(100% + 10px);
+    position: relative;  /* Changed from absolute */
+    top: 0;
+    left: 0;
     right: 0;
-    width: 400px;
+    width: 100%;
     max-height: 500px;
+    margin-top: 10px;  /* Space below navbar */
     background: var(--card-bg, rgba(26, 26, 46, 0.95));
     border: 2px solid var(--accent-gold, #d4af37);
     border-radius: 15px;
     overflow-y: auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    z-index: 1000;
     display: none;
 }
 
@@ -303,15 +331,29 @@
    =============================================== */
 
 @media (max-width: 768px) {
+    /* Input wrapper jako fixed overlay na mobile */
+    .search-input-wrapper {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        z-index: calc(var(--z-fixed) + 2);  /* 302 - above navbar */
+    }
+
     .search-input {
-        width: 200px;
+        width: 100%;
         font-size: 0.9rem;
     }
 
+    /* Dropdown overlay adjustments */
+    .search-dropdown-overlay {
+        top: 60px;  /* Mobile navbar height */
+        padding: 0 10px;
+    }
+
     .search-results {
-        width: calc(100vw - 40px);
-        right: -10px;
         max-height: 400px;
+        margin-top: 5px;
     }
 
     .search-result-title {
@@ -324,8 +366,16 @@
 }
 
 @media (max-width: 480px) {
+    .search-dropdown-overlay {
+        padding: 0 5px;
+    }
+
+    .search-results {
+        max-height: 350px;
+        font-size: 0.9rem;
+    }
+
     .search-input {
-        width: 180px;
         font-size: 0.85rem;
         padding: 8px 35px 8px 12px;
     }
@@ -334,13 +384,6 @@
         width: 35px;
         height: 35px;
         font-size: 1rem;
-    }
-
-    .search-results {
-        width: calc(100vw - 20px);
-        right: -50px;
-        max-height: 350px;
-        font-size: 0.9rem;
     }
 
     .search-result-item {

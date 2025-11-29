@@ -44,6 +44,7 @@
   let searchInput = null;
   let searchCloseBtn = null;
   let searchResults = null;
+  let searchDropdownOverlay = null;
 
   // ===================================
   // INITIALIZATION
@@ -111,7 +112,13 @@
     // Create results dropdown
     searchResults = document.createElement('div');
     searchResults.className = 'search-results';
-    searchContainer.appendChild(searchResults);
+
+    // Create dropdown overlay (outside navbar, fixed positioned)
+    searchDropdownOverlay = document.createElement('div');
+    searchDropdownOverlay.className = 'search-dropdown-overlay';
+    searchDropdownOverlay.setAttribute('aria-hidden', 'true');
+    searchDropdownOverlay.appendChild(searchResults);
+    document.body.appendChild(searchDropdownOverlay);
   }
 
   /**
@@ -141,6 +148,24 @@
         closeSearch();
       }
     });
+
+    // Reposition dropdown on window resize
+    window.addEventListener('resize', () => {
+      if (isSearchActive) {
+        positionSearchDropdown();
+      }
+    });
+
+    // Reposition on scroll (handles mobile address bar hide/show)
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (isSearchActive) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          positionSearchDropdown();
+        }, 50);
+      }
+    });
   }
 
   // ===================================
@@ -152,8 +177,17 @@
    */
   async function openSearch() {
     isSearchActive = true;
-    searchContainer.classList.add('active');
+
+    // Show input wrapper (lupka pozostaje widoczna)
+    searchInputWrapper.classList.add('active');
     searchInput.focus();
+
+    // Show dropdown overlay
+    searchDropdownOverlay.classList.add('active');
+    searchDropdownOverlay.setAttribute('aria-hidden', 'false');
+
+    // Position dropdown below navbar
+    positionSearchDropdown();
 
     // Show loading state
     showLoading();
@@ -172,11 +206,43 @@
    */
   function closeSearch() {
     isSearchActive = false;
-    searchContainer.classList.remove('active');
+    searchInputWrapper.classList.remove('active');
+    searchDropdownOverlay.classList.remove('active');
+    searchDropdownOverlay.setAttribute('aria-hidden', 'true');
     searchInput.value = '';
     hideResults();
     highlightedIndex = -1;
     currentResults = [];
+  }
+
+  /**
+   * Position search dropdown below navbar
+   */
+  function positionSearchDropdown() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar || !searchDropdownOverlay) return;
+
+    const navbarRect = navbar.getBoundingClientRect();
+
+    // Position below navbar (or at top if navbar is hidden)
+    if (navbar.classList.contains('hidden')) {
+      searchDropdownOverlay.style.top = '0px';
+    } else {
+      searchDropdownOverlay.style.top = `${navbarRect.bottom}px`;
+    }
+
+    // Mobile: full width | Desktop: align to search button
+    if (window.innerWidth <= 768) {
+      searchDropdownOverlay.style.left = '0';
+      searchDropdownOverlay.style.right = '0';
+    } else {
+      const searchBtn = document.querySelector('.search-btn');
+      if (searchBtn) {
+        const btnRect = searchBtn.getBoundingClientRect();
+        searchDropdownOverlay.style.right = `${window.innerWidth - btnRect.right}px`;
+        searchDropdownOverlay.style.left = 'auto';
+      }
+    }
   }
 
   /**
@@ -708,7 +774,12 @@
    */
   function handleClickOutside(e) {
     if (!isSearchActive) return;
-    if (searchContainer && !searchContainer.contains(e.target)) {
+
+    // Check if click is outside BOTH search container AND dropdown overlay
+    if (
+      searchContainer && !searchContainer.contains(e.target) &&
+      searchDropdownOverlay && !searchDropdownOverlay.contains(e.target)
+    ) {
       closeSearch();
     }
   }
