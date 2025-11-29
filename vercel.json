@@ -3,7 +3,6 @@
   "outputDirectory": ".",
   "framework": null,
   "trailingSlash": false,
-  "error": "404.html",
   "github": {
     "silent": true
   },
