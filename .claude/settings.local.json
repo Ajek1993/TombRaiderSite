@@ -1,15 +1,20 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)",
-      "WebFetch(domain:developers.google.com)",
+      "Bash(sed:*)",
+      "Bash(echo:*)",
       "Bash(cat:*)",
-      "Bash(\"C:/Users/Arkadiusz/Desktop/claude-project/lib/youtube-api-rest.js\")",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(node:*)",
       "Bash(python:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(npm install:*)",
-      "Bash(git push:*)"
+      "Edit(*)",
+      "WebFetch(domain:developers.google.com)",
+      "Bash(tree:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

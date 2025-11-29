@@ -1,6 +1,12 @@
 {
   "buildCommand": "echo 'Static site'",
   "outputDirectory": ".",
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "github": {
+    "silent": true
+  },
   "headers": [
     {
       "source": "/(.*)",
