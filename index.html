@@ -119,9 +119,13 @@
     }
     </script>
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="dns-prefetch" href="https://www.googleapis.com" />
+    <link rel="dns-prefetch" href="https://sheets.googleapis.com" />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -457,7 +461,7 @@
             id="videoModalIframe"
             class="video-modal-iframe"
             src=""
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           >
           </iframe>
@@ -486,16 +490,16 @@
     </script>
 
     <!-- JavaScript -->
-    <script src="/assets/js/cookie-consent.js"></script>
-    <script src="/assets/js/theme-switcher.js"></script>
-    <script src="/assets/js/video-modal.js"></script>
-    <script src="/config/playlists.js"></script>
-    <script src="/assets/js/components/search.js"></script>
-    <script src="/assets/js/stream-reminders.js"></script>
-    <script src="/assets/js/calendar-export.js"></script>
-    <script src="/assets/js/announcements.js"></script>
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/schema-generator.js"></script>
-    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/cookie-consent.js" defer></script>
+    <script src="/assets/js/theme-switcher.js" defer></script>
+    <script src="/assets/js/video-modal.js" defer></script>
+    <script src="/config/playlists.js" defer></script>
+    <script src="/assets/js/components/search.js" defer></script>
+    <script src="/assets/js/stream-reminders.js" defer></script>
+    <script src="/assets/js/calendar-export.js" defer></script>
+    <script src="/assets/js/announcements.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/schema-generator.js" defer></script>
+    <script src="/assets/js/home.js" defer></script>
   </body>
 </html>
