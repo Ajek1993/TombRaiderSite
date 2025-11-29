@@ -244,7 +244,7 @@ function createGameplayCard(video, isNew = false) {
       <div class="card-thumbnail-wrapper">
         <img
           src="${video.thumbnail}"
-          alt="${video.title}"
+          alt="${video.title} - Tomb Raider Gameplay PL"
           class="card-thumbnail"
           loading="lazy">
         ${isNew ? '<span class="badge badge-new">NEW!</span>' : ''}
@@ -276,7 +276,7 @@ function createHighlightCard(video) {
       <div class="card-thumbnail-wrapper">
         <img
           src="${video.thumbnail}"
-          alt="${video.title}"
+          alt="${video.title} - Tomb Raider Highlights PL"
           class="card-thumbnail thumbnail-small"
           loading="lazy">
       </div>
@@ -403,7 +403,7 @@ function updateMostViewedWidget(video) {
 
   widgetElement.innerHTML = `
     <div class="widget-video-thumbnail" style="cursor: pointer;">
-      <img src="${video.thumbnail}" alt="${video.title}" loading="lazy" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
+      <img src="${video.thumbnail}" alt="${video.title} - Tomb Raider Gameplay PL" loading="lazy" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
     </div>
     <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-primary);">${video.title}</h4>
     <div style="display: flex; gap: 12px; justify-content: center; font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">

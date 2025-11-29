@@ -135,7 +135,7 @@ function createVideoCard(video, isNew = false) {
   card.innerHTML = `
     <div class="video-thumbnail">
       ${isNew ? '<div class="new-badge">NEW</div>' : ''}
-      ${video.thumbnail ? `<img src="${video.thumbnail}" alt="${video.title}" loading="lazy">` : ''}
+      ${video.thumbnail ? `<img src="${video.thumbnail}" alt="${video.title} - Tomb Raider Gameplay PL" loading="lazy">` : ''}
       <div class="duration-badge">${video.duration}</div>
     </div>
     <div class="video-info">

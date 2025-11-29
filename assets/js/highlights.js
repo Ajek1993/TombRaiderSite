@@ -149,7 +149,7 @@ function createShortCard(short) {
   card.innerHTML = `
     <div class="short-thumbnail">
       ${badge}
-      ${short.thumbnail ? `<img src="${short.thumbnail}" alt="${short.title}" loading="lazy">` : ''}
+      ${short.thumbnail ? `<img src="${short.thumbnail}" alt="${short.title} - Tomb Raider Highlights PL" loading="lazy">` : ''}
       <div class="duration-badge">${short.duration}</div>
     </div>
     <div class="short-info">
