@@ -27,7 +27,6 @@ export function renderFooter() {
               <li><a href="/">Home</a></li>
               <li><a href="/gameplays.html">Gameplay'e</a></li>
               <li><a href="/highlights.html">Highlights</a></li>
-              <li><a href="/admin/announcements.html">Administracja</a></li>
             </ul>
           </div>
 
