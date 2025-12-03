@@ -9,7 +9,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(npm install:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(for file in gameplays.html highlights.html)",
+      "Bash(do cp \"$file\" \"$file.backup\")",
+      "Bash(done)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []
