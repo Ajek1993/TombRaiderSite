@@ -149,7 +149,7 @@ function createShortCard(short) {
   card.innerHTML = `
     <div class="short-thumbnail">
       ${badge}
-      ${short.thumbnail ? `<img src="${short.thumbnail}" alt="${short.title}" loading="lazy">` : ''}
+      ${short.thumbnail ? `<img src="${short.thumbnail}" alt="${short.title} - Tomb Raider Highlights PL" loading="lazy">` : ''}
       <div class="duration-badge">${short.duration}</div>
     </div>
     <div class="short-info">
@@ -303,6 +303,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Initialize and render
     await initializeShorts();
+    
+    // Generate schema markup for SEO
+    if (state.allShorts.length > 0 && window.SchemaGenerator) {
+      const highlightsForSchema = state.allShorts.slice(0, 10);
+
+      highlightsForSchema.forEach((video) => {
+        const schema = window.SchemaGenerator.generateVideoSchema(video);
+        window.SchemaGenerator.injectSchema(schema);
+      });
+
+      const listSchema = window.SchemaGenerator.generateVideoListSchema(
+        highlightsForSchema,
+        "Najlepsze Momenty z Tomb Raider"
+      );
+      window.SchemaGenerator.injectSchema(listSchema);
+    }
     renderShorts();
 
     // Load More button

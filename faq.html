@@ -3,9 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Często zadawane pytania - Bruxa Gaming" />
+    <link rel="canonical" href="https://bruxa-tomb-raider.vercel.app/faq.html" />
+    <meta name="description" content="Najczęściej zadawane pytania o gameplay'e Tomb Raider, streamy na TikTok, harmonogram publikacji wideo. Znajdź odpowiedzi na wszystkie pytania!" />
+    <meta
+      name="keywords"
+      content="tomb raider faq, pytania tomb raider, gameplay pytania, bruxa gaming faq, lara croft pytania"
+    />
+    <meta name="author" content="Bruxa Gaming" />
+    <meta name="robots" content="index, follow" />
 
-    <title>FAQ - Często Zadawane Pytania | Bruxa Gaming</title>
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:url"
+      content="https://bruxa-tomb-raider.vercel.app/faq.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:site_name"
+      content="Bruxa Gaming - Tomb Raider Gameplay PL"
+    />
+    <meta property="og:locale" content="pl_PL" />
+    <meta
+      property="og:title"
+      content="FAQ - Najczęściej Zadawane Pytania | Bruxa Gaming"
+    />
+    <meta
+      property="og:description"
+      content="❓ Odpowiedzi na pytania o gameplay'e Tomb Raider, streamy, harmonogram publikacji. Wszystko co musisz wiedzieć o kanale!"
+    />
+    <meta
+      property="og:image"
+      content="https://bruxa-tomb-raider.vercel.app/assets/images/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FAQ - Najczęściej Zadawane Pytania" />
+    <meta
+      name="twitter:description"
+      content="❓ Odpowiedzi na pytania o gameplay'e Tomb Raider, streamy, harmonogram."
+    />
+    <meta
+      name="twitter:image"
+      content="https://bruxa-tomb-raider.vercel.app/assets/images/og-image.jpg"
+    />
+
+    <title>FAQ - Pytania o Tomb Raider Gameplay | Bruxa Gaming</title>
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#cd853f" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Bruxa Gaming" />
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="dns-prefetch" href="https://www.googleapis.com" />
+    <link rel="dns-prefetch" href="https://sheets.googleapis.com" />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -27,6 +86,28 @@
       sizes="180x180"
       href="/assets/images/apple-touch-icon.png"
     />
+    <!-- Schema.org - Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strona Główna",
+          "item": "https://bruxa-tomb-raider.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FAQ",
+          "item": "https://bruxa-tomb-raider.vercel.app/faq.html"
+        }
+      ]
+    }
+    </script>
+
   </head>
   <body>
     <!-- Navigation (dynamically loaded) -->
@@ -123,12 +204,12 @@
     </script>
 
     <!-- JavaScript -->
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/theme-switcher.js"></script>
-    <script src="/assets/js/cookie-consent.js"></script>
-    <script src="/assets/js/faq.js"></script>
-    <script src="/assets/js/video-modal.js"></script>
-    <script src="/config/playlists.js"></script>
-    <script src="/assets/js/components/search.js"></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/theme-switcher.js" defer></script>
+    <script src="/assets/js/cookie-consent.js" defer></script>
+    <script src="/assets/js/faq.js" defer></script>
+    <script src="/assets/js/video-modal.js" defer></script>
+    <script src="/config/playlists.js" defer></script>
+    <script src="/assets/js/components/search.js" defer></script>
   </body>
 </html>

@@ -3,34 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://bruxa-tomb-raider.vercel.app/" />
     <meta
       name="description"
-      content="Strona gamingowa poświęcona Tomb Raider. Gameplay'e, highlights, streamy na TikTok i wiele więcej!"
+      content="🎮 Tomb Raider gameplay po polsku! Pełne przejścia TR1-TR6 Remastered, najlepsze momenty, streamy TikTok. Dołącz do przygód z Larą Croft na Bruxa Gaming!"
     />
     <meta
       name="keywords"
-      content="Tomb Raider, gaming, gameplay, Lara Croft, streamy, TikTok"
+      content="tomb raider gameplay po polsku, tomb raider pl, lara croft gra, tomb raider remastered polska, tomb raider przejście po polsku, bruxa gaming, tomb raider 1 gameplay, tomb raider 2 polska, tomb raider stream"
     />
-    <meta name="author" content="Bruxa" />
+    <meta name="author" content="Bruxa Gaming" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Bruxa Gaming - Tomb Raider Adventures" />
+    <meta property="og:url" content="https://bruxa-tomb-raider.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:site_name"
+      content="Bruxa Gaming - Tomb Raider Gameplay PL"
+    />
+    <meta property="og:locale" content="pl_PL" />
+    <meta
+      property="og:title"
+      content="Bruxa Gaming - Tomb Raider Gameplay po Polsku | TR1-TR6 Remastered"
+    />
     <meta
       property="og:description"
-      content="Eksplorujemy starożytne ruiny razem z Larą Croft!"
+      content="🎮 Pełne gameplay'e z serii Tomb Raider po polsku! Oglądaj przejścia TR1-TR6 Remastered, najlepsze momenty z gry, streamy na TikTok. Dołącz do przygód z Larą Croft!"
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/assets/images/og-image.jpg" />
+    <meta
+      property="og:image"
+      content="https://bruxa-tomb-raider.vercel.app/assets/images/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Bruxa Gaming - Tomb Raider Gameplay Banner"
+    />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Bruxa Gaming - Tomb Raider Adventures"
+      content="Bruxa Gaming - Tomb Raider Gameplay po Polsku"
     />
     <meta
       name="twitter:description"
-      content="Eksplorujemy starożytne ruiny razem z Larą Croft!"
+      content="🎮 Pełne gameplay'e z serii Tomb Raider po polsku! TR1-TR6 Remastered, highlights, streamy TikTok."
+    />
+    <meta
+      name="twitter:image"
+      content="https://bruxa-tomb-raider.vercel.app/assets/images/og-image.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Bruxa Gaming - Tomb Raider Gameplay Banner"
     />
 
     <!-- Favicon -->
@@ -52,11 +80,58 @@
       href="/assets/images/apple-touch-icon.png"
     />
 
-    <title>Bruxa Gaming - Tomb Raider Adventures</title>
+    <title>Bruxa Gaming - Tomb Raider Gameplay PL | TR1-TR6 Remastered</title>
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#cd853f" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Bruxa Gaming" />
+    
+    <!-- Schema.org JSON-LD - WebSite with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Bruxa Gaming - Tomb Raider Gameplay PL",
+      "alternateName": "Bruxa Gaming",
+      "url": "https://bruxa-tomb-raider.vercel.app/",
+      "description": "Pełne gameplay'e z serii Tomb Raider po polsku. Przejścia TR1-TR6 Remastered, highlights, streamy.",
+      "inLanguage": "pl-PL",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://bruxa-tomb-raider.vercel.app/?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Schema.org JSON-LD - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bruxa Gaming",
+      "url": "https://bruxa-tomb-raider.vercel.app/",
+      "logo": "https://bruxa-tomb-raider.vercel.app/assets/images/logo.png",
+      "description": "Kanał gamingowy specjalizujący się w gameplay'ach Tomb Raider po polsku",
+      "sameAs": [
+        "https://www.youtube.com/@bruxa7656",
+        "https://www.tiktok.com/@xbruksiax"
+      ]
+    }
+    </script>
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="dns-prefetch" href="https://www.googleapis.com" />
+    <link rel="dns-prefetch" href="https://sheets.googleapis.com" />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -170,11 +245,36 @@
               <div class="avatar-container">
                 <div class="avatar"></div>
               </div>
-              <h3>Cześć! Jestem Bruxa</h3>
+              <h2>O Kanale Bruxa Gaming</h2>
               <p>
-                Jestem streamerką i wieloletnią fanką Tomb Raider. Razem z Larą
-                Croft eksplorujemy starożytne ruiny, rozwiązujemy zagadki i
-                odkrywamy sekrety legend!
+                Witaj w <strong>Bruxa Gaming</strong> - Twoim miejscu na kompletne
+                <strong>gameplay'e Tomb Raider po polsku</strong>! Specjalizuję się w
+                pełnych przejściach klasycznej serii z <strong>Larą Croft</strong>, od
+                Tomb Raider 1 w wersji Remastered.
+              </p>
+              <p>Na kanale znajdziesz:</p>
+              <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                <li>
+                  📺 <strong>Pełne przejścia</strong> wszystkich części Tomb Raider
+                  (TR1-TR6 Remastered)
+                </li>
+                <li>
+                  🎮 <strong>Dodatki i ekspansje</strong>: Unfinished Business, Golden
+                  Mask, Lost Artifact
+                </li>
+                <li>⭐ <strong>Highlights i najlepsze momenty</strong> z gier</li>
+                <li>🔴 <strong>Streamy na żywo</strong> na TikTok z rozgrywką</li>
+                <li>
+                  💎 <strong>Wszystkie sekrety i skarby</strong> odkryte w każdym
+                  poziomie
+                </li>
+              </ul>
+              <p>
+                Każdy <strong>gameplay Tomb Raider</strong> jest nagrany w wysokiej
+                jakości, z polskim komentarzem i dokładnym pokazaniem wszystkich
+                zagadek, sekretów i trudnych fragmentów. Idealne zarówno dla weteranów
+                serii Tomb Raider, jak i dla nowych graczy którzy chcą poznać przygody
+                <strong>Lary Croft</strong> po raz pierwszy.
               </p>
               <div class="quick-stats">
                 <div class="stat-item">
@@ -392,7 +492,7 @@
             id="videoModalIframe"
             class="video-modal-iframe"
             src=""
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           >
           </iframe>
@@ -421,15 +521,16 @@
     </script>
 
     <!-- JavaScript -->
-    <script src="/assets/js/cookie-consent.js"></script>
-    <script src="/assets/js/theme-switcher.js"></script>
-    <script src="/assets/js/video-modal.js"></script>
-    <script src="/config/playlists.js"></script>
-    <script src="/assets/js/components/search.js"></script>
-    <script src="/assets/js/stream-reminders.js"></script>
-    <script src="/assets/js/calendar-export.js"></script>
-    <script src="/assets/js/announcements.js"></script>
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/cookie-consent.js" defer></script>
+    <script src="/assets/js/theme-switcher.js" defer></script>
+    <script src="/assets/js/video-modal.js" defer></script>
+    <script src="/config/playlists.js" defer></script>
+    <script src="/assets/js/components/search.js" defer></script>
+    <script src="/assets/js/stream-reminders.js" defer></script>
+    <script src="/assets/js/calendar-export.js" defer></script>
+    <script src="/assets/js/announcements.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/schema-generator.js" defer></script>
+    <script src="/assets/js/home.js" defer></script>
   </body>
 </html>

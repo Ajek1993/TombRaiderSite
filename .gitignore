@@ -32,3 +32,5 @@ build/
 # Backup files
 .backup/
 *.backup
+
+CLAUDE.md

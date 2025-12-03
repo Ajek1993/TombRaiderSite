@@ -156,14 +156,6 @@ function updateHeroVideo(video) {
         loading="lazy">
       </iframe>
     </div>
-    <div class="video-embed-info">
-      <h3 class="video-embed-title">${video.title}</h3>
-      <div class="video-embed-meta">
-        <span>🕐 ${video.duration}</span>
-        <span>👁 ${video.views}</span>
-        <span>📅 ${video.publishedAt}</span>
-      </div>
-    </div>
   `;
 }
 
@@ -244,7 +236,7 @@ function createGameplayCard(video, isNew = false) {
       <div class="card-thumbnail-wrapper">
         <img
           src="${video.thumbnail}"
-          alt="${video.title}"
+          alt="${video.title} - Tomb Raider Gameplay PL"
           class="card-thumbnail"
           loading="lazy">
         ${isNew ? '<span class="badge badge-new">NEW!</span>' : ''}
@@ -276,7 +268,7 @@ function createHighlightCard(video) {
       <div class="card-thumbnail-wrapper">
         <img
           src="${video.thumbnail}"
-          alt="${video.title}"
+          alt="${video.title} - Tomb Raider Highlights PL"
           class="card-thumbnail thumbnail-small"
           loading="lazy">
       </div>
@@ -403,7 +395,7 @@ function updateMostViewedWidget(video) {
 
   widgetElement.innerHTML = `
     <div class="widget-video-thumbnail" style="cursor: pointer;">
-      <img src="${video.thumbnail}" alt="${video.title}" loading="lazy" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
+      <img src="${video.thumbnail}" alt="${video.title} - Tomb Raider Gameplay PL" loading="lazy" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
     </div>
     <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-primary);">${video.title}</h4>
     <div style="display: flex; gap: 12px; justify-content: center; font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">
@@ -527,6 +519,24 @@ async function initHomePage() {
 
     // Setup random gameplay button
     setupRandomGameplayButton();
+
+    // Generate schema markup for SEO
+    if (gameplayVideos.length > 0 && window.SchemaGenerator) {
+      // Generuj VideoObject schema dla pierwszych 3 filmów
+      const featuredVideos = gameplayVideos.slice(0, 3);
+
+      featuredVideos.forEach((video) => {
+        const schema = window.SchemaGenerator.generateVideoSchema(video);
+        window.SchemaGenerator.injectSchema(schema);
+      });
+
+      // Generuj ItemList schema dla całej listy
+      const listSchema = window.SchemaGenerator.generateVideoListSchema(
+        featuredVideos,
+        "Najnowsze Tomb Raider Gameplays"
+      );
+      window.SchemaGenerator.injectSchema(listSchema);
+    }
 
     console.log('[Home] Home page initialized successfully');
 

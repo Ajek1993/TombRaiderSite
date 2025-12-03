@@ -135,7 +135,7 @@ function createVideoCard(video, isNew = false) {
   card.innerHTML = `
     <div class="video-thumbnail">
       ${isNew ? '<div class="new-badge">NEW</div>' : ''}
-      ${video.thumbnail ? `<img src="${video.thumbnail}" alt="${video.title}" loading="lazy">` : ''}
+      ${video.thumbnail ? `<img src="${video.thumbnail}" alt="${video.title} - Tomb Raider Gameplay PL" loading="lazy">` : ''}
       <div class="duration-badge">${video.duration}</div>
     </div>
     <div class="video-info">
@@ -421,6 +421,31 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Fetch all category counts first (pre-load all data)
   await fetchAllCategoryCounts();
+  
+  // Generate schema markup for SEO
+  if (window.SchemaGenerator) {
+    const allVideos = [];
+    Object.keys(state.videosData).forEach(cat => {
+      allVideos.push(...(state.videosData[cat] || []));
+    });
+
+    if (allVideos.length > 0) {
+      // Generuj schema dla pierwszych 10 filmów
+      const videosForSchema = allVideos.slice(0, 10);
+
+      videosForSchema.forEach((video) => {
+        const schema = window.SchemaGenerator.generateVideoSchema(video);
+        window.SchemaGenerator.injectSchema(schema);
+      });
+
+      // ItemList schema dla całej kolekcji
+      const listSchema = window.SchemaGenerator.generateVideoListSchema(
+        videosForSchema,
+        "Kompletne Gameplay'e Tomb Raider"
+      );
+      window.SchemaGenerator.injectSchema(listSchema);
+    }
+  }
 
   // Render initial videos for first category (expanded by default)
   if (CATEGORIES.length > 0) {
