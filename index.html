@@ -85,44 +85,47 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#cd853f" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="apple-mobile-web-app-title" content="Bruxa Gaming" />
-    
+
     <!-- Schema.org JSON-LD - WebSite with SearchAction -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Bruxa Gaming - Tomb Raider Gameplay PL",
-      "alternateName": "Bruxa Gaming",
-      "url": "https://bruxa-tomb-raider.vercel.app/",
-      "description": "Pełne gameplay'e z serii Tomb Raider po polsku. Przejścia TR1-TR6 Remastered, highlights, streamy.",
-      "inLanguage": "pl-PL",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://bruxa-tomb-raider.vercel.app/?search={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Bruxa Gaming - Tomb Raider Gameplay PL",
+        "alternateName": "Bruxa Gaming",
+        "url": "https://bruxa-tomb-raider.vercel.app/",
+        "description": "Pełne gameplay'e z serii Tomb Raider po polsku. Przejścia TR1-TR6 Remastered, highlights, streamy.",
+        "inLanguage": "pl-PL",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://bruxa-tomb-raider.vercel.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       }
-    }
     </script>
-    
+
     <!-- Schema.org JSON-LD - Organization -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Bruxa Gaming",
-      "url": "https://bruxa-tomb-raider.vercel.app/",
-      "logo": "https://bruxa-tomb-raider.vercel.app/assets/images/logo.png",
-      "description": "Kanał gamingowy specjalizujący się w gameplay'ach Tomb Raider po polsku",
-      "sameAs": [
-        "https://www.youtube.com/@bruxa7656",
-        "https://www.tiktok.com/@xbruksiax"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Bruxa Gaming",
+        "url": "https://bruxa-tomb-raider.vercel.app/",
+        "logo": "https://bruxa-tomb-raider.vercel.app/assets/images/logo.png",
+        "description": "Kanał gamingowy specjalizujący się w gameplay'ach Tomb Raider po polsku",
+        "sameAs": [
+          "https://www.youtube.com/@bruxa7656",
+          "https://www.tiktok.com/@xbruksiax"
+        ]
+      }
     </script>
 
     <!-- Resource Hints -->
@@ -169,15 +172,19 @@
         <div class="hero-content">
           <div class="container">
             <!-- Pixel Lara -->
+            {% comment %}
             <div class="pixel-lara">
               <div class="pixel-art-container">
-                <img src="/assets/images/pixel-art/lara-croft-hero.png"
-                     alt="Lara Croft 16-bit Pixel Art"
-                     class="pixel-art"
-                     width="128"
-                     height="128">
+                <img
+                  src="/assets/images/pixel-art/lara-croft-hero.png"
+                  alt="Lara Croft 16-bit Pixel Art"
+                  class="pixel-art"
+                  width="128"
+                  height="128"
+                />
               </div>
             </div>
+            {% endcomment %}
 
             <!-- Hero Title -->
             <h1 class="hero-title fade-in">
@@ -241,34 +248,40 @@
               </div>
               <h2>O Kanale Bruxa Gaming</h2>
               <p>
-                Witaj w <strong>Bruxa Gaming</strong> - Twoim miejscu na kompletne
-                <strong>gameplay'e Tomb Raider po polsku</strong>! Specjalizuję się w
-                pełnych przejściach klasycznej serii z <strong>Larą Croft</strong>, od
-                Tomb Raider 1 w wersji Remastered.
+                Witaj w <strong>Bruxa Gaming</strong> - Twoim miejscu na
+                kompletne <strong>gameplay'e Tomb Raider po polsku</strong>!
+                Specjalizuję się w pełnych przejściach klasycznej serii z
+                <strong>Larą Croft</strong>, od Tomb Raider 1 w wersji
+                Remastered.
               </p>
               <p>Na kanale znajdziesz:</p>
-              <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+              <ul style="text-align: left; margin: 15px 0; padding-left: 20px">
                 <li>
-                  📺 <strong>Pełne przejścia</strong> wszystkich części Tomb Raider
-                  (TR1-TR6 Remastered)
+                  📺 <strong>Pełne przejścia</strong> wszystkich części Tomb
+                  Raider (TR1-TR6 Remastered)
                 </li>
                 <li>
-                  🎮 <strong>Dodatki i ekspansje</strong>: Unfinished Business, Golden
-                  Mask, Lost Artifact
+                  🎮 <strong>Dodatki i ekspansje</strong>: Unfinished Business,
+                  Golden Mask, Lost Artifact
                 </li>
-                <li>⭐ <strong>Highlights i najlepsze momenty</strong> z gier</li>
-                <li>🔴 <strong>Streamy na żywo</strong> na TikTok z rozgrywką</li>
                 <li>
-                  💎 <strong>Wszystkie sekrety i skarby</strong> odkryte w każdym
-                  poziomie
+                  ⭐ <strong>Highlights i najlepsze momenty</strong> z gier
+                </li>
+                <li>
+                  🔴 <strong>Streamy na żywo</strong> na TikTok z rozgrywką
+                </li>
+                <li>
+                  💎 <strong>Wszystkie sekrety i skarby</strong> odkryte w
+                  każdym poziomie
                 </li>
               </ul>
               <p>
-                Każdy <strong>gameplay Tomb Raider</strong> jest nagrany w wysokiej
-                jakości, z polskim komentarzem i dokładnym pokazaniem wszystkich
-                zagadek, sekretów i trudnych fragmentów. Idealne zarówno dla weteranów
-                serii Tomb Raider, jak i dla nowych graczy którzy chcą poznać przygody
-                <strong>Lary Croft</strong> po raz pierwszy.
+                Każdy <strong>gameplay Tomb Raider</strong> jest nagrany w
+                wysokiej jakości, z polskim komentarzem i dokładnym pokazaniem
+                wszystkich zagadek, sekretów i trudnych fragmentów. Idealne
+                zarówno dla weteranów serii Tomb Raider, jak i dla nowych graczy
+                którzy chcą poznać przygody <strong>Lary Croft</strong> po raz
+                pierwszy.
               </p>
               <div class="quick-stats">
                 <div class="stat-item">
@@ -297,7 +310,10 @@
       <!-- Latest Gameplays Section -->
       <section class="section section-gameplays">
         <div class="container">
-          <h2 class="section-title"><span class="title-icon">🎮</span><span class="title-text">Najnowsze Gameplay'e - Tomb Raider</span></h2>
+          <h2 class="section-title">
+            <span class="title-icon">🎮</span
+            ><span class="title-text">Najnowsze Gameplay'e - Tomb Raider</span>
+          </h2>
 
           <div class="gameplay-grid grid-4">
             <!-- Dynamically loaded by home.js -->
@@ -317,7 +333,10 @@
       <!-- Highlights Section -->
       <section class="section section-highlights">
         <div class="container">
-          <h2 class="section-title"><span class="title-icon">⭐</span><span class="title-text">Highlights - Najlepsze Momenty</span></h2>
+          <h2 class="section-title">
+            <span class="title-icon">⭐</span
+            ><span class="title-text">Highlights - Najlepsze Momenty</span>
+          </h2>
 
           <div class="highlights-grid grid-4">
             <!-- Dynamically loaded by home.js -->
@@ -337,7 +356,10 @@
       <!-- Next Stream Section -->
       <section id="upcoming-stream-section" class="section section-stream">
         <div class="container">
-          <h2 class="section-title"><span class="title-icon">🔴</span><span class="title-text">Nadchodzący Stream</span></h2>
+          <h2 class="section-title">
+            <span class="title-icon">🔴</span
+            ><span class="title-text">Nadchodzący Stream</span>
+          </h2>
 
           <div class="stream-card card featured-card">
             <div class="stream-badge">
@@ -406,7 +428,10 @@
       <!-- Gaming Widgets Section -->
       <section class="section section-widgets">
         <div class="container">
-          <h2 class="section-title"><span class="title-icon">🎲</span><span class="title-text">Gaming Widgets</span></h2>
+          <h2 class="section-title">
+            <span class="title-icon">🎲</span
+            ><span class="title-text">Gaming Widgets</span>
+          </h2>
 
           <div class="widgets-grid grid-3">
             <!-- Random Gameplay Widget -->
@@ -414,11 +439,13 @@
               <h3 class="widget-title">🎲 Losowy Gameplay</h3>
               <div class="widget-content">
                 <div class="pixel-lara-small">
-                  <img src="/assets/images/pixel-art/tomb-widget.png"
-                       alt="Tomb Entrance"
-                       class="pixel-art-small"
-                       width="96"
-                       height="96">
+                  <img
+                    src="/assets/images/pixel-art/tomb-widget.png"
+                    alt="Tomb Entrance"
+                    class="pixel-art-small"
+                    width="96"
+                    height="96"
+                  />
                 </div>
                 <p>Odkryj losowy grobowiec!</p>
                 <button
@@ -482,7 +509,8 @@
             id="videoModalIframe"
             class="video-modal-iframe"
             src=""
-            loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           >
           </iframe>
@@ -492,14 +520,15 @@
 
     <!-- Load Components First -->
     <script type="module">
-      import { renderNavbar } from '/assets/js/components/navbar.js';
-      import { renderMobileMenu } from '/assets/js/components/mobile-menu.js';
-      import { renderFooter } from '/assets/js/components/footer.js';
+      import { renderNavbar } from "/assets/js/components/navbar.js";
+      import { renderMobileMenu } from "/assets/js/components/mobile-menu.js";
+      import { renderFooter } from "/assets/js/components/footer.js";
 
       // Render components
-      document.getElementById('navbar-root').innerHTML = renderNavbar('home');
-      document.getElementById('mobile-menu-root').innerHTML = renderMobileMenu('home');
-      document.getElementById('footer-root').innerHTML = renderFooter();
+      document.getElementById("navbar-root").innerHTML = renderNavbar("home");
+      document.getElementById("mobile-menu-root").innerHTML =
+        renderMobileMenu("home");
+      document.getElementById("footer-root").innerHTML = renderFooter();
 
       // Initialize navbar functionality after rendering
       // Wait for next tick to ensure DOM is updated
