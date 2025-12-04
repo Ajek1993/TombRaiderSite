@@ -344,8 +344,10 @@ function buildCategoryAccordions() {
         <button class="category-header" data-category="${key}" aria-expanded="${isExpanded}">
           <div class="category-title">
             <span class="category-icon">${playlist.icon}</span>
-            <h2>${playlist.name}</h2>
-            <span class="video-count" data-count="${key}">Loading...</span>
+            <div class="title-text">
+              <h2>${playlist.name}</h2>
+              <span class="video-count" data-count="${key}">Loading...</span>
+            </div>
           </div>
           <span class="accordion-icon">${isExpanded ? '−' : '+'}</span>
         </button>

@@ -49,6 +49,11 @@
 .title-icon {
   font-size: 1.2em;
   animation: float 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.page-title .title-text {
+  display: block;
 }
 
 .page-description {
@@ -211,6 +216,14 @@
 .category-icon {
   font-size: 2rem;
   filter: drop-shadow(0 0 10px var(--cyber-pink));
+  flex-shrink: 0;
+}
+
+.title-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
 }
 
 .category-title h2 {
@@ -558,6 +571,22 @@
     padding: 100px 0 40px;
   }
 
+  .page-title {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-title .title-icon {
+    font-size: 1.5em;
+  }
+
+  .page-title .title-text {
+    text-align: center;
+  }
+
   .quick-nav {
     top: 60px;
     padding: 1rem 0;
@@ -576,17 +605,31 @@
     padding: 1rem 1.25rem;
   }
 
+  .category-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .category-icon {
+    font-size: 1.5rem;
+  }
+
+  .title-text {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+  }
+
   .category-title h2 {
-    font-size: 1rem;
+    font-size: 0.85rem;
+    margin: 0;
   }
 
   .video-count {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
-  }
-
-  .category-icon {
-    font-size: 1.5rem;
   }
 
   .accordion-icon {

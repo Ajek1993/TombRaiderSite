@@ -49,6 +49,11 @@
 .title-icon {
   font-size: 1.2em;
   animation: float 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.page-title .title-text {
+  display: block;
 }
 
 @keyframes float {
@@ -387,6 +392,22 @@
 @media (max-width: 768px) {
   .page-header {
     padding: 100px 0 40px;
+  }
+
+  .page-title {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-title .title-icon {
+    font-size: 1.5em;
+  }
+
+  .page-title .title-text {
+    text-align: center;
   }
 
   .highlights-section {
