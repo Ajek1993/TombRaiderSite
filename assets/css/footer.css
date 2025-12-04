@@ -76,12 +76,15 @@
 }
 
 .pixel-art-tiny {
-  font-family: monospace;
-  font-size: 10px;
-  line-height: 1;
-  color: var(--gold-accent);
-  text-shadow: 0 0 5px var(--gold-accent);
-  margin: 0;
+  display: block;
+  width: 64px;
+  height: 64px;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 5px var(--gold-accent));
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .footer-info {

@@ -76,12 +76,17 @@
 }
 
 .pixel-art {
-  font-family: monospace;
-  font-size: 16px;
-  line-height: 1;
-  color: var(--gold-accent);
-  text-shadow: 0 0 10px var(--gold-accent);
-  margin: 0;
+  display: block;
+  width: 128px;
+  height: 128px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 10px var(--gold-accent))
+          drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 @keyframes float {
@@ -365,7 +370,12 @@
   }
 
   .pixel-art {
-    font-size: 12px;
+    width: 96px;
+    height: 96px;
+  }
+
+  .pixel-art-container {
+    animation: none !important;
   }
 }
 

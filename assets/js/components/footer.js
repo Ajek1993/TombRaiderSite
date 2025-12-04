@@ -78,13 +78,12 @@ export function renderFooter() {
           <div class="footer-logo">
             <span class="logo-icon">🏺</span>
             <div class="pixel-lara-footer">
-              <pre class="pixel-art-tiny">
- ████
-█▓▓▓█
-██▓██
-█████
- ██ ██
-            </pre>
+              <img src="/assets/images/pixel-art/lara-croft-hero.png"
+                   alt="Lara Croft Logo"
+                   class="pixel-art-tiny"
+                   width="64"
+                   height="64"
+                   loading="lazy">
             </div>
           </div>
 

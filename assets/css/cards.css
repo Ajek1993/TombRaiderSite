@@ -379,12 +379,16 @@
 }
 
 .pixel-art-small {
-  font-family: monospace;
-  font-size: 12px;
-  line-height: 1;
-  color: var(--gold-accent);
-  text-shadow: 0 0 5px var(--gold-accent);
-  margin: 0;
+  display: block;
+  width: 96px;
+  height: 96px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 8px var(--gold-accent));
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .widget-content p {
