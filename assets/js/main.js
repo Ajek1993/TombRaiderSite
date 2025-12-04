@@ -305,7 +305,14 @@ window.initializeNavbar = function() {
   // ===================================================================
 
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
+    console.log('✅ Hamburger and mobile menu found');
+    console.log('Hamburger element:', hamburger);
+
+    hamburger.addEventListener('click', (e) => {
+      console.log('🍔 Hamburger clicked!'); // Debug log
+      e.preventDefault(); // Prevent any default behavior
+      e.stopPropagation(); // Stop event bubbling
+
       hamburger.classList.toggle('active');
       mobileMenu.classList.toggle('open');
       body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
@@ -347,6 +354,11 @@ window.initializeNavbar = function() {
         }
       }
     });
+  } else {
+    // Add else block to catch when elements aren't found
+    console.error('❌ Hamburger or mobile menu not found');
+    console.log('Hamburger:', hamburger);
+    console.log('Mobile menu:', mobileMenu);
   }
 
   // ===================================================================
