@@ -1,0 +1,238 @@
+/* ============================================
+   VIDEO MODAL STYLES - THEME-AWARE
+   ============================================ */
+
+/* Modal Overlay (backdrop) */
+.video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: var(--z-overlay);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Modal Container */
+.video-modal {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  background: var(--dark-bg);
+  border: 2px solid var(--electric-purple);
+  border-radius: 12px;
+  box-shadow:
+    var(--shadow-lg),
+    0 0 40px rgba(138, 43, 226, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transform: scale(0.9) translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: var(--z-modal);
+  margin: auto;
+}
+
+.video-modal-overlay.active .video-modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Modal Header - Hidden (title visible on video) */
+.video-modal-header {
+  display: none;
+}
+
+.video-modal-title {
+  display: none;
+}
+
+/* Close Button - Floating in corner */
+.video-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  background: rgba(138, 43, 226, 0.95);
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+  box-shadow:
+    0 0 25px rgba(138, 43, 226, 0.9),
+    0 6px 20px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.video-modal-close:hover {
+  background: var(--electric-purple);
+  border-color: var(--neon-cyan);
+  color: var(--near-black);
+  box-shadow:
+    var(--shadow-purple),
+    0 0 20px var(--electric-purple);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.video-modal-close:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+/* Video Container */
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  background: var(--near-black);
+  overflow: hidden;
+}
+
+.video-modal-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Loading state removed - spinner was always visible */
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .video-modal {
+    width: 92%;
+    max-width: 850px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 1024px) {
+  .video-modal {
+    width: 95%;
+    max-width: 800px;
+    max-height: 85vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-modal {
+    width: 95%;
+    margin: var(--spacing-md);
+    max-height: calc(100vh - 2rem);
+  }
+
+  .video-modal-close {
+    top: 8px;
+    right: 8px;
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+
+  /* Ensure iframe fits within viewport on mobile */
+  .video-modal-content {
+    max-width: 100%;
+  }
+
+  .video-modal-iframe {
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+
+/* Mobile landscape orientation fixes */
+@media (max-width: 768px) and (orientation: landscape) {
+  .video-modal {
+    width: 98%;
+    max-height: 95vh;
+    margin: var(--spacing-xs);
+  }
+
+  .video-modal-close {
+    top: 6px;
+    right: 6px;
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+  }
+}
+
+/* Fullscreen iframe fix for all mobile devices */
+@media (max-width: 768px) {
+  .video-modal-iframe:fullscreen,
+  .video-modal-iframe:-webkit-full-screen,
+  .video-modal-iframe:-moz-full-screen,
+  .video-modal-iframe:-ms-fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    object-fit: contain;
+  }
+}
+
+/* Animation for theme changes */
+.video-modal,
+.video-modal-header,
+.video-modal-close {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Accessibility */
+.video-modal-overlay:focus {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: -2px;
+}
+
+.video-modal-close:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ============================================
+   MATRIX THEME CONTRAST FIX
+   ============================================ */
+
+/* Fix modal button contrast in Matrix theme (green on green issue) */
+html[data-theme="matrix"] .video-modal-close {
+  color: #000000;
+}
+
+html[data-theme="matrix"] .video-modal-close:hover {
+  color: #000000;
+}

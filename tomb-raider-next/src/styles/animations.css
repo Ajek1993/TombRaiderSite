@@ -1,0 +1,430 @@
+/* ===================================================================
+   Animations & Effects
+   =================================================================== */
+
+/* ===================================================================
+   GLITCH EFFECTS
+   =================================================================== */
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--cyber-pink);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-1 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--electric-purple);
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(89px, 9999px, 83px, 0); }
+  5% { clip: rect(29px, 9999px, 41px, 0); }
+  10% { clip: rect(65px, 9999px, 18px, 0); }
+  15% { clip: rect(12px, 9999px, 95px, 0); }
+  20% { clip: rect(44px, 9999px, 58px, 0); }
+  25% { clip: rect(73px, 9999px, 22px, 0); }
+  30% { clip: rect(38px, 9999px, 67px, 0); }
+  35% { clip: rect(91px, 9999px, 14px, 0); }
+  40% { clip: rect(56px, 9999px, 79px, 0); }
+  45% { clip: rect(21px, 9999px, 46px, 0); }
+  50% { clip: rect(68px, 9999px, 33px, 0); }
+  55% { clip: rect(15px, 9999px, 88px, 0); }
+  60% { clip: rect(52px, 9999px, 71px, 0); }
+  65% { clip: rect(36px, 9999px, 24px, 0); }
+  70% { clip: rect(81px, 9999px, 49px, 0); }
+  75% { clip: rect(28px, 9999px, 63px, 0); }
+  80% { clip: rect(74px, 9999px, 17px, 0); }
+  85% { clip: rect(42px, 9999px, 86px, 0); }
+  90% { clip: rect(59px, 9999px, 31px, 0); }
+  95% { clip: rect(19px, 9999px, 54px, 0); }
+  100% { clip: rect(72px, 9999px, 36px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(31px, 9999px, 94px, 0); }
+  5% { clip: rect(78px, 9999px, 23px, 0); }
+  10% { clip: rect(12px, 9999px, 67px, 0); }
+  15% { clip: rect(54px, 9999px, 39px, 0); }
+  20% { clip: rect(86px, 9999px, 8px, 0); }
+  25% { clip: rect(27px, 9999px, 71px, 0); }
+  30% { clip: rect(63px, 9999px, 45px, 0); }
+  35% { clip: rect(9px, 9999px, 82px, 0); }
+  40% { clip: rect(48px, 9999px, 15px, 0); }
+  45% { clip: rect(92px, 9999px, 58px, 0); }
+  50% { clip: rect(35px, 9999px, 76px, 0); }
+  55% { clip: rect(69px, 9999px, 21px, 0); }
+  60% { clip: rect(6px, 9999px, 88px, 0); }
+  65% { clip: rect(51px, 9999px, 42px, 0); }
+  70% { clip: rect(83px, 9999px, 19px, 0); }
+  75% { clip: rect(26px, 9999px, 64px, 0); }
+  80% { clip: rect(73px, 9999px, 37px, 0); }
+  85% { clip: rect(14px, 9999px, 91px, 0); }
+  90% { clip: rect(57px, 9999px, 28px, 0); }
+  95% { clip: rect(85px, 9999px, 11px, 0); }
+  100% { clip: rect(45px, 9999px, 89px, 0); }
+}
+
+/* ===================================================================
+   NEON EFFECTS
+   =================================================================== */
+
+.neon-flicker {
+  animation: neon-flicker 4s infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+  20%, 24%, 55% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+}
+
+.neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+  }
+}
+
+/* ===================================================================
+   LOADING ANIMATIONS
+   =================================================================== */
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(0, 255, 255, 0.2);
+  border-top: 4px solid var(--neon-cyan);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-dots::after {
+  content: '...';
+  display: inline-block;
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+/* ===================================================================
+   SCROLL ANIMATIONS
+   =================================================================== */
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.6s ease-out;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===================================================================
+   HOVER ANIMATIONS
+   =================================================================== */
+
+.hover-lift {
+  transition: transform var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-glow {
+  transition: all var(--transition-base);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+}
+
+/* ===================================================================
+   SPECIAL EFFECTS
+   =================================================================== */
+
+/* Floating Animation */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Rotate Animation */
+.rotate {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Swing Animation */
+.swing {
+  animation: swing 2s ease-in-out infinite;
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Bounce Animation */
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===================================================================
+   PARTICLE EFFECTS
+   =================================================================== */
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--gold-accent);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float-particle 10s infinite;
+  box-shadow: 0 0 6px var(--gold-glow);
+  pointer-events: none;
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Stagger particles */
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 25%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 40%; animation-delay: 4s; }
+.particle:nth-child(4) { left: 55%; animation-delay: 1s; }
+.particle:nth-child(5) { left: 70%; animation-delay: 3s; }
+.particle:nth-child(6) { left: 85%; animation-delay: 5s; }
+
+/* ===================================================================
+   TEXT EFFECTS
+   =================================================================== */
+
+.gradient-text {
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: var(--weight-bold);
+}
+
+.text-glow-pink {
+  color: var(--cyber-pink);
+  text-shadow: var(--text-glow-pink);
+}
+
+.text-glow-cyan {
+  color: var(--neon-cyan);
+  text-shadow: var(--text-glow-cyan);
+}
+
+.text-glow-gold {
+  color: var(--gold-accent);
+  text-shadow: var(--text-glow-gold);
+}
+
+.text-glow-purple {
+  color: var(--electric-purple);
+  text-shadow: var(--text-glow-purple);
+}
+
+/* ===================================================================
+   MOBILE - REDUCE ANIMATIONS
+   =================================================================== */
+
+@media (max-width: 768px) {
+  /* Simplify animations on mobile */
+  * {
+    animation-duration: 0.3s !important;
+  }
+
+  .particle {
+    display: none;
+  }
+
+  /* Remove parallax on mobile */
+  .parallax-layer {
+    transform: none !important;
+  }
+}
+
+/* ===================================================================
+   PREFERS REDUCED MOTION
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .parallax-layer {
+    transform: none !important;
+  }
+
+  .particle {
+    display: none;
+  }
+
+  .float,
+  .bounce,
+  .swing,
+  .rotate {
+    animation: none !important;
+  }
+}
