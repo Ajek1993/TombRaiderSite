@@ -13,7 +13,8 @@
       "Bash(for file in gameplays.html highlights.html)",
       "Bash(do cp \"$file\" \"$file.backup\")",
       "Bash(done)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
