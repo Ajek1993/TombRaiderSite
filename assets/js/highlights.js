@@ -34,8 +34,6 @@ const state = {
  */
 async function fetchShorts() {
   try {
-    console.log('[Highlights] Fetching shorts from API');
-
     const response = await fetch(`${API_BASE_URL}/youtube?playlist=shorts`);
 
     if (!response.ok) {
@@ -44,8 +42,6 @@ async function fetchShorts() {
     }
 
     const data = await response.json();
-
-    console.log(`[Highlights] Received ${data.count} shorts`, data.cached ? '(cached)' : '(fresh)');
 
     // Sortuj shortsy po dacie publikacji (od najnowszych do najstarszych)
     const sortedVideos = (data.videos || []).sort((a, b) => {
@@ -90,12 +86,6 @@ async function initializeShorts() {
     }, state.allShorts[0]);
 
     state.loading = false;
-
-    console.log('[Highlights] Initialized:', {
-      total: state.allShorts.length,
-      newest: state.newestShort.title,
-      popular: state.popularShort.title
-    });
 
   } catch (error) {
     state.loading = false;

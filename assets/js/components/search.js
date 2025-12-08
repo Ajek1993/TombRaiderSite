@@ -54,8 +54,6 @@
    * Initialize search component
    */
   function initSearch() {
-    console.log('[Search] Initializing search component...');
-
     // Create search elements
     createSearchElements();
 
@@ -64,8 +62,6 @@
 
     // Setup event listeners
     setupEventListeners();
-
-    console.log('[Search] Search component initialized');
   }
 
   /**
@@ -295,9 +291,7 @@
       // Check if cache is still valid
       if (data.lastFetch && (now - data.lastFetch) < CACHE_TTL) {
         searchData = data;
-        console.log('[Search] Loaded data from cache');
       } else {
-        console.log('[Search] Cache expired');
         localStorage.removeItem(CACHE_KEY);
       }
     } catch (error) {
@@ -312,7 +306,6 @@
   function saveCachedData() {
     try {
       localStorage.setItem(CACHE_KEY, JSON.stringify(searchData));
-      console.log('[Search] Data saved to cache');
     } catch (error) {
       console.error('[Search] Error saving cache:', error);
     }
@@ -334,8 +327,6 @@
    * Fetch all searchable data (videos + FAQ)
    */
   async function fetchAllData() {
-    console.log('[Search] Fetching all data...');
-
     try {
       // Fetch videos and FAQ in parallel
       const [videos, faq] = await Promise.all([
@@ -350,8 +341,6 @@
       };
 
       saveCachedData();
-
-      console.log(`[Search] Fetched ${videos.length} videos and ${faq.length} FAQ items`);
     } catch (error) {
       console.error('[Search] Error fetching data:', error);
     }
@@ -364,8 +353,6 @@
     // Get all categories from PLAYLISTS
     const categories = getAllCategories();
     const allVideos = [];
-
-    console.log(`[Search] Fetching videos from ${categories.length} categories...`);
 
     // Fetch all categories in parallel
     const promises = categories.map(async (categoryKey) => {
@@ -454,8 +441,6 @@
    * Perform search and display results
    */
   function performSearch(query) {
-    console.log(`[Search] Searching for: "${query}"`);
-
     const results = {
       videos: searchVideos(query),
       faq: searchFAQ(query)
@@ -673,8 +658,6 @@
    * Handle result item click
    */
   function handleResultClick(item) {
-    console.log('[Search] Result clicked:', item);
-
     if (item.type === 'video') {
       // Open video modal
       if (window.VideoModal) {

@@ -35,8 +35,6 @@ function getGameFromUrl() {
 const currentGame = getGameFromUrl();
 const CATEGORIES = Object.keys(PLAYLISTS[currentGame] || {});
 
-console.log(`[Gameplays] Loading game: ${currentGame}, categories:`, CATEGORIES);
-
 // ===================================
 // STATE MANAGEMENT
 // ===================================
@@ -66,8 +64,6 @@ const state = {
  */
 async function fetchCategoryVideos(category) {
   try {
-    console.log(`[Gameplays] Fetching videos for category: ${category}`);
-
     const response = await fetch(`${API_BASE_URL}/youtube?playlist=${category}`);
 
     if (!response.ok) {
@@ -76,8 +72,6 @@ async function fetchCategoryVideos(category) {
     }
 
     const data = await response.json();
-
-    console.log(`[Gameplays] Received ${data.count} videos for ${category}`, data.cached ? '(cached)' : '(fresh)');
 
     return data.videos || [];
 
@@ -91,8 +85,6 @@ async function fetchCategoryVideos(category) {
  * Fetch all category counts (lightweight - only fetch count, not full data)
  */
 async function fetchAllCategoryCounts() {
-  console.log('[Gameplays] Fetching counts for all categories...');
-
   const promises = CATEGORIES.map(async (category) => {
     try {
       const videos = await fetchCategoryVideos(category);
@@ -114,8 +106,6 @@ async function fetchAllCategoryCounts() {
       countSpan.textContent = `${count} filmów`;
     }
   });
-
-  console.log('[Gameplays] All counts loaded:', state.videoCounts);
 }
 
 // ===================================
@@ -190,8 +180,7 @@ async function renderVideos(category) {
 
   // Check if we already have data (will be pre-fetched by fetchAllCategoryCounts)
   if (!state.videosData[category]) {
-    // Shouldn't happen if fetchAllCategoryCounts was called, but fallback just in case
-    console.log(`[Gameplays] Data not pre-fetched for ${category}, fetching now...`);
+    // Fallback if data wasn't pre-fetched
     grid.innerHTML = '<div class="loading-message">Ładowanie filmów...</div>';
     state.loading[category] = true;
 

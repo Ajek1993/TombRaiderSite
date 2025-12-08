@@ -90,7 +90,6 @@ function setupEventListeners() {
   document.querySelectorAll(".tab-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const tabName = btn.dataset.tab;
-      console.log("Switching to tab:", tabName);
       switchTab(tabName);
     });
   });

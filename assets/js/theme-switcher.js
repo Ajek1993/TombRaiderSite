@@ -55,8 +55,6 @@ function initThemeSwitcher() {
 
   // Set up event listeners
   setupEventListeners();
-
-  console.log('✅ Theme switcher initialized');
 }
 
 // ===================================================================
@@ -79,8 +77,6 @@ function applyTheme(themeName) {
     detail: { theme: themeName }
   });
   document.dispatchEvent(event);
-
-  console.log(`🎨 Theme changed to: ${THEMES[themeName].name}`);
 }
 
 function cycleTheme() {

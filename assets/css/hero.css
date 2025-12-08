@@ -41,17 +41,29 @@
 }
 
 .parallax-layer-3 {
-  background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(138, 43, 226, 0.1) 0%,
+    transparent 70%
+  );
   opacity: 0.6;
 }
 
 .parallax-layer-2 {
-  background: radial-gradient(ellipse at top, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+  background: radial-gradient(
+    ellipse at top,
+    rgba(0, 255, 255, 0.05) 0%,
+    transparent 50%
+  );
   opacity: 0.4;
 }
 
 .parallax-layer-1 {
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 20, 147, 0.05) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 20, 147, 0.05) 100%
+  );
   opacity: 0.3;
 }
 
@@ -83,14 +95,15 @@
   height: auto;
   margin: 0 auto;
   filter: drop-shadow(0 0 10px var(--gold-accent))
-          drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+    drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -352,6 +365,7 @@
 
   .hero-cta {
     flex-direction: column;
+    align-items: center;
     gap: var(--space-md);
   }
 

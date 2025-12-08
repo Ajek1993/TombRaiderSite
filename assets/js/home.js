@@ -38,7 +38,6 @@ const state = {
  */
 async function fetchChannelInfo() {
   try {
-    console.log('[Home] Fetching channel info...');
     const response = await fetch(`${API_BASE_URL}/channel`);
 
     if (!response.ok) {
@@ -46,7 +45,6 @@ async function fetchChannelInfo() {
     }
 
     const data = await response.json();
-    console.log('[Home] Channel info loaded:', data.cached ? '(cached)' : '(fresh)');
 
     return data.channel;
   } catch (error) {
@@ -79,8 +77,6 @@ async function fetchCategoryVideos(category) {
  */
 async function fetchAllPlaylists() {
   try {
-    console.log('[Home] Fetching all playlists...');
-
     const promises = PLAYLIST_CATEGORIES.map(cat => fetchCategoryVideos(cat));
     const results = await Promise.all(promises);
 
@@ -91,8 +87,6 @@ async function fetchAllPlaylists() {
     const gameplayVideos = allVideos
       .filter(v => !v.isShort)
       .sort((a, b) => new Date(b.publishedAtRaw) - new Date(a.publishedAtRaw));
-
-    console.log(`[Home] Loaded ${allVideos.length} total videos, ${gameplayVideos.length} gameplays`);
 
     return { allVideos, gameplayVideos };
   } catch (error) {
@@ -106,7 +100,6 @@ async function fetchAllPlaylists() {
  */
 async function fetchShorts() {
   try {
-    console.log('[Home] Fetching shorts...');
     const shorts = await fetchCategoryVideos(SHORTS_CATEGORY);
 
     // Sort by view count (descending)
@@ -122,7 +115,6 @@ async function fetchShorts() {
       return getNumericViews(b.views) - getNumericViews(a.views);
     });
 
-    console.log(`[Home] Loaded ${sortedShorts.length} shorts`);
     return sortedShorts;
   } catch (error) {
     console.error('[Home] Error fetching shorts:', error);
@@ -141,7 +133,6 @@ function updateHeroVideo(video) {
   const heroVideoContainer = document.querySelector('.featured-video');
 
   if (!heroVideoContainer || !video) {
-    console.log('[Home] Hero video container not found or no video available');
     return;
   }
 
@@ -297,7 +288,6 @@ function updateLatestGameplays(videos) {
   const gridElement = document.querySelector('.gameplay-grid');
 
   if (!gridElement) {
-    console.log('[Home] Gameplay grid not found');
     return;
   }
 
@@ -336,7 +326,6 @@ function updateHighlights(videos) {
   const gridElement = document.querySelector('.highlights-grid');
 
   if (!gridElement) {
-    console.log('[Home] Highlights grid not found');
     return;
   }
 
@@ -459,8 +448,6 @@ function setupRandomGameplayButton() {
 
 async function initHomePage() {
   try {
-    console.log('[Home] Initializing home page...');
-
     // Show loading states
     const loadingMessage = 'Ładowanie...';
 
@@ -537,8 +524,6 @@ async function initHomePage() {
       );
       window.SchemaGenerator.injectSchema(listSchema);
     }
-
-    console.log('[Home] Home page initialized successfully');
 
   } catch (error) {
     console.error('[Home] Error initializing home page:', error);

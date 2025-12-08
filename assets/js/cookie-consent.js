@@ -109,7 +109,6 @@ class CookieConsent {
     this.saveConsent('accepted');
     this.applyConsent(true);
     this.hideBanner();
-    console.log('[Cookie Consent] User accepted cookies');
   }
 
   /**
@@ -119,7 +118,6 @@ class CookieConsent {
     this.saveConsent('declined');
     this.applyConsent(false);
     this.hideBanner();
-    console.log('[Cookie Consent] User declined non-essential cookies');
   }
 
   /**

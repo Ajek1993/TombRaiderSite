@@ -33,8 +33,6 @@
 
     // Listen for theme changes (integration with theme-switcher.js)
     document.addEventListener('themeChanged', handleThemeChange);
-
-    console.log('Video modal initialized');
   }
 
   /**
@@ -123,7 +121,6 @@
   function handleThemeChange(e) {
     // Modal automatically updates via CSS variables
     // This handler is here for potential future custom logic
-    console.log('Video modal detected theme change:', e.detail.theme);
   }
 
   /**
