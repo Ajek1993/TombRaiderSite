@@ -1,66 +1,102 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import { useEffect, useState, useCallback } from "react";
+import { Hero } from "@/components/home/Hero";
+import { AboutSection } from "@/components/home/AboutSection";
+import { LatestGameplays } from "@/components/home/LatestGameplays";
+import { HighlightsSection } from "@/components/home/HighlightsSection";
+import { StreamSection } from "@/components/home/StreamSection";
+import { WidgetsSection } from "@/components/home/WidgetsSection";
+import { VideoModal, useVideoModal } from "@/components/ui/VideoModal";
+import {
+  useAllGameplays,
+  useShorts,
+  useChannelInfo,
+  useAnnouncements,
+  parseViewCount,
+  Video,
+} from "@/hooks/useVideos";
+
+export default function HomePage() {
+  const { videos: gameplayVideos, loading: gameplaysLoading } = useAllGameplays();
+  const { shorts, loading: shortsLoading } = useShorts();
+  const { channelInfo } = useChannelInfo();
+  const { announcements } = useAnnouncements();
+  const { isOpen, videoId, videoTitle, openModal, closeModal } = useVideoModal();
+
+  const [mostViewedVideo, setMostViewedVideo] = useState<Video | null>(null);
+
+  // Find most viewed video
+  useEffect(() => {
+    if (gameplayVideos.length > 0) {
+      const sorted = [...gameplayVideos].sort(
+        (a, b) => parseViewCount(b.views) - parseViewCount(a.views)
+      );
+      setMostViewedVideo(sorted[0]);
+    }
+  }, [gameplayVideos]);
+
+  const handleRandomGameplay = useCallback(() => {
+    if (gameplayVideos.length === 0) {
+      alert("Brak dostępnych gameplay'ów!");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * gameplayVideos.length);
+    const randomVideo = gameplayVideos[randomIndex];
+    openModal(randomVideo.id, randomVideo.title);
+  }, [gameplayVideos, openModal]);
+
+  // Get upcoming stream from announcements
+  const upcomingStream = announcements.find(
+    (a) => a.status === "scheduled"
+  );
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      {/* Hero Section */}
+      <Hero latestVideo={gameplayVideos[0] || null} />
+
+      {/* About/Intro Section */}
+      <AboutSection channelInfo={channelInfo} />
+
+      <div className="section-divider"></div>
+
+      {/* Latest Gameplays Section */}
+      <LatestGameplays
+        videos={gameplaysLoading ? [] : gameplayVideos}
+        onWatchVideo={openModal}
+      />
+
+      <div className="section-divider"></div>
+
+      {/* Highlights Section */}
+      <HighlightsSection
+        videos={shortsLoading ? [] : shorts}
+        onWatchVideo={openModal}
+      />
+
+      <div className="section-divider"></div>
+
+      {/* Upcoming Stream Section */}
+      {upcomingStream && <StreamSection streamInfo={upcomingStream} />}
+      {upcomingStream && <div className="section-divider"></div>}
+
+      {/* Gaming Widgets Section */}
+      <WidgetsSection
+        totalGameplays={gameplayVideos.length}
+        totalHighlights={shorts.length}
+        mostViewedVideo={mostViewedVideo}
+        onRandomGameplay={handleRandomGameplay}
+        onWatchVideo={openModal}
+      />
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isOpen}
+        videoId={videoId}
+        videoTitle={videoTitle}
+        onClose={closeModal}
+      />
+    </>
   );
 }
