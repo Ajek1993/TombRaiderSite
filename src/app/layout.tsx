@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { CookieBanner } from "@/components/ui/CookieBanner";
+import { ConsoleEasterEgg } from "@/components/utils/ConsoleEasterEgg";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -86,6 +87,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
+          <ConsoleEasterEgg />
           {/* Skip to content for accessibility */}
           <a href="#main-content" className="skip-to-content">
             Przejdź do treści
