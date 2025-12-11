@@ -14,7 +14,10 @@
       "Bash(do cp \"$file\" \"$file.backup\")",
       "Bash(done)",
       "Bash(npm run dev:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(test:*)",
+      "Bash(git -C /c/Users/Arkadiusz/Desktop/claude-project status --short archive/)",
+      "Bash(git -C /c/Users/Arkadiusz/Desktop/claude-project remote -v)"
     ],
     "deny": [],
     "ask": []
