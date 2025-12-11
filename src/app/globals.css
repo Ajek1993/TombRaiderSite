@@ -1,0 +1,83 @@
+/* ===================================================================
+   Global Styles - Next.js App
+   Tomb Raider Gaming Website - Neo-Gaming Theme
+   =================================================================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap');
+
+/* ===================================================================
+   Core Styles (in order of dependency)
+   =================================================================== */
+
+/* 1. Design Tokens & Variables */
+@import "../styles/variables.css";
+
+/* 2. CSS Reset */
+@import "../styles/reset.css";
+
+/* 3. Main Layout & Utilities */
+@import "../styles/main.css";
+
+/* 4. Animations */
+@import "../styles/animations.css";
+
+/* ===================================================================
+   Component Styles
+   =================================================================== */
+
+/* Hero Section */
+@import "../styles/hero.css";
+
+/* Card Components */
+@import "../styles/cards.css";
+
+/* Footer */
+@import "../styles/footer.css";
+
+/* ===================================================================
+   Page-Specific Styles
+   =================================================================== */
+
+/* Gameplays Page */
+@import "../styles/gameplays.css";
+
+/* Highlights Page */
+@import "../styles/highlights.css";
+
+/* FAQ Page */
+@import "../styles/faq.css";
+
+/* Admin Panel */
+@import "../styles/admin.css";
+
+/* ===================================================================
+   UI Component Styles
+   =================================================================== */
+
+/* Video Modal */
+@import "../styles/modal.css";
+
+/* Cookie Banner & Legal Pages */
+@import "../styles/cookie-banner.css";
+
+/* Search Component */
+@import "../styles/search.css";
+
+/* Theme Switcher */
+@import "../styles/theme-switcher.css";
+
+/* Additional font smoothing for pixel fonts */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure VT323 is crisp at small sizes */
+.btn, .badge, .nav-link, .quick-nav-link, .quick-nav-label,
+.card-title, .card-title-small, .card-metadata, .card-metadata-small,
+.stat-label, .widget-title, .mobile-menu-link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

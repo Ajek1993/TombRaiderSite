@@ -1,34 +1,28 @@
 {
-  "name": "tomb-raider-gaming-website",
-  "version": "1.0.0",
-  "description": "Neo-gaming themed website for Tomb Raider gameplay channel with YouTube API integration",
-  "main": "index.html",
+  "name": "tomb-raider-next",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "node scripts/dev-server.js",
-    "start": "npx http-server -p 8000 -c-1",
-    "serve": "python -m http.server 8000",
-    "build": "echo 'Static site - no build required'"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": [
-    "tomb-raider",
-    "gaming",
-    "website",
-    "neo-gaming",
-    "html",
-    "css",
-    "javascript",
-    "youtube-api"
-  ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.2",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "googleapis": "^166.0.0",
-    "jsonwebtoken": "^9.0.2"
+    "axios": "^1.13.2",
+    "googleapis": "^168.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "next": "16.0.7",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
-    "vercel": "^33.0.1"
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.7",
+    "typescript": "^5"
   }
 }

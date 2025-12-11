@@ -50,79 +50,102 @@ Strona gamingowa poświęcona kanałowi YouTube **xBruksiax** z gameplay'ami z s
 
 ```
 claude-project/
-├── index.html                 # Strona główna
-├── gameplays.html             # Strona z gameplay'ami
-├── highlights.html            # Strona z shorts/highlights
-├── README.md                  # Dokumentacja główna
-├── .gitignore                 # Git ignore rules
-├── .env.local                 # Environment variables (local)
-├── package.json               # Dependencies & scripts
-├── vercel.json                # Vercel deployment config
-│
-├── admin/                     # Panel administracyjny
-│   └── announcements.html     # Zarządzanie zapowiedziami streamów
-│
-├── api/                       # Vercel serverless functions
-│   ├── youtube.js             # YouTube API endpoint (z paginacją)
-│   ├── announcements.js       # CRUD dla zapowiedzi streamów
-│   └── channel.js             # Statystyki kanału (subskrybenci, etc.)
-│
-├── assets/
-│   ├── css/
-│   │   ├── variables.css      # CSS Variables (kolory, fonty, spacing)
-│   │   ├── reset.css          # CSS Reset & Base styles
-│   │   ├── main.css           # Main styles (layout, navigation, utilities)
-│   │   ├── hero.css           # Hero section & Intro styles
-│   │   ├── cards.css          # Card components (gameplay, highlights, widgets)
-│   │   ├── footer.css         # Footer styles
+├── src/
+│   ├── app/                   # Next.js App Router
+│   │   ├── page.tsx           # Strona główna (/)
+│   │   ├── gameplays/
+│   │   │   └── page.tsx       # Strona z gameplay'ami (/gameplays)
+│   │   ├── highlights/
+│   │   │   └── page.tsx       # Strona z shorts (/highlights)
+│   │   ├── faq/
+│   │   │   └── page.tsx       # FAQ page (/faq)
+│   │   ├── admin/
+│   │   │   └── page.tsx       # Admin panel (/admin)
+│   │   ├── cookies/
+│   │   │   └── page.tsx       # Cookies page (/cookies)
+│   │   ├── privacy/
+│   │   │   └── page.tsx       # Privacy page (/privacy)
+│   │   ├── api/               # Next.js Route Handlers
+│   │   │   ├── channel/
+│   │   │   │   └── route.ts   # GET /api/channel - Channel stats
+│   │   │   ├── youtube/
+│   │   │   │   └── route.ts   # GET /api/youtube - Videos list
+│   │   │   ├── announcements/
+│   │   │   │   └── route.ts   # CRUD /api/announcements
+│   │   │   └── auth/login/
+│   │   │       └── route.ts   # POST /api/auth/login - Authentication
+│   │   ├── layout.tsx         # Root layout
+│   │   └── globals.css        # Global styles
+│   │
+│   ├── components/            # React Components
+│   │   ├── Navbar.tsx         # Navigation component
+│   │   ├── Footer.tsx         # Footer component
+│   │   ├── VideoCard.tsx      # Video card component
+│   │   ├── ThemeSwitcher.tsx  # Theme toggle
+│   │   └── ...                # Other components
+│   │
+│   ├── lib/                   # TypeScript Utilities
+│   │   ├── youtube-api.ts     # YouTube API helpers
+│   │   ├── google-sheets.ts   # Google Sheets integration
+│   │   ├── auth.ts            # Authentication utilities
+│   │   └── cache.ts           # Caching utilities
+│   │
+│   ├── styles/                # CSS Files
+│   │   ├── variables.css      # CSS Variables (kolory, fonty)
 │   │   ├── animations.css     # Animations & effects
-│   │   ├── gameplays.css      # Gameplays page styles
-│   │   └── highlights.css     # Highlights page styles
+│   │   └── ...                # Component styles
 │   │
-│   ├── js/
-│   │   ├── main.js            # Main JavaScript (navigation, parallax, widgets)
-│   │   ├── home.js            # Homepage logic
-│   │   ├── gameplays.js       # Gameplays page logic + YouTube API
-│   │   ├── highlights.js      # Highlights page logic + YouTube API
-│   │   ├── announcements.js   # Stream announcements display
-│   │   ├── stream-reminders.js # Browser notifications system
-│   │   ├── calendar-export.js # Google Calendar integration
-│   │   ├── theme-switcher.js  # Theme toggling logic
-│   │   ├── video-modal.js     # Video modal player
-│   │   └── admin-announcements.js # Admin panel logic
+│   ├── types/                 # TypeScript Types
+│   │   ├── youtube.ts         # YouTube API types
+│   │   ├── announcement.ts    # Announcement types
+│   │   └── ...                # Other types
 │   │
-│   └── images/                # Images & assets
-│       ├── icons/             # Icon files
-│       ├── thumbnails/        # Video thumbnails
-│       ├── backgrounds/       # Background images
-│       ├── parallax/          # Parallax layers
-│       └── ui/                # UI elements
+│   ├── config/                # Configuration
+│   │   └── playlists.ts       # YouTube playlist mapping
+│   │
+│   ├── context/               # React Context
+│   │   ├── ThemeContext.tsx   # Theme provider
+│   │   └── ...                # Other contexts
+│   │
+│   └── hooks/                 # Custom Hooks
+│       ├── useTheme.ts        # Theme hook
+│       └── ...                # Other hooks
 │
-├── config/
-│   └── playlists.js           # YouTube playlist mapping
+├── public/                    # Static Files (images, fonts, etc.)
+│   ├── robots.txt             # SEO - robots directives
+│   ├── sitemap.xml            # SEO - sitemap
+│   ├── manifest.json          # PWA manifest
+│   ├── google52658329dff56699.html  # Google verification
+│   └── assets/                # Images, icons, fonts
 │
-├── lib/
-│   ├── cache.js               # 24h in-memory cache dla YouTube API
-│   ├── youtube-api.js         # YouTube API helpers
-│   └── google-sheets.js       # Google Sheets API integration
+├── archive/html-version/      # Stara wersja HTML (backup)
+│   ├── index.html, *.html files
+│   ├── assets/, api/, lib/
+│   ├── admin/, config/, scripts/
+│   └── README.md              # Archiwum documentation
 │
-├── scripts/
-│   └── dev-server.js          # Local development Express server
-│
-└── docs/                      # Documentation
-    ├── README.md              # Documentation index
-    ├── ADMIN_GUIDE.md         # Admin panel user guide
-    ├── ANNOUNCEMENTS_SYSTEM.md # Technical documentation
-    ├── GOOGLE_SHEETS_SETUP.md # Google Sheets API setup guide
-    ├── guides/                # Setup & usage guides
-    │   ├── API_SETUP.md       # YouTube API configuration
-    │   ├── CUSTOMIZATION.md   # Customization guide
-    │   └── QUICKSTART.md      # Quick start guide
-    └── archive/               # Archived planning documents
-        ├── idea.md            # Initial concept
-        ├── plan.md            # Implementation plan
-        └── design/            # Design mockups & wireframes
+├── next.config.ts             # Next.js configuration
+├── tsconfig.json              # TypeScript configuration
+├── eslint.config.mjs          # ESLint configuration
+├── package.json               # Dependencies & scripts
+├── .gitignore                 # Git ignore rules
+├── .env.example               # Environment variables template
+├── .env.local                 # Environment variables (local, NOT in git)
+├── README.md                  # Dokumentacja główna
+├── MIGRATION_NOTES.md         # Migration details (HTML → Next.js)
+├── ENV_COMPARISON.md          # Environment variables documentation
+└── docs/                      # Documentation (optional)
 ```
+
+**Zmiany z wersji HTML:**
+- ✅ `src/` - Nowa struktura Next.js
+- ✅ `public/` - Static files (zamiennie assets/)
+- ✅ Route Handlers zamiast `/api/` functions
+- ✅ React Components zamiast vanilla JS
+- ✅ TypeScript zamiast plain JavaScript
+- ✅ App Router zamiast HTML pages
+- ✅ `archive/html-version/` - Stara wersja preserved
+- ✅ Brak `vercel.json` - Next.js auto-configures
 
 ## 🚀 Quick Start
 
@@ -157,7 +180,6 @@ Stwórz plik `.env.local` z następującymi zmiennymi:
 ```env
 # YouTube API
 YOUTUBE_API_KEY=your_youtube_api_key_here
-YOUTUBE_CHANNEL_ID=UCxxxxxxxxxxxxxxxxxx
 
 # Google Sheets (dla admin panel)
 GOOGLE_SHEETS_ID=your_spreadsheet_id_here
@@ -165,20 +187,44 @@ GOOGLE_SHEETS_CREDENTIALS={"type":"service_account",...}
 
 # Admin Panel
 ADMIN_PASSWORD=your_secure_password_here
+
+# JWT Secret
+JWT_SECRET=your_jwt_secret_min_32_characters
 ```
+
+**Szczegółowe informacje:** Zobacz `ENV_COMPARISON.md`
 
 ### Development
 
 ```bash
-# Start local development server (port 6969)
+# Start local development server (port 3000)
 npm run dev
 
 # Dostęp do strony
-open http://localhost:6969
+open http://localhost:3000
 
 # Dostęp do panelu admina
-open http://localhost:6969/admin/announcements.html
+open http://localhost:3000/admin
+
+# Production build & start
+npm run build
+npm start
 ```
+
+### Available Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Strona główna |
+| `/gameplays` | Gameplay videos |
+| `/highlights` | Short clips |
+| `/faq` | FAQ page |
+| `/admin` | Admin panel |
+| `/cookies` | Cookies policy |
+| `/privacy` | Privacy policy |
+| `/api/channel` | YouTube channel stats |
+| `/api/youtube` | YouTube videos list |
+| `/api/announcements` | Stream announcements CRUD |
 
 ## 📦 Deployment
 
@@ -207,28 +253,35 @@ open http://localhost:6969/admin/announcements.html
 
 ## 🛠️ Tech Stack
 
+### Core Framework
+- **Next.js:** 16.0.7 (React 19.2.0 + TypeScript 5)
+- **Turbopack:** Ultra-fast bundler
+- **App Router:** Modern routing with React Server Components
+
 ### Frontend
-- **HTML5, CSS3, JavaScript** (Vanilla JS - no frameworks)
+- **React 19** - UI components
+- **TypeScript 5** - Type safety
+- **CSS Modules / CSS-in-JS** - Styling
+- **Next.js Image** - Image optimization
 - **Responsive Design** (Mobile-first approach)
 - **YouTube IFrame API** (Video playback)
 - **Notifications API** (Browser notifications)
 
 ### Backend
-- **Vercel Serverless Functions** (Node.js)
+- **Next.js Route Handlers** (TypeScript)
 - **YouTube Data API v3** (Video content)
 - **Google Sheets API** (Database replacement)
-- **Express.js** (Local development server)
+- **JWT Authentication** (Token-based security)
 
 ### Libraries & Tools
 - `googleapis` - Google Sheets integration
-- `axios` - HTTP requests
 - `dotenv` - Environment variables
-- `express` - Development server
+- `TypeScript` - Type safety throughout
 
 ### Infrastructure
-- **Vercel** - Hosting & Serverless Functions
+- **Vercel** - Hosting & Auto-deployment
 - **Google Cloud Platform** - API credentials
-- **Google Sheets** - Content database
+- **Google Sheets** - Serverless database
 
 ## 📚 Documentation
 
@@ -241,43 +294,62 @@ Szczegółowa dokumentacja dostępna w katalogu `/docs`:
 
 ## 🎯 API Endpoints
 
-### YouTube API (`/api/youtube`)
+### YouTube Videos (`/api/youtube`)
 ```bash
 GET /api/youtube?playlistId=PLxxx&maxResults=20&pageToken=xxx
 ```
 Zwraca filmy z playlisty YouTube z paginacją.
 
+**Response:** JSON array z video metadata (title, thumbnail, duration, etc.)
+
 ### Channel Stats (`/api/channel`)
 ```bash
 GET /api/channel
 ```
-Zwraca statystyki kanału (subskrybenci, liczba filmów).
+Zwraca statystyki kanału (subskrybenci, liczba filmów, description).
 
-### Announcements (`/api/announcements`)
+**Response:** JSON object z channel data
+
+### Announcements CRUD (`/api/announcements`)
 ```bash
-GET /api/announcements?upcoming=true  # Lista zapowiedzi
-POST /api/announcements              # Dodaj zapowiedź (auth required)
-PUT /api/announcements/:id           # Edytuj zapowiedź (auth required)
-DELETE /api/announcements/:id        # Usuń zapowiedź (auth required)
+GET /api/announcements?upcoming=true  # Lista zapowiedzi streamów
+POST /api/announcements               # Dodaj zapowiedź (auth required)
+PUT /api/announcements/[id]          # Edytuj zapowiedź (auth required)
+DELETE /api/announcements/[id]       # Usuń zapowiedź (auth required)
 ```
+
+**Auth:** Wymaga JWT token z `ADMIN_PASSWORD` (otrzymany przez `/api/auth/login`)
+
+### Authentication (`/api/auth/login`)
+```bash
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "password": "your_admin_password"
+}
+```
+
+**Response:** JSON object z JWT token do autoryzacji dla admin endpoints
 
 ## 🔧 Configuration
 
 ### YouTube Playlists
-Edytuj `config/playlists.js` aby dodać/zmienić playlisty:
+Edytuj `src/config/playlists.ts` aby dodać/zmienić playlisty:
 
-```javascript
-export const playlists = {
+```typescript
+export const PLAYLISTS = {
   tr1: 'PLxxxxxxxxxxxxxxxxx', // Tomb Raider 1
   tr2: 'PLxxxxxxxxxxxxxxxxx', // Tomb Raider 2
   // ...
-};
+} as const;
 ```
 
 ### Admin Panel
-Panel administracyjny dostępny pod `/admin/announcements.html`
-- **Login:** admin
+Panel administracyjny dostępny pod `/admin`
+- **Login:** Nie wymaga username, tylko password
 - **Password:** ustawione w `ADMIN_PASSWORD` env variable
+- **Auth:** JWT token z `/api/auth/login`
 
 ## 🤝 Contributing
 
@@ -300,24 +372,38 @@ This project is licensed under the MIT License.
 
 ---
 
-**Status:** ✅ **Phase 4 (Backend Integration) - Complete**
+**Status:** ✅ **Version 2.0 - Next.js Migration Complete**
 
-**Current Version:** 1.1.0
+**Current Version:** 2.0.0
 
-**Features:**
+**Migration Date:** 2025-12-11
+
+**Notable Changes:**
+- ✅ Migrated from HTML/CSS/JS to Next.js 16 + React 19 + TypeScript 5
+- ✅ Upgraded from Vercel Serverless Functions to Next.js Route Handlers
+- ✅ Improved performance with Turbopack bundler
+- ✅ Full URL structure update (no more .html extensions)
+- ✅ Old version archived in `archive/html-version/`
+
+**Core Features:**
 - ✅ Full YouTube API integration with pagination
 - ✅ Google Sheets backend for stream announcements
-- ✅ Admin panel with authentication
+- ✅ Admin panel with JWT authentication
 - ✅ Calendar integration (Google Calendar)
 - ✅ Browser notifications for stream reminders
 - ✅ Theme switcher (Tomb Raider / Matrix)
 - ✅ Video modal player
-- ✅ Fully responsive design
-- ✅ Deployed on Vercel
+- ✅ Fully responsive design with TypeScript
+- ✅ Deployed on Vercel with auto-deployment
 
-**Live Site:** [Add your Vercel URL here]
+**Documentation:**
+- 📖 `README.md` - Main documentation
+- 📖 `MIGRATION_NOTES.md` - Migration details
+- 📖 `ENV_COMPARISON.md` - Environment variables guide
 
-**Admin Panel:** [Add your Vercel URL]/admin/announcements.html
+**Live Site:** [bruxa-tomb-raider.vercel.app]
+
+**Admin Panel:** [bruxa-tomb-raider.vercel.app]/admin
 
 ---
 

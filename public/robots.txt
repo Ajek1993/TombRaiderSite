@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /admin
+Disallow: /api/
+Disallow: /.vercel/
+Disallow: /_next/static/
+
+Allow: /
+Allow: /gameplays
+Allow: /highlights
+Allow: /faq
+Allow: /cookies
+Allow: /privacy
+
+Sitemap: https://bruxa-tomb-raider.vercel.app/sitemap.xml
+Crawl-delay: 1
