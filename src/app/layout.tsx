@@ -26,11 +26,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Bruxa Gaming" }],
   creator: "Bruxa Gaming",
-  metadataBase: new URL("https://bruxa-tomb-raider.vercel.app"),
+  metadataBase: new URL("https://bruxagaming.vercel.app"),
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    url: "https://bruxa-tomb-raider.vercel.app/",
+    url: "https://bruxagaming.vercel.app/",
     siteName: "Bruxa Gaming - Tomb Raider Gameplay PL",
     title: "Bruxa Gaming - Tomb Raider Gameplay po Polsku | TR1-TR6 Remastered",
     description:

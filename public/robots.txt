@@ -11,5 +11,5 @@ Allow: /faq
 Allow: /cookies
 Allow: /privacy
 
-Sitemap: https://bruxa-tomb-raider.vercel.app/sitemap.xml
+Sitemap: https://bruxagaming.vercel.app/sitemap.xml
 Crawl-delay: 1
