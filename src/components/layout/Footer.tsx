@@ -87,7 +87,7 @@ export function Footer() {
                 <a href="mailto:contact@example.com">📧 Email</a>
               </li>
               <li>
-                <Link href="/business">💼 Współpraca</Link>
+                <Link href="#">💼 Współpraca</Link>
               </li>
             </ul>
           </div>
@@ -129,7 +129,7 @@ export function Footer() {
             </p>
             <p>
               <Link href="/privacy">Privacy</Link> |{" "}
-              <Link href="/terms">Terms</Link>
+              <Link href="#">Terms</Link>
             </p>
           </div>
         </div>
