@@ -51,6 +51,11 @@ export default function HomePage() {
     (a) => a.status === "scheduled"
   );
 
+  // Get past streams (completed or cancelled)
+  const pastStreams = announcements.filter(
+    (a) => a.status === "completed" || a.status === "cancelled"
+  );
+
   return (
     <>
       {/* Hero Section */}
@@ -77,9 +82,13 @@ export default function HomePage() {
 
       <div className="section-divider"></div>
 
-      {/* Upcoming Stream Section */}
-      {upcomingStream && <StreamSection streamInfo={upcomingStream} />}
-      {upcomingStream && <div className="section-divider"></div>}
+      {/* Stream Section - always visible */}
+      <StreamSection
+        upcomingStream={upcomingStream}
+        pastStreams={pastStreams}
+      />
+
+      <div className="section-divider"></div>
 
       {/* Gaming Widgets Section */}
       <WidgetsSection

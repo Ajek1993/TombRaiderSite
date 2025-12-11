@@ -5,27 +5,25 @@
 /* Page Header */
 .page-header {
   padding: 120px 0 60px;
-  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--dark-teal) 100%);
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
 .page-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 20, 147, 0.03) 2px,
-      rgba(255, 20, 147, 0.03) 4px
-    );
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 20, 147, 0.03) 2px,
+    rgba(255, 20, 147, 0.03) 4px
+  );
   pointer-events: none;
 }
 
@@ -33,10 +31,8 @@
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--cyber-pink);
-  text-shadow:
-    0 0 10px var(--cyber-pink),
-    0 0 20px var(--cyber-pink),
-    0 0 30px var(--cyber-pink);
+  text-shadow: 0 0 5px var(--cyber-pink), 0 0 10px var(--cyber-pink),
+    0 0 15px var(--cyber-pink);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -48,7 +44,6 @@
 
 .title-icon {
   font-size: 1.2em;
-  animation: float 3s ease-in-out infinite;
   flex-shrink: 0;
 }
 
@@ -57,7 +52,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -66,7 +62,6 @@
 }
 
 .page-description {
-  font-family: var(--font-mono);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: var(--neon-cyan);
   max-width: 700px;
@@ -136,12 +131,16 @@
   position: relative;
   width: 100%;
   padding-top: 177.78%; /* 9:16 aspect ratio (16/9 * 100 = 177.78%) */
-  background: linear-gradient(135deg, var(--dark-teal) 0%, var(--bg-darker) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--dark-teal) 0%,
+    var(--bg-darker) 100%
+  );
   overflow: hidden;
 }
 
 .short-thumbnail::before {
-  content: '▶';
+  content: "▶";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -182,7 +181,6 @@
   color: var(--text-primary);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   border: 1px solid var(--electric-purple);
@@ -228,7 +226,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -282,11 +281,14 @@
 .watch-btn {
   margin-top: auto;
   padding: 0.6rem 1rem;
-  background: linear-gradient(135deg, var(--cyber-pink) 0%, var(--electric-purple) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--cyber-pink) 0%,
+    var(--electric-purple) 100%
+  );
   border: 2px solid var(--cyber-pink);
   border-radius: 8px;
   color: var(--text-primary);
-  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -299,18 +301,27 @@
 }
 
 .watch-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
 .watch-btn:hover {
-  background: linear-gradient(135deg, var(--electric-purple) 0%, var(--cyber-pink) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--electric-purple) 0%,
+    var(--cyber-pink) 100%
+  );
   border-color: var(--neon-cyan);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 20, 147, 0.5);
@@ -338,7 +349,6 @@
   border: 2px solid var(--neon-cyan);
   border-radius: 8px;
   color: var(--neon-cyan);
-  font-family: var(--font-mono);
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -349,13 +359,18 @@
 }
 
 .load-more-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 

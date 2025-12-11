@@ -66,3 +66,18 @@
 
 /* Theme Switcher */
 @import "../styles/theme-switcher.css";
+
+/* Additional font smoothing for pixel fonts */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure VT323 is crisp at small sizes */
+.btn, .badge, .nav-link, .quick-nav-link, .quick-nav-label,
+.card-title, .card-title-small, .card-metadata, .card-metadata-small,
+.stat-label, .widget-title, .mobile-menu-link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

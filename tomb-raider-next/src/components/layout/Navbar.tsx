@@ -5,11 +5,14 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeSwitcher } from "../ui/ThemeSwitcher";
+import { Search } from "../ui/Search";
+import { VideoModal, useVideoModal } from "../ui/VideoModal";
 
 export function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isOpen, videoId, videoTitle, openModal, closeModal } = useVideoModal();
 
   // Determine active page based on pathname
   const getActivePage = () => {
@@ -104,10 +107,8 @@ export function Navbar() {
               </a>
             </div>
 
-            {/* Search Button */}
-            <button className="search-btn" aria-label="Szukaj">
-              <span>🔍</span>
-            </button>
+            {/* Search Component */}
+            <Search onVideoSelect={openModal} />
 
             {/* Theme Switcher Button */}
             <ThemeSwitcher variant="desktop" />
@@ -132,6 +133,14 @@ export function Navbar() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         activePage={activePage}
+      />
+
+      {/* Video Modal for Search Results */}
+      <VideoModal
+        isOpen={isOpen}
+        videoId={videoId}
+        videoTitle={videoTitle}
+        onClose={closeModal}
       />
     </>
   );

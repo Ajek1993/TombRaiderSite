@@ -5,7 +5,6 @@
 /* Page Header */
 .page-header {
   padding: 120px 0 60px;
-  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--dark-teal) 100%);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -34,9 +33,9 @@
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--cyber-pink);
   text-shadow:
+    0 0 5px var(--cyber-pink),
     0 0 10px var(--cyber-pink),
-    0 0 20px var(--cyber-pink),
-    0 0 30px var(--cyber-pink);
+    0 0 15px var(--cyber-pink);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -48,7 +47,6 @@
 
 .title-icon {
   font-size: 1.2em;
-  animation: float 3s ease-in-out infinite;
   flex-shrink: 0;
 }
 
@@ -57,7 +55,6 @@
 }
 
 .page-description {
-  font-family: var(--font-mono);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: var(--neon-cyan);
   max-width: 700px;
@@ -95,7 +92,7 @@
 
 .quick-nav-label {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -113,8 +110,7 @@
   border: 2px solid var(--electric-purple);
   border-radius: 8px;
   color: var(--neon-cyan);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
@@ -236,7 +232,6 @@
 }
 
 .video-count {
-  font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--neon-cyan);
   background: rgba(0, 255, 255, 0.1);
@@ -377,7 +372,6 @@
   color: var(--text-primary);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
   border: 1px solid var(--electric-purple);
@@ -467,8 +461,7 @@
   border: 2px solid var(--cyber-pink);
   border-radius: 8px;
   color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
@@ -519,7 +512,6 @@
   border: 2px solid var(--neon-cyan);
   border-radius: 8px;
   color: var(--neon-cyan);
-  font-family: var(--font-mono);
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;

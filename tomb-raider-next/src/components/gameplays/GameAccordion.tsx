@@ -30,11 +30,15 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
 
   // Initialize category states
   useEffect(() => {
+    // Calculate playlists and categories inside useEffect to use fresh game value
+    const playlists = PLAYLISTS[game];
+    const categories = Object.keys(playlists);
+
     const initialStates: Record<string, CategoryState> = {};
-    categories.forEach((cat) => {
+    categories.forEach((cat, index) => {
       initialStates[cat] = {
         videos: [],
-        loading: false,
+        loading: index === 0, // Set loading true for first category
         visibleCount: INITIAL_VISIBLE,
       };
     });
@@ -45,7 +49,6 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
       setExpandedCategory(categories[0]);
       fetchCategoryVideos(categories[0]);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game]);
 
   const fetchCategoryVideos = async (category: string) => {
