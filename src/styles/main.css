@@ -127,7 +127,8 @@ h3 {
 }
 
 .section-title .title-text {
-  display: block;
+  display: flex;
+  flex: 0
 }
 
 /* Section Divider */
