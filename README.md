@@ -49,7 +49,6 @@ Strona gamingowa poświęcona kanałowi YouTube **xBruksiax** z gameplay'ami z s
 ## 🗂️ Struktura Projektu
 
 ```
-claude-project/
 ├── src/
 │   ├── app/                   # Next.js App Router
 │   │   ├── page.tsx           # Strona główna (/)
@@ -118,12 +117,6 @@ claude-project/
 │   ├── google52658329dff56699.html  # Google verification
 │   └── assets/                # Images, icons, fonts
 │
-├── archive/html-version/      # Stara wersja HTML (backup)
-│   ├── index.html, *.html files
-│   ├── assets/, api/, lib/
-│   ├── admin/, config/, scripts/
-│   └── README.md              # Archiwum documentation
-│
 ├── next.config.ts             # Next.js configuration
 ├── tsconfig.json              # TypeScript configuration
 ├── eslint.config.mjs          # ESLint configuration
@@ -132,8 +125,6 @@ claude-project/
 ├── .env.example               # Environment variables template
 ├── .env.local                 # Environment variables (local, NOT in git)
 ├── README.md                  # Dokumentacja główna
-├── MIGRATION_NOTES.md         # Migration details (HTML → Next.js)
-├── ENV_COMPARISON.md          # Environment variables documentation
 └── docs/                      # Documentation (optional)
 ```
 
@@ -144,7 +135,6 @@ claude-project/
 - ✅ React Components zamiast vanilla JS
 - ✅ TypeScript zamiast plain JavaScript
 - ✅ App Router zamiast HTML pages
-- ✅ `archive/html-version/` - Stara wersja preserved
 - ✅ Brak `vercel.json` - Next.js auto-configures
 
 ## 🚀 Quick Start
@@ -160,7 +150,7 @@ claude-project/
 ```bash
 # Clone repository
 git clone <repository-url>
-cd claude-project
+cd TombRaiderSite 
 
 # Install dependencies
 npm install
@@ -401,10 +391,10 @@ This project is licensed under the MIT License.
 - 📖 `MIGRATION_NOTES.md` - Migration details
 - 📖 `ENV_COMPARISON.md` - Environment variables guide
 
-**Live Site:** [bruxa-tomb-raider.vercel.app]
+**Live Site:** [bruxagaming.vercel.app]
 
-**Admin Panel:** [bruxa-tomb-raider.vercel.app]/admin
+**Admin Panel:** [bruxagaming.vercel.app]/admin
 
 ---
 
-Made with 💜 by Claude Code for xBruksiax Gaming Community
+Made with 💜 by Arkadiusz Sarach for xBruksiax Gaming Community
