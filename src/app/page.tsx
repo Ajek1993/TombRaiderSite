@@ -55,6 +55,7 @@ export default function HomePage() {
   const pastStreams = announcements.filter(
     (a) => a.status === "completed" || a.status === "cancelled"
   );
+// Debug logging  useEffect(() => {    console.log("[HomePage] Total announcements:", announcements.length);    console.log("[HomePage] Past streams:", pastStreams.length, pastStreams);  }, [announcements, pastStreams]);
 
   return (
     <>

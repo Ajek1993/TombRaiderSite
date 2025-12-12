@@ -14,6 +14,7 @@ interface CategoryState {
   videos: Video[];
   loading: boolean;
   visibleCount: number;
+  totalCount?: number;
 }
 
 const INITIAL_VISIBLE = 3;
@@ -40,8 +41,10 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
         videos: [],
         loading: index === 0, // Set loading true for first category
         visibleCount: INITIAL_VISIBLE,
+        totalCount: undefined,
       };
     });
+// Fetch counts for all categories    categories.forEach((cat) => {      fetchCategoryCount(cat);    });
     setCategoryStates(initialStates);
 
     // Expand first category by default
@@ -53,6 +56,7 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
 
   const fetchCategoryVideos = async (category: string) => {
     if (categoryStates[category]?.videos.length > 0) {
+const fetchCategoryCount = async (category: string) => {    try {      const response = await fetch(`/api/youtube?playlist=${category}`);      const data = await response.json();      const count = data.count || 0;      setCategoryStates((prev) => ({        ...prev,        [category]: {          ...prev[category],          totalCount: count,        },      }));    } catch (error) {      console.error(`Error fetching count for ${category}:`, error);    }  };
       return; // Already loaded
     }
 
@@ -72,6 +76,7 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
           ...prev[category],
           videos,
           loading: false,
+          totalCount: videos.length,
         },
       }));
     } catch (error) {
@@ -168,9 +173,11 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
                 videos: [],
                 loading: false,
                 visibleCount: INITIAL_VISIBLE,
+                totalCount: undefined,
               };
               const videosToShow = state.videos.slice(0, state.visibleCount);
               const hasMore = state.visibleCount < state.videos.length;
+const displayCount =                 state.totalCount !== undefined                   ? `${state.totalCount} filmów`                   : state.loading                   ? "Ładowanie..."                   : "Ładowanie...";
 
               return (
                 <div className="category-accordion" id={key} key={key}>
@@ -185,9 +192,7 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
                       <div className="title-text">
                         <h2>{playlist.name}</h2>
                         <span className="video-count">
-                          {state.loading
-                            ? "Ładowanie..."
-                            : `${state.videos.length} filmów`}
+                          {displayCount}
                         </span>
                       </div>
                     </div>
