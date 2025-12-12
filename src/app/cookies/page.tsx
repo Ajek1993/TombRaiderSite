@@ -272,12 +272,6 @@ export default function CookiesPage() {
               </a>
             </li>
           </ul>
-
-          <div style={{ marginTop: "3rem", textAlign: "center" }}>
-            <Link href="/" className="back-link">
-              ← Powrót do strony głównej
-            </Link>
-          </div>
         </div>
       </div>
     </div>
