@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useFAQ, FAQItem } from "@/hooks/useVideos";
 
 const FAQ_CATEGORIES = [
@@ -42,7 +42,7 @@ interface FAQItemProps {
 
 function FAQItemComponent({ item, isExpanded, onToggle }: FAQItemProps) {
   return (
-    <div className={`faq-item ${isExpanded ? "active" : ""}`}>
+    <div id={item.id} className={`faq-item ${isExpanded ? "active" : ""}`}>
       <button
         className="faq-question"
         aria-expanded={isExpanded}
@@ -79,6 +79,31 @@ export default function FAQPage() {
   const handleToggle = (id: string) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
+
+  // Handle hash navigation (from search or direct links)
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.slice(1); // Remove #
+      if (hash && hash.startsWith('faq-')) {
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setExpandedId(hash);
+          }
+        }, 100);
+      }
+    };
+
+    // Handle on mount
+    handleHashNavigation();
+
+    // Handle hash changes (browser back/forward)
+    window.addEventListener('hashchange', handleHashNavigation);
+
+    return () => window.removeEventListener('hashchange', handleHashNavigation);
+  }, []);
 
   return (
     <main className="faq-page">

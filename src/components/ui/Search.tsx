@@ -31,10 +31,36 @@ export function Search({ onVideoSelect }: SearchProps) {
 
   const { videos: gameplayVideos } = useAllGameplays();
   const { shorts } = useShorts();
+  const [faqItems, setFaqItems] = useState<SearchResult[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const searchResultsRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Fetch FAQ items
+  useEffect(() => {
+    const fetchFAQ = async () => {
+      try {
+        const response = await fetch("/api/faq?visible=true");
+        const data = await response.json();
+        if (data.success && data.faq) {
+          const faqResults: SearchResult[] = data.faq.map((item: any) => ({
+            id: item.id,
+            title: item.question,
+            type: "faq" as const,
+            categoryName: "FAQ",
+            categoryIcon: "❓",
+            question: item.question,
+            answer: item.answer,
+          }));
+          setFaqItems(faqResults);
+        }
+      } catch (error) {
+        console.error("Error fetching FAQ:", error);
+      }
+    };
+    fetchFAQ();
+  }, []);
 
   // Combine all videos for search (memoized to prevent infinite re-renders)
   const allVideos = useMemo<SearchResult[]>(() => [
@@ -54,7 +80,8 @@ export function Search({ onVideoSelect }: SearchProps) {
       categoryIcon: "⭐",
       thumbnail: v.thumbnail,
     })),
-  ], [gameplayVideos, shorts]);
+      ...faqItems,
+  ], [gameplayVideos, shorts, faqItems]);
 
   // Normalize string for search
   const normalizeString = (str: string): string => {
@@ -93,15 +120,20 @@ export function Search({ onVideoSelect }: SearchProps) {
 
       const normalizedQuery = normalizeString(searchQuery);
 
-      const filteredVideos = allVideos
+      const filteredResults = allVideos
         .filter((video) => {
           const title = normalizeString(video.title || "");
           const category = normalizeString(video.categoryName || "");
-          return title.includes(normalizedQuery) || category.includes(normalizedQuery);
-        })
-        .slice(0, MAX_RESULTS_PER_CATEGORY);
+          const answer = video.type === "faq" ? normalizeString(video.answer || "") : "";
+          return title.includes(normalizedQuery) || category.includes(normalizedQuery) || answer.includes(normalizedQuery);
+        });
 
-      setResults(filteredVideos);
+      // Limit results per category (5 videos + 5 FAQ = 10 total max)
+      const videoResults = filteredResults.filter(r => r.type === "video").slice(0, MAX_RESULTS_PER_CATEGORY);
+      const faqResults = filteredResults.filter(r => r.type === "faq").slice(0, MAX_RESULTS_PER_CATEGORY);
+      const combinedResults = [...videoResults, ...faqResults];
+
+      setResults(combinedResults);
       setIsLoading(false);
       setHighlightedIndex(-1);
     },
@@ -196,6 +228,7 @@ export function Search({ onVideoSelect }: SearchProps) {
       if (selectedResult.type === "video") {
         onVideoSelect(selectedResult.id, selectedResult.title);
         closeSearch();
+      } else if (selectedResult.type === "faq") {        window.location.href = `/faq#${selectedResult.id}`;        closeSearch();
       }
     }
   };
@@ -205,6 +238,7 @@ export function Search({ onVideoSelect }: SearchProps) {
     if (result.type === "video") {
       onVideoSelect(result.id, result.title);
       closeSearch();
+    } else if (result.type === "faq") {      window.location.href = `/faq#${result.id}`;      closeSearch();
     }
   };
 
@@ -263,31 +297,60 @@ export function Search({ onVideoSelect }: SearchProps) {
                 {results.length === 1 ? "" : results.length < 5 ? "i" : "ów"}
               </div>
               <div className="search-results-list">
-                <div className="search-category">
-                  <div className="search-category-title">🎮 Filmy</div>
-                  {results.map((result, index) => (
-                    <div
-                      key={result.id}
-                      className={`search-result-item ${index === highlightedIndex ? "highlighted" : ""}`}
-                      onClick={() => handleResultClick(result)}
-                      role="button"
-                      tabIndex={0}
-                    >
-                      <div className="search-result-icon">{result.categoryIcon}</div>
-                      <div className="search-result-content">
-                        <div
-                          className="search-result-title"
-                          dangerouslySetInnerHTML={{
-                            __html: highlightMatch(result.title, query),
-                          }}
-                        />
-                        <div className="search-result-meta">
-                          <span className="search-result-badge">{result.categoryName}</span>
+                {results.filter(r => r.type === "video").length > 0 && (
+                  <div className="search-category">
+                    <div className="search-category-title">🎮 Filmy</div>
+                    {results.filter(r => r.type === "video").map((result, index) => (
+                      <div
+                        key={result.id}
+                        className={`search-result-item ${index === highlightedIndex ? "highlighted" : ""}`}
+                        onClick={() => handleResultClick(result)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div className="search-result-icon">{result.categoryIcon}</div>
+                        <div className="search-result-content">
+                          <div
+                            className="search-result-title"
+                            dangerouslySetInnerHTML={{
+                              __html: highlightMatch(result.title, query),
+                            }}
+                          />
+                          <div className="search-result-meta">
+                            <span className="search-result-badge">{result.categoryName}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
+                {results.filter(r => r.type === "faq").length > 0 && (
+                  <div className="search-category">
+                    <div className="search-category-title">❓ FAQ</div>
+                    {results.filter(r => r.type === "faq").map((result, index) => (
+                      <div
+                        key={result.id}
+                        className={`search-result-item ${index === highlightedIndex ? "highlighted" : ""}`}
+                        onClick={() => handleResultClick(result)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div className="search-result-icon">{result.categoryIcon}</div>
+                        <div className="search-result-content">
+                          <div
+                            className="search-result-title"
+                            dangerouslySetInnerHTML={{
+                              __html: highlightMatch(result.title, query),
+                            }}
+                          />
+                          <div className="search-result-meta">
+                            <span className="search-result-badge">{result.categoryName}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </>
           ) : null}

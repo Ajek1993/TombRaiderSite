@@ -4,7 +4,7 @@
  */
 
 const cache = new Map<string, CacheEntry>();
-const CACHE_VERSION = "v3"; // Increment to invalidate cache (v3: pagination support)
+const CACHE_VERSION = "v4"; // Increment to invalidate cache (v4: duplicate video filtering)
 const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 /**

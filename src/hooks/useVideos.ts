@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { getGameplayCategories } from "@/config/playlists";
 
 export interface Video {
   id: string;
@@ -23,7 +24,7 @@ export interface ChannelInfo {
 }
 
 const API_BASE_URL = "/api";
-const PLAYLIST_CATEGORIES = ["tr1", "tr1ub", "tr2", "tr2gold", "tr3", "tlolc"];
+const PLAYLIST_CATEGORIES = getGameplayCategories();
 
 /**
  * Hook for fetching videos from a specific playlist
