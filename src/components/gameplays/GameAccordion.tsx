@@ -29,6 +29,24 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
   const playlists = PLAYLISTS[game];
   const categories = Object.keys(playlists);
 
+  // Fetch count of videos for a category
+  const fetchCategoryCount = async (category: string) => {
+    try {
+      const response = await fetch(`/api/youtube?playlist=${category}`);
+      const data = await response.json();
+      const count = data.count || 0;
+      setCategoryStates((prev) => ({
+        ...prev,
+        [category]: {
+          ...prev[category],
+          totalCount: count,
+        },
+      }));
+    } catch (error) {
+      console.error(`Error fetching count for ${category}:`, error);
+    }
+  };
+
   // Initialize category states
   useEffect(() => {
     // Calculate playlists and categories inside useEffect to use fresh game value
@@ -44,8 +62,12 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
         totalCount: undefined,
       };
     });
-// Fetch counts for all categories    categories.forEach((cat) => {      fetchCategoryCount(cat);    });
     setCategoryStates(initialStates);
+
+    // Fetch counts for all categories
+    categories.forEach((cat) => {
+      fetchCategoryCount(cat);
+    });
 
     // Expand first category by default
     if (categories.length > 0) {
@@ -56,7 +78,6 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
 
   const fetchCategoryVideos = async (category: string) => {
     if (categoryStates[category]?.videos.length > 0) {
-const fetchCategoryCount = async (category: string) => {    try {      const response = await fetch(`/api/youtube?playlist=${category}`);      const data = await response.json();      const count = data.count || 0;      setCategoryStates((prev) => ({        ...prev,        [category]: {          ...prev[category],          totalCount: count,        },      }));    } catch (error) {      console.error(`Error fetching count for ${category}:`, error);    }  };
       return; // Already loaded
     }
 
