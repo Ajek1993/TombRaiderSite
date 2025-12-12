@@ -98,9 +98,20 @@ export async function fetchPlaylistItems(
       }
     } while (nextPageToken);
 
+    // Remove duplicates based on videoId (keep first occurrence)
+    const seenVideoIds = new Set<string>();
+    const uniqueItems = allItems.filter((item) => {
+      const videoId = item.contentDetails.videoId;
+      if (seenVideoIds.has(videoId)) {
+        return false;
+      }
+      seenVideoIds.add(videoId);
+      return true;
+    });
+
     // Fetch video details in batches of 50 (YouTube API limit for video IDs)
     const allVideoDetails: VideoDetailsMap = {};
-    const videoIds = allItems.map((item) => item.contentDetails.videoId);
+    const videoIds = uniqueItems.map((item) => item.contentDetails.videoId);
 
     for (let i = 0; i < videoIds.length; i += 50) {
       const batch = videoIds.slice(i, i + 50);
@@ -110,7 +121,7 @@ export async function fetchPlaylistItems(
     }
 
     // Merge playlist items with video details
-    return allItems.map((item) => {
+    return uniqueItems.map((item) => {
       const videoId = item.contentDetails.videoId;
       const details = allVideoDetails[videoId] || {
         duration: "",
