@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brama do Bruxa Gaming - Próba Strażnika</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===================================================================
+       CSS Variables - Bruxa Gaming Color Palette
+       =================================================================== */
+    :root {
+      --cyber-pink: #FF1493;
+      --neon-cyan: #00FFFF;
+      --electric-purple: #8A2BE2;
+      --gold-accent: #FFD700;
+      --dark-bg: #1a1a2e;
+      --near-black: #0f0f1e;
+      --text-primary: #FFFFFF;
+      --text-secondary: #B8B8D0;
+      --success: #00FF7F;
+      --error: #FF4444;
+    }
+
+    /* ===================================================================
+       Global Styles
+       =================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+      background-size: 100% 200%;
+      animation: cave-ambience 10s ease infinite;
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    @keyframes cave-ambience {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 0% 100%; }
+    }
+
+    /* ===================================================================
+       Container
+       =================================================================== */
+    .cave-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* ===================================================================
+       Door Visual
+       =================================================================== */
+    .door {
+      font-size: 48px;
+      margin-bottom: 30px;
+      animation: door-pulse 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.6));
+      user-select: none;
+    }
+
+    @keyframes door-pulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .door-opening {
+      animation: door-opening 3s ease forwards;
+    }
+
+    @keyframes door-opening {
+      0% { transform: scaleX(1); opacity: 1; }
+      50% { transform: scaleX(0.5); opacity: 0.5; }
+      100% { transform: scaleX(0); opacity: 0; }
+    }
+
+    /* ===================================================================
+       Troll Character
+       =================================================================== */
+    .troll {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: troll-idle 2s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes troll-idle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .troll-shake {
+      animation: troll-head-shake 0.5s ease !important;
+    }
+
+    @keyframes troll-head-shake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(10deg); }
+    }
+
+    /* ===================================================================
+       Narration Box
+       =================================================================== */
+    .narration-box {
+      background: rgba(138, 43, 226, 0.1);
+      border: 2px solid var(--electric-purple);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+    }
+
+    .narration-text {
+      font-family: 'VT323', monospace;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+      min-height: 120px;
+      white-space: pre-wrap;
+    }
+
+    /* ===================================================================
+       Quiz Container
+       =================================================================== */
+    .quiz-container {
+      margin-top: 20px;
+    }
+
+    /* ===================================================================
+       Question Blocks
+       =================================================================== */
+    .question-block {
+      background: rgba(26, 26, 46, 0.8);
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .question-label {
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      color: var(--gold-accent);
+      display: block;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+    }
+
+    .question-text {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .question-text small {
+      color: var(--text-secondary);
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    /* ===================================================================
+       Input Fields
+       =================================================================== */
+    .answer-input {
+      width: 100%;
+      padding: 12px 15px;
+      padding-right: 50px;
+      background: rgba(15, 15, 30, 0.9);
+      border: 2px solid var(--electric-purple);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .answer-input::placeholder {
+      color: rgba(184, 184, 208, 0.5);
+    }
+
+    .answer-input:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    }
+
+    .answer-input.correct {
+      border-color: var(--success);
+      box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+      animation: success-glow 1.5s ease infinite;
+    }
+
+    .answer-input.wrong {
+      border-color: var(--error);
+      box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-5px); }
+    }
+
+    @keyframes success-glow {
+      0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 127, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(0, 255, 127, 0.6); }
+    }
+
+    /* ===================================================================
+       Feedback Icons
+       =================================================================== */
+    .feedback-icon {
+      position: absolute;
+      right: 30px;
+      bottom: 32px;
+      font-size: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .feedback-icon.show {
+      opacity: 1;
+    }
+
+    /* ===================================================================
+       Submit Button
+       =================================================================== */
+    .submit-btn {
+      background: linear-gradient(135deg, var(--cyber-pink), var(--electric-purple));
+      border: 2px solid var(--cyber-pink);
+      color: var(--text-primary);
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+      padding: 15px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(255, 20, 147, 0.7);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ===================================================================
+       Result Message
+       =================================================================== */
+    .result-message {
+      margin-top: 30px;
+      font-family: 'VT323', monospace;
+      font-size: 24px;
+      padding: 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      line-height: 1.5;
+    }
+
+    .result-message.show {
+      opacity: 1;
+    }
+
+    .result-message.success {
+      background: rgba(0, 255, 127, 0.1);
+      border: 2px solid var(--success);
+      color: var(--success);
+      text-shadow: 0 0 10px var(--success);
+    }
+
+    .result-message.error {
+      background: rgba(255, 68, 68, 0.1);
+      border: 2px solid var(--error);
+      color: var(--error);
+    }
+
+    .result-message small {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    /* ===================================================================
+       Responsive Design
+       =================================================================== */
+    @media (max-width: 768px) {
+      .cave-container {
+        padding: 30px 15px;
+      }
+
+      .door {
+        font-size: 36px;
+      }
+
+      .troll {
+        font-size: 60px;
+      }
+
+      .narration-text {
+        font-size: 18px;
+        min-height: 100px;
+      }
+
+      .submit-btn {
+        font-size: 10px;
+        padding: 12px 20px;
+      }
+
+      .question-label {
+        font-size: 18px;
+      }
+
+      .question-text {
+        font-size: 15px;
+      }
+
+      .result-message {
+        font-size: 20px;
+      }
+
+      .result-message small {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cave-container {
+        padding: 20px 10px;
+      }
+
+      .narration-box {
+        padding: 15px;
+      }
+
+      .question-block {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Container -->
+  <div class="cave-container">
+
+    <!-- Door Visual -->
+    <div class="door">🏛️ DUŻE DRZWI 🏛️</div>
+
+    <!-- Troll Character -->
+    <div class="troll">👹</div>
+
+    <!-- Narration Box -->
+    <div class="narration-box">
+      <p id="narration-text" class="narration-text"></p>
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+
+      <!-- Question 1 -->
+      <div class="question-block">
+        <label class="question-label">❓ PYTANIE 1:</label>
+        <p class="question-text">W którym roku powstał pierwszy Tomb Raider?</p>
+        <input type="text" id="answer1" class="answer-input" placeholder="Wpisz odpowiedź..." autocomplete="off">
+        <span class="feedback-icon" id="feedback1"></span>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-block">
+        <label class="question-label">❓ PYTANIE 2:</label>
+        <p class="question-text">Jak nazywa się główny antagonista w Tomb Raider 2?</p>
+        <input type="text" id="answer2" class="answer-input" placeholder="Wpisz odpowiedź..." autocomplete="off">
+        <span class="feedback-icon" id="feedback2"></span>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-block">
+        <label class="question-label">❓ PYTANIE 3:</label>
+        <p class="question-text">Jak nazywa się pierwszy poziom w Tomb Raider 1?<br><small>(Podpowiedź: Góry Peru)</small></p>
+        <input type="text" id="answer3" class="answer-input" placeholder="Wpisz odpowiedź..." autocomplete="off">
+        <span class="feedback-icon" id="feedback3"></span>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-block">
+        <label class="question-label">❓ PYTANIE 4:</label>
+        <p class="question-text">Ile sekretów można znaleźć ŁĄCZNIE w Peru?<br><small>(Peru = pierwsze 3 poziomy TR1)</small></p>
+        <input type="text" id="answer4" class="answer-input" placeholder="Wpisz odpowiedź..." autocomplete="off">
+        <span class="feedback-icon" id="feedback4"></span>
+      </div>
+
+      <!-- Submit Button -->
+      <button id="submit-btn" class="submit-btn">⚔️ ODPOWIEDZ STRAŻNIKOWI ⚔️</button>
+
+      <!-- Result Message -->
+      <div id="result-message" class="result-message"></div>
+
+    </div>
+
+  </div>
+
+  <!-- Embedded JavaScript -->
+  <script>
+    // ===================================================================
+    // Configuration - Correct Answers
+    // ===================================================================
+    const correctAnswers = {
+      q1: ['1996'],
+      q2: ['marco bartoli', 'bartoli', 'marco'],
+      q3: ['caves', 'the caves', 'jaskinie'],
+      q4: ['9', 'dziewięć', 'dziewiec']
+    };
+
+    // ===================================================================
+    // Typewriter Effect
+    // ===================================================================
+    const narrationText = `Wchodzisz do jaskini... w głębi widzisz duże drzwi, które są strzeżone przez trola strażnika. Gdy do niego podchodzisz, słyszysz głęboki głos:
+
+"Przepuszczę Cię dalej, podróżniku... jeśli odpowiesz na moje 4 pytania..."`;
+
+    function typeWriter(text, element, speed = 30) {
+      let i = 0;
+      element.textContent = '';
+
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+    }
+
+    // ===================================================================
+    // Validation Function
+    // ===================================================================
+    function checkAnswers() {
+      const inputs = [
+        document.getElementById('answer1'),
+        document.getElementById('answer2'),
+        document.getElementById('answer3'),
+        document.getElementById('answer4')
+      ];
+
+      const feedbacks = [
+        document.getElementById('feedback1'),
+        document.getElementById('feedback2'),
+        document.getElementById('feedback3'),
+        document.getElementById('feedback4')
+      ];
+
+      let correctCount = 0;
+      const results = [];
+
+      // Check each answer
+      inputs.forEach((input, index) => {
+        const userAnswer = input.value.toLowerCase().trim();
+        const questionKey = `q${index + 1}`;
+        const isCorrect = correctAnswers[questionKey].includes(userAnswer);
+
+        results.push(isCorrect);
+
+        // Reset classes
+        input.classList.remove('correct', 'wrong');
+        feedbacks[index].classList.remove('show');
+        feedbacks[index].textContent = '';
+
+        // Add feedback
+        if (isCorrect) {
+          input.classList.add('correct');
+          feedbacks[index].textContent = '✅';
+          feedbacks[index].classList.add('show');
+          correctCount++;
+        } else if (userAnswer !== '') {
+          input.classList.add('wrong');
+          feedbacks[index].textContent = '❌';
+          feedbacks[index].classList.add('show');
+        }
+      });
+
+      // Show result
+      showResult(correctCount, results);
+    }
+
+    // ===================================================================
+    // Display Result
+    // ===================================================================
+    function showResult(correctCount, results) {
+      const resultMessage = document.getElementById('result-message');
+      const troll = document.querySelector('.troll');
+      const door = document.querySelector('.door');
+
+      resultMessage.classList.remove('success', 'error', 'show');
+
+      if (correctCount === 4) {
+        // SUCCESS - All answers correct!
+        resultMessage.className = 'result-message success show';
+        resultMessage.innerHTML = `🏛️ DRZWI SIĘ OTWIERAJĄ... 🏛️<br><small>"Dobrze ci poszło, podróżniku... Możesz przejść."</small>`;
+
+        // Door opening animation
+        door.classList.add('door-opening');
+
+        // Play door opening sound
+        playDoorOpenSound();
+
+        // Redirect after 3s
+        setTimeout(() => {
+          window.location.href = 'https://bruxagaming.vercel.app';
+        }, 3000);
+
+      } else {
+        // ERROR - Not all answers correct
+        resultMessage.className = 'result-message error show';
+        resultMessage.innerHTML = `${correctCount}/4 poprawnych odpowiedzi<br><small>"Nie... spróbuj jeszcze raz, podróżniku."</small>`;
+
+        // Play error sound
+        playErrorSound();
+
+        // Troll shake
+        troll.classList.add('troll-shake');
+        setTimeout(() => {
+          troll.classList.remove('troll-shake');
+        }, 500);
+      }
+    }
+
+    // ===================================================================
+    // Event Listeners
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      // Start typewriter effect
+      const narrationElement = document.getElementById('narration-text');
+      typeWriter(narrationText, narrationElement, 30);
+
+      // Submit button
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.addEventListener('click', checkAnswers);
+
+      // Input fields
+      const inputs = document.querySelectorAll('.answer-input');
+
+      // Enter key support
+      inputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            checkAnswers();
+          }
+        });
+      });
+
+      // Reset feedback on input
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+          input.classList.remove('correct', 'wrong');
+          const feedback = document.getElementById(`feedback${index + 1}`);
+          feedback.classList.remove('show');
+        });
+      });
+    });
+
+    // ===================================================================
+    // Sound Effects - Web Audio API Synthesis
+    // ===================================================================
+
+    // Create Audio Context
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioContext;
+
+    function initAudioContext() {
+      if (!audioContext) {
+        audioContext = new AudioContext();
+      }
+    }
+
+    // Door Opening Sound - Deep rumble with stone grinding effect
+    function playDoorOpenSound() {
+      initAudioContext();
+
+      const now = audioContext.currentTime;
+      const duration = 2.5;
+
+      // Low frequency rumble (main bass)
+      const oscillator1 = audioContext.createOscillator();
+      const gainNode1 = audioContext.createGain();
+
+      oscillator1.type = 'sawtooth';
+      oscillator1.frequency.setValueAtTime(40, now);
+      oscillator1.frequency.exponentialRampToValueAtTime(30, now + duration);
+
+      gainNode1.gain.setValueAtTime(0.3, now);
+      gainNode1.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+      oscillator1.connect(gainNode1);
+      gainNode1.connect(audioContext.destination);
+
+      oscillator1.start(now);
+      oscillator1.stop(now + duration);
+
+      // Mid frequency grinding (stone texture)
+      const oscillator2 = audioContext.createOscillator();
+      const gainNode2 = audioContext.createGain();
+
+      oscillator2.type = 'triangle';
+      oscillator2.frequency.setValueAtTime(80, now);
+      oscillator2.frequency.linearRampToValueAtTime(60, now + duration);
+
+      gainNode2.gain.setValueAtTime(0.15, now);
+      gainNode2.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+      oscillator2.connect(gainNode2);
+      gainNode2.connect(audioContext.destination);
+
+      oscillator2.start(now);
+      oscillator2.stop(now + duration);
+
+      // Noise for stone grinding texture
+      const bufferSize = audioContext.sampleRate * duration;
+      const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = audioContext.createBufferSource();
+      noise.buffer = noiseBuffer;
+
+      const noiseFilter = audioContext.createBiquadFilter();
+      noiseFilter.type = 'lowpass';
+      noiseFilter.frequency.value = 200;
+
+      const noiseGain = audioContext.createGain();
+      noiseGain.gain.setValueAtTime(0.1, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+      noise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(audioContext.destination);
+
+      noise.start(now);
+      noise.stop(now + duration);
+    }
+
+    // Error Sound - Short buzzer
+    function playErrorSound() {
+      initAudioContext();
+
+      const now = audioContext.currentTime;
+      const duration = 0.15;
+
+      // Create buzzer oscillator
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+
+      oscillator.type = 'square';
+      oscillator.frequency.setValueAtTime(120, now);
+      oscillator.frequency.linearRampToValueAtTime(80, now + duration);
+
+      gainNode.gain.setValueAtTime(0.2, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      oscillator.start(now);
+      oscillator.stop(now + duration);
+    }
+  </script>
+</body>
+</html>
