@@ -118,14 +118,13 @@ export function useAllGameplays() {
         const results = await Promise.all(promises);
         const allVideos = results.flat();
 
-        // Filter out shorts and sort by publication date (newest first)
-        const gameplayVideos = allVideos
-          .filter((v: Video) => !v.isShort)
-          .sort(
-            (a: Video, b: Video) =>
-              new Date(b.publishedAtRaw).getTime() -
-              new Date(a.publishedAtRaw).getTime()
-          );
+        // Sort by publication date (newest first)
+        // Note: No need to filter shorts - they're in a separate playlist
+        const gameplayVideos = allVideos.sort(
+          (a: Video, b: Video) =>
+            new Date(b.publishedAtRaw).getTime() -
+            new Date(a.publishedAtRaw).getTime()
+        );
 
         setVideos(gameplayVideos);
       } catch (err) {
