@@ -112,6 +112,14 @@ export function MobileMenu({ isOpen, onClose, activePage }: MobileMenuProps) {
             >
               <span>♪</span> TikTok
             </a>
+            <a
+              href="https://discord.com/invite/zjsA5Cw8G"
+              className="mobile-social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>💬</span> Discord
+            </a>
           </div>
         </div>
 

@@ -105,6 +105,15 @@ export function Navbar() {
               >
                 <span>♪</span>
               </a>
+              <a
+                href="https://discord.com/invite/zjsA5Cw8G"
+                className="social-icon"
+                aria-label="Discord"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>💬</span>
+              </a>
             </div>
 
             {/* Search Component */}

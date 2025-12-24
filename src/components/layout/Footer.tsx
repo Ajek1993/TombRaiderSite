@@ -76,6 +76,15 @@ export function Footer() {
                   ♪ TikTok
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://discord.com/invite/zjsA5Cw8G"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  💬 Discord
+                </a>
+              </li>
             </ul>
           </div>
 
