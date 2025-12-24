@@ -57,6 +57,8 @@ interface VideoDetailsMap {
     duration: string;
     viewCount: string;
     likeCount: string;
+    privacyStatus: string;
+    uploadStatus: string;
   };
 }
 
@@ -120,17 +122,34 @@ export async function fetchPlaylistItems(
       Object.assign(allVideoDetails, batchDetails);
     }
 
-    // Merge playlist items with video details
-    return uniqueItems.map((item) => {
-      const videoId = item.contentDetails.videoId;
-      const details = allVideoDetails[videoId] || {
-        duration: "",
-        viewCount: "0",
-        likeCount: "0",
-      };
+    // Merge playlist items with video details and filter out non-public/non-processed videos
+    return uniqueItems
+      .map((item) => {
+        const videoId = item.contentDetails.videoId;
+        const details = allVideoDetails[videoId] || {
+          duration: "",
+          viewCount: "0",
+          likeCount: "0",
+          privacyStatus: "private",
+          uploadStatus: "rejected",
+        };
 
-      return formatVideoData(item, details);
-    });
+        return { item, details };
+      })
+      .filter(({ details }) => {
+        // Filter out private videos
+        if (details.privacyStatus !== "public") {
+          console.log(`[YouTube API] Filtering out non-public video (status: ${details.privacyStatus})`);
+          return false;
+        }
+        // Filter out scheduled/upcoming videos (not yet processed)
+        if (details.uploadStatus !== "processed") {
+          console.log(`[YouTube API] Filtering out non-processed video (upload status: ${details.uploadStatus})`);
+          return false;
+        }
+        return true;
+      })
+      .map(({ item, details }) => formatVideoData(item, details));
   } catch (error) {
     console.error("[YouTube API] Error fetching playlist:", error);
     throw new Error(
@@ -149,7 +168,7 @@ async function fetchVideoDetails(
   try {
     const response = await axios.get(`${YOUTUBE_API_BASE}/videos`, {
       params: {
-        part: "contentDetails,statistics",
+        part: "contentDetails,statistics,status",
         id: videoIds,
         key: apiKey,
       },
@@ -162,11 +181,14 @@ async function fetchVideoDetails(
         id: string;
         contentDetails: { duration: string };
         statistics: { viewCount: string; likeCount: string };
+        status: { privacyStatus: string; uploadStatus: string };
       }) => {
         videoMap[video.id] = {
           duration: video.contentDetails.duration,
           viewCount: video.statistics.viewCount,
           likeCount: video.statistics.likeCount,
+          privacyStatus: video.status.privacyStatus,
+          uploadStatus: video.status.uploadStatus,
         };
       }
     );
@@ -183,7 +205,13 @@ async function fetchVideoDetails(
  */
 function formatVideoData(
   playlistItem: PlaylistItemResponse["items"][0],
-  videoDetails: { duration: string; viewCount: string; likeCount: string }
+  videoDetails: {
+    duration: string;
+    viewCount: string;
+    likeCount: string;
+    privacyStatus: string;
+    uploadStatus: string;
+  }
 ): Video {
   const snippet = playlistItem.snippet;
   const contentDetails = playlistItem.contentDetails;
