@@ -152,9 +152,8 @@ export async function fetchPlaylistItems(
       .map(({ item, details }) => formatVideoData(item, details));
   } catch (error) {
     console.error("[YouTube API] Error fetching playlist:", error);
-    throw new Error(
-      `Failed to fetch playlist: ${error instanceof Error ? error.message : "Unknown error"}`
-    );
+    // Rethrow as-is so API routes can read the HTTP status (quota, not found)
+    throw error;
   }
 }
 
@@ -390,9 +389,8 @@ export async function fetchChannelInfo(
     };
   } catch (error) {
     console.error("[YouTube API] Error fetching channel info:", error);
-    throw new Error(
-      `Failed to fetch channel info: ${error instanceof Error ? error.message : "Unknown error"}`
-    );
+    // Rethrow as-is so API routes can read the HTTP status (quota, not found)
+    throw error;
   }
 }
 

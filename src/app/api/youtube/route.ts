@@ -5,9 +5,18 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getPlaylistId, isValidCategory } from "@/config/playlists";
+import {
+  getGameplayCategories,
+  getPlaylistId,
+  isValidCategory,
+} from "@/config/playlists";
 import { fetchPlaylistItems } from "@/lib/youtube-api";
 import * as cache from "@/lib/cache";
+
+// Let Vercel's CDN cache successful responses (in-memory cache is per-instance)
+const CDN_CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+};
 
 export async function GET(request: NextRequest) {
   try {
@@ -36,18 +45,7 @@ export async function GET(request: NextRequest) {
         {
           error: "Invalid category",
           message: `Category "${categoryKey}" does not exist`,
-          validCategories: [
-            "tr1",
-            "tr1ub",
-            "tr2",
-            "tr2gold",
-            "tr3",
-            "tlolc",
-            "trlegend",
-            "gtav",
-            "duke",
-            "shorts",
-          ],
+          validCategories: [...getGameplayCategories(), "shorts"],
         },
         { status: 400 }
       );
@@ -79,7 +77,7 @@ export async function GET(request: NextRequest) {
         cached: true,
         videos: cachedData,
         count: Array.isArray(cachedData) ? cachedData.length : 0,
-      });
+      }, { headers: CDN_CACHE_HEADERS });
     }
 
     // Get API key from environment
@@ -117,7 +115,7 @@ export async function GET(request: NextRequest) {
       cached: false,
       videos: videos,
       count: videos.length,
-    });
+    }, { headers: CDN_CACHE_HEADERS });
   } catch (error) {
     console.error("[API] Error:", error);
 
