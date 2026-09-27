@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { ShortCard } from "@/components/ui/VideoCard";
-import { useShorts, parseViewCount, Video } from "@/hooks/useVideos";
+import { useShorts, parseViewCount } from "@/hooks/useVideos";
 
 interface ShortsGridProps {
   onWatchVideo: (videoId: string, videoTitle: string) => void;

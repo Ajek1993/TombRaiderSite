@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function CookiesPage() {
   return (
     <div className="legal-page">

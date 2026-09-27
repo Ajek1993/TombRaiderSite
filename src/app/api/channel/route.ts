@@ -5,8 +5,14 @@
  */
 
 import { NextResponse } from "next/server";
+import axios from "axios";
 import { fetchChannelInfo } from "@/lib/youtube-api";
 import * as cache from "@/lib/cache";
+
+// Let Vercel's CDN cache successful responses (in-memory cache is per-instance)
+const CDN_CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+};
 
 // YouTube channel ID (Bruxa)
 const CHANNEL_ID = "UCruOD_YzLm0q_Wy0xcVa5Dg";
@@ -23,7 +29,7 @@ export async function GET() {
         success: true,
         channel: cached,
         cached: true,
-      });
+      }, { headers: CDN_CACHE_HEADERS });
     }
 
     // Get API key from environment
@@ -57,15 +63,12 @@ export async function GET() {
       success: true,
       channel: channelData,
       cached: false,
-    });
+    }, { headers: CDN_CACHE_HEADERS });
   } catch (error) {
     console.error("[Channel API] Error:", error);
 
     // Check for quota exceeded error
-    if (
-      error instanceof Error &&
-      error.message.includes("quotaExceeded")
-    ) {
+    if (axios.isAxiosError(error) && error.response?.status === 403) {
       return NextResponse.json(
         {
           success: false,

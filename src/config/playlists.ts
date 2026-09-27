@@ -60,6 +60,27 @@ export const PLAYLISTS: PlaylistsConfig = {
       icon: "📜",
       description: "Tomb Raider 3 Remastered gameplay series",
     },
+    tr3la: {
+      id: "PLjCja23HvzLSe4NEtOrFWoVRPVE6djwzw",
+      name: "TR3 The Lost Artifact",
+      shortName: "TR3 LA",
+      icon: "💎",
+      description: "Tomb Raider 3: The Lost Artifact expansion",
+    },
+    tr4: {
+      id: "PLjCja23HvzLRuj7L_5MtfIM7PMHfQqiYC",
+      name: "TR4 Remastered",
+      shortName: "TR4",
+      icon: "🐫",
+      description: "Tomb Raider 4: The Last Revelation Remastered gameplay series",
+    },
+    tr5: {
+      id: "PLfS0ZVIdgDFE",
+      name: "TR5 Remastered",
+      shortName: "TR5",
+      icon: "🏰",
+      description: "Tomb Raider 5: Chronicles Remastered gameplay series",
+    },
     tlolc: {
       id: "PLjCja23HvzLRfiuPHDnolXBf4jC2IRuDJ",
       name: "The Legend of Lara Croft",
@@ -73,6 +94,13 @@ export const PLAYLISTS: PlaylistsConfig = {
       shortName: "TRL",
       icon: "🗝️",
       description: "Tomb Raider: Legend gameplay series",
+    },
+    live: {
+      id: "PLjCja23HvzLRQUghckpvpdMplOcIX6YYs",
+      name: "Zapisy z live",
+      shortName: "Live",
+      icon: "🔴",
+      description: "Recorded live streams",
     },
   },
 

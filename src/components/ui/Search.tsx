@@ -22,6 +22,15 @@ interface SearchProps {
 const DEBOUNCE_DELAY = 300;
 const MAX_RESULTS_PER_CATEGORY = 5;
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function Search({ onVideoSelect }: SearchProps) {
   const [isActive, setIsActive] = useState(false);
   const [query, setQuery] = useState("");
@@ -44,7 +53,7 @@ export function Search({ onVideoSelect }: SearchProps) {
         const response = await fetch("/api/faq?visible=true");
         const data = await response.json();
         if (data.success && data.faq) {
-          const faqResults: SearchResult[] = data.faq.map((item: any) => ({
+          const faqResults: SearchResult[] = data.faq.map((item: { id: string; question: string; answer: string }) => ({
             id: item.id,
             title: item.question,
             type: "faq" as const,
@@ -91,21 +100,31 @@ export function Search({ onVideoSelect }: SearchProps) {
       .replace(/[\u0300-\u036f]/g, "");
   };
 
-  // Highlight matched text
+  // Highlight matched text (output goes to dangerouslySetInnerHTML, so escape it)
   const highlightMatch = (text: string, searchQuery: string): string => {
-    if (!searchQuery || !text) return text;
+    if (!searchQuery || !text) return escapeHtml(text);
 
-    const normalizedText = normalizeString(text);
+    // Normalize char by char, remembering where each normalized char came from,
+    // so accents (e.g. "ą" -> "a") don't shift the highlighted range
+    let normalizedText = "";
+    const originalIndex: number[] = [];
+    for (let i = 0; i < text.length; i++) {
+      const normalizedChar = normalizeString(text[i]);
+      normalizedText += normalizedChar;
+      for (let j = 0; j < normalizedChar.length; j++) originalIndex.push(i);
+    }
+
     const normalizedQuery = normalizeString(searchQuery);
     const index = normalizedText.indexOf(normalizedQuery);
 
-    if (index === -1) return text;
+    if (index === -1 || normalizedQuery.length === 0) return escapeHtml(text);
 
-    const before = text.slice(0, index);
-    const match = text.slice(index, index + searchQuery.length);
-    const after = text.slice(index + searchQuery.length);
+    const start = originalIndex[index];
+    const end = originalIndex[index + normalizedQuery.length - 1] + 1;
 
-    return `${before}<span class="search-highlight">${match}</span>${after}`;
+    return `${escapeHtml(text.slice(0, start))}<span class="search-highlight">${escapeHtml(
+      text.slice(start, end)
+    )}</span>${escapeHtml(text.slice(end))}`;
   };
 
   // Perform search
@@ -113,6 +132,7 @@ export function Search({ onVideoSelect }: SearchProps) {
     (searchQuery: string) => {
       if (searchQuery.length < 2) {
         setResults([]);
+        setIsLoading(false);
         return;
       }
 
@@ -140,18 +160,24 @@ export function Search({ onVideoSelect }: SearchProps) {
     [allVideos]
   );
 
+  // Loading state and clearing are set here rather than in the effect below
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    if (value.length === 0) {
+      setResults([]);
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+    }
+  };
+
   // Debounced search
   useEffect(() => {
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
     }
 
-    if (query.length === 0) {
-      setResults([]);
-      return;
-    }
-
-    setIsLoading(true);
+    if (query.length === 0) return;
 
     debounceRef.current = setTimeout(() => {
       performSearch(query);
@@ -228,7 +254,11 @@ export function Search({ onVideoSelect }: SearchProps) {
       if (selectedResult.type === "video") {
         onVideoSelect(selectedResult.id, selectedResult.title);
         closeSearch();
-      } else if (selectedResult.type === "faq") {        window.location.href = `/faq#${selectedResult.id}`;        closeSearch();
+      } else if (selectedResult.type === "faq") {
+        // Full navigation on purpose: FAQ page listens for "hashchange"
+        // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+        window.location.assign(`/faq#${selectedResult.id}`);
+        closeSearch();
       }
     }
   };
@@ -238,9 +268,16 @@ export function Search({ onVideoSelect }: SearchProps) {
     if (result.type === "video") {
       onVideoSelect(result.id, result.title);
       closeSearch();
-    } else if (result.type === "faq") {      window.location.href = `/faq#${result.id}`;      closeSearch();
+    } else if (result.type === "faq") {
+      // Full navigation on purpose: FAQ page listens for "hashchange"
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+      window.location.assign(`/faq#${result.id}`);
+      closeSearch();
     }
   };
+
+  // Results are ordered videos first, then FAQ (see performSearch)
+  const videoResultCount = results.filter((r) => r.type === "video").length;
 
   return (
     <>
@@ -260,7 +297,7 @@ export function Search({ onVideoSelect }: SearchProps) {
             aria-label="Wyszukiwarka"
             autoComplete="off"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => handleQueryChange(e.target.value)}
             onKeyDown={handleKeyDown}
           />
           <button
@@ -330,7 +367,7 @@ export function Search({ onVideoSelect }: SearchProps) {
                     {results.filter(r => r.type === "faq").map((result, index) => (
                       <div
                         key={result.id}
-                        className={`search-result-item ${index === highlightedIndex ? "highlighted" : ""}`}
+                        className={`search-result-item ${index + videoResultCount === highlightedIndex ? "highlighted" : ""}`}
                         onClick={() => handleResultClick(result)}
                         role="button"
                         tabIndex={0}

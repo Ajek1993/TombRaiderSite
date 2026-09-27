@@ -60,7 +60,11 @@ export function GameplayContent() {
       </section>
 
       {/* Game Accordion */}
-      <GameAccordion game={activeGame} onWatchVideo={openModal} />
+      <GameAccordion
+        key={activeGame}
+        game={activeGame}
+        onWatchVideo={openModal}
+      />
 
       {/* Video Modal */}
       <VideoModal
