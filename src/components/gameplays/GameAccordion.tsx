@@ -20,77 +20,57 @@ interface CategoryState {
 const INITIAL_VISIBLE = 3;
 const VIDEOS_PER_LOAD = 4;
 
-export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  const [categoryStates, setCategoryStates] = useState<
-    Record<string, CategoryState>
-  >({});
+function formatVideoCount(count: number): string {
+  if (count === 1) return "1 film";
+  const lastDigit = count % 10;
+  const lastTwo = count % 100;
+  if (lastDigit >= 2 && lastDigit <= 4 && (lastTwo < 12 || lastTwo > 14)) {
+    return `${count} filmy`;
+  }
+  return `${count} filmów`;
+}
 
+export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
+  // Parent remounts this component (via `key`) when the game tab changes,
+  // so initial state can be derived from props here
   const playlists = PLAYLISTS[game];
   const categories = Object.keys(playlists);
 
-  // Fetch count of videos for a category
-  const fetchCategoryCount = async (category: string) => {
-    try {
-      const response = await fetch(`/api/youtube?playlist=${category}`);
-      const data = await response.json();
-      const count = data.count || 0;
-      setCategoryStates((prev) => ({
-        ...prev,
-        [category]: {
-          ...prev[category],
-          totalCount: count,
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(
+    categories[0] ?? null
+  );
+  const [categoryStates, setCategoryStates] = useState<
+    Record<string, CategoryState>
+  >(() =>
+    Object.fromEntries(
+      categories.map((cat) => [
+        cat,
+        {
+          videos: [],
+          loading: true,
+          visibleCount: INITIAL_VISIBLE,
+          totalCount: undefined,
         },
-      }));
-    } catch (error) {
-      console.error(`Error fetching count for ${category}:`, error);
-    }
-  };
+      ])
+    )
+  );
 
-  // Initialize category states
+  // Load every category once: the same response gives both the video list
+  // and the count shown in the header
   useEffect(() => {
-    // Calculate playlists and categories inside useEffect to use fresh game value
-    const playlists = PLAYLISTS[game];
-    const categories = Object.keys(playlists);
+    const categories = Object.keys(PLAYLISTS[game]);
+    let cancelled = false;
 
-    const initialStates: Record<string, CategoryState> = {};
-    categories.forEach((cat, index) => {
-      initialStates[cat] = {
-        videos: [],
-        loading: index === 0, // Set loading true for first category
-        visibleCount: INITIAL_VISIBLE,
-        totalCount: undefined,
-      };
-    });
-    setCategoryStates(initialStates);
-
-    // Fetch counts for all categories
-    categories.forEach((cat) => {
-      fetchCategoryCount(cat);
-    });
-
-    // Expand first category by default
-    if (categories.length > 0) {
-      setExpandedCategory(categories[0]);
-      fetchCategoryVideos(categories[0]);
-    }
-  }, [game]);
-
-  const fetchCategoryVideos = async (category: string) => {
-    if (categoryStates[category]?.videos.length > 0) {
-      return; // Already loaded
-    }
-
-    setCategoryStates((prev) => ({
-      ...prev,
-      [category]: { ...prev[category], loading: true },
-    }));
-
-    try {
-      const response = await fetch(`/api/youtube?playlist=${category}`);
-      const data = await response.json();
-      const videos = data.videos || [];
-
+    categories.forEach(async (category) => {
+      let videos: Video[] = [];
+      try {
+        const response = await fetch(`/api/youtube?playlist=${category}`);
+        const data = await response.json();
+        videos = data.videos || [];
+      } catch (error) {
+        console.error(`Error fetching ${category}:`, error);
+      }
+      if (cancelled) return;
       setCategoryStates((prev) => ({
         ...prev,
         [category]: {
@@ -100,21 +80,18 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
           totalCount: videos.length,
         },
       }));
-    } catch (error) {
-      console.error(`Error fetching ${category}:`, error);
-      setCategoryStates((prev) => ({
-        ...prev,
-        [category]: { ...prev[category], loading: false },
-      }));
-    }
-  };
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [game]);
 
   const toggleAccordion = (category: string) => {
     if (expandedCategory === category) {
       setExpandedCategory(null);
     } else {
       setExpandedCategory(category);
-      fetchCategoryVideos(category);
     }
   };
 
@@ -187,7 +164,7 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
       <section className="gameplays-section">
         <div className="container">
           <div id="categories-container">
-            {categories.map((key, index) => {
+            {categories.map((key) => {
               const playlist = playlists[key];
               const isExpanded = expandedCategory === key;
               const state = categoryStates[key] || {
@@ -198,7 +175,10 @@ export function GameAccordion({ game, onWatchVideo }: GameAccordionProps) {
               };
               const videosToShow = state.videos.slice(0, state.visibleCount);
               const hasMore = state.visibleCount < state.videos.length;
-const displayCount =                 state.totalCount !== undefined                   ? `${state.totalCount} filmów`                   : state.loading                   ? "Ładowanie..."                   : "Ładowanie...";
+              const displayCount =
+                state.totalCount !== undefined
+                  ? formatVideoCount(state.totalCount)
+                  : "Ładowanie...";
 
               return (
                 <div className="category-accordion" id={key} key={key}>

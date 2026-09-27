@@ -96,14 +96,16 @@ export default function FAQPage() {
       }
     };
 
-    // Handle on mount
+    // FAQ items load asynchronously, so wait until they are rendered
+    if (faq.length === 0) return;
+
     handleHashNavigation();
 
     // Handle hash changes (browser back/forward)
     window.addEventListener('hashchange', handleHashNavigation);
 
     return () => window.removeEventListener('hashchange', handleHashNavigation);
-  }, []);
+  }, [faq]);
 
   return (
     <main className="faq-page">
